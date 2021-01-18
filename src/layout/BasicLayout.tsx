@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const BasicLayout = ({ children }: { children?: any }) => {
+export const BasicLayout = ({ children }: { children?: never }) => {
   return (
     <div>
       basiclayout

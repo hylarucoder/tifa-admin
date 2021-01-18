@@ -7,12 +7,14 @@ export type LoginParamsType = {
   type: string
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function fakeAccountLogin(params: LoginParamsType) {
   return {
     status: 'ok',
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function getFakeCaptcha(mobile: string) {
   return {}
 }

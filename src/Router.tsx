@@ -41,7 +41,7 @@ const Login = lazy(() =>
 type PrivateRouteProps = {
   children: React.ReactNode
   path: string
-  rest?: any
+  rest?: never
 }
 const PrivateRoute: React.FC<PrivateRouteProps> = ({
   children,
@@ -86,7 +86,7 @@ function LayoutRoutes() {
       >
         <div className="logo" />
         <Menu theme="light" defaultSelectedKeys={['1']} mode="inline">
-          {layoutRoutes.map((node, idx) => {
+          {layoutRoutes.map((node) => {
             if (!node.routes) {
               return (
                 <Menu.Item key={node.name} icon={<PieChartOutlined />}>
@@ -100,7 +100,7 @@ function LayoutRoutes() {
                 icon={<UserOutlined />}
                 title={node.name}
               >
-                {node.routes.map((node, idx) => {
+                {node.routes.map((node) => {
                   return (
                     <Menu.Item key={node.name}>
                       <Link to={node.path}>{node.name}</Link>
@@ -114,7 +114,7 @@ function LayoutRoutes() {
       </Sider>
       <Layout className="site-layout">
         <GlobalHeaderRight />
-        {layoutRoutes.map((node, idx) => {
+        {layoutRoutes.map((node) => {
           const BaseComponent = node.component
           if (!node.routes) {
             return (
@@ -125,9 +125,9 @@ function LayoutRoutes() {
           }
           return (
             <>
-              {node.routes.map((subNode, idx) => {
+              {node.routes.map((subNode) => {
                 const Component = subNode.component
-                return (
+                  return (
                   <Route path={subNode.path} key={subNode.name}>
                     <BaseComponent>
                       <Component />

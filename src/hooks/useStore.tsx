@@ -22,6 +22,7 @@ export const useGlobalStore = (): MGlobalStore => {
   return React.useContext(StoreContext)
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function useGlobalProviderStore() {
   const store = useLocalObservable(() => {
     return {
@@ -41,6 +42,7 @@ export function useGlobalProviderStore() {
   return store
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function ProvideStore({ children }: { children: React.ReactNode }) {
   const globalStore = useGlobalProviderStore()
   return (
