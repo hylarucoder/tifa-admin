@@ -23,7 +23,7 @@ const config = {
     }),
   ],
   output: {
-    filename: '[name].[hash:8].js',
+    filename: '[name].[fullhash:8].js',
     chunkFilename: '[name].[chunkhash:8].chunk.js',
     path: paths.build,
     publicPath: '',
@@ -59,16 +59,15 @@ const config = {
             loader: 'style-loader',
           },
           {
-            loader: 'css-loader', // translates CSS into CommonJS
+            loader: 'css-loader',
           },
           {
-            loader: 'less-loader', // compiles Less to CSS
+            loader: 'less-loader',
             options: {
               lessOptions: {
-                // If you are using less-loader@5 please spread the lessOptions to options directly
                 modifyVars: {
-                  'primary-color': '#1DA57A',
-                  'link-color': '#1DA57A',
+                  'primary-color': '#1890ff',
+                  'link-color': '#1890ff',
                   'border-radius-base': '2px',
                 },
                 javascriptEnabled: true,
