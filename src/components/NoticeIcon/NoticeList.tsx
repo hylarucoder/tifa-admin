@@ -1,24 +1,24 @@
-import { Avatar, List } from 'antd';
+import { Avatar, List } from 'antd'
 
-import React from 'react';
-import classNames from 'classnames';
-import styles from './NoticeList.less';
+import React from 'react'
+import classNames from 'classnames'
+import styles from './NoticeList.less'
 
 export type NoticeIconTabProps = {
-  count?: number;
-  showClear?: boolean;
-  showViewMore?: boolean;
-  style?: React.CSSProperties;
-  title: string;
-  tabKey: string;
-  onClick?: (item: API.NoticeIconData) => void;
-  onClear?: () => void;
-  emptyText?: string;
-  clearText?: string;
-  viewMoreText?: string;
-  list: API.NoticeIconData[];
-  onViewMore?: (e: any) => void;
-};
+  count?: number
+  showClear?: boolean
+  showViewMore?: boolean
+  style?: React.CSSProperties
+  title: string
+  tabKey: string
+  onClick?: (item: API.NoticeIconData) => void
+  onClear?: () => void
+  emptyText?: string
+  clearText?: string
+  viewMoreText?: string
+  list: API.NoticeIconData[]
+  onViewMore?: (e: any) => void
+}
 const NoticeList: React.FC<NoticeIconTabProps> = ({
   list = [],
   onClick,
@@ -40,7 +40,7 @@ const NoticeList: React.FC<NoticeIconTabProps> = ({
         />
         <div>{emptyText}</div>
       </div>
-    );
+    )
   }
   return (
     <div>
@@ -50,7 +50,7 @@ const NoticeList: React.FC<NoticeIconTabProps> = ({
         renderItem={(item, i) => {
           const itemCls = classNames(styles.item, {
             [styles.read]: item.read,
-          });
+          })
           // eslint-disable-next-line no-nested-ternary
           const leftIcon = item.avatar ? (
             typeof item.avatar === 'string' ? (
@@ -58,14 +58,14 @@ const NoticeList: React.FC<NoticeIconTabProps> = ({
             ) : (
               <span className={styles.iconElement}>{item.avatar}</span>
             )
-          ) : null;
+          ) : null
 
           return (
             <List.Item
               className={itemCls}
               key={item.key || i}
               onClick={() => {
-                onClick?.(item);
+                onClick?.(item)
               }}
             >
               <List.Item.Meta
@@ -85,7 +85,7 @@ const NoticeList: React.FC<NoticeIconTabProps> = ({
                 }
               />
             </List.Item>
-          );
+          )
         }}
       />
       <div className={styles.bottomBar}>
@@ -98,7 +98,7 @@ const NoticeList: React.FC<NoticeIconTabProps> = ({
           <div
             onClick={(e) => {
               if (onViewMore) {
-                onViewMore(e);
+                onViewMore(e)
               }
             }}
           >
@@ -107,7 +107,7 @@ const NoticeList: React.FC<NoticeIconTabProps> = ({
         ) : null}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default NoticeList;
+export default NoticeList

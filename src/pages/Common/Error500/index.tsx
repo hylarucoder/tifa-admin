@@ -1,7 +1,5 @@
-import React from "react";
+import React from 'react'
 
-const Error500: React.FC = () => (
-  <div>Error500</div>
-);
+const Error500: React.FC = () => <div>Error500</div>
 
-export default Error500;
+export default Error500

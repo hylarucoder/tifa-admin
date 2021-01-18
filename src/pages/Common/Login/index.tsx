@@ -6,20 +6,24 @@ import {
   TaobaoCircleOutlined,
   UserOutlined,
   WeiboCircleOutlined,
-} from '@ant-design/icons';
-import {Alert, Space, message, Tabs} from 'antd';
-import React, {useState} from 'react';
-import ProForm, {ProFormCaptcha, ProFormCheckbox, ProFormText} from '@ant-design/pro-form';
-import Footer from '@/components/Footer';
-import type {LoginParamsType} from '@/services/login';
-import {fakeAccountLogin, getFakeCaptcha} from '@/services/login';
-import styles from './index.less';
-import {useGlobalStore} from "@/hooks/useStore";
-import {Link} from "react-router-dom";
+} from '@ant-design/icons'
+import { Alert, Space, message, Tabs } from 'antd'
+import React, { useState } from 'react'
+import ProForm, {
+  ProFormCaptcha,
+  ProFormCheckbox,
+  ProFormText,
+} from '@ant-design/pro-form'
+import Footer from '@/components/Footer'
+import type { LoginParamsType } from '@/services/login'
+import { fakeAccountLogin, getFakeCaptcha } from '@/services/login'
+import styles from './index.less'
+import { useGlobalStore } from '@/hooks/useStore'
+import { Link } from 'react-router-dom'
 
 const LoginMessage: React.FC<{
-  content: string;
-}> = ({content}) => (
+  content: string
+}> = ({ content }) => (
   <Alert
     style={{
       marginBottom: 24,
@@ -28,7 +32,7 @@ const LoginMessage: React.FC<{
     type="error"
     showIcon
   />
-);
+)
 /**
  * 此方法会跳转到 redirect 参数所在的位置
  */
@@ -45,9 +49,9 @@ const LoginMessage: React.FC<{
 // };
 
 const Login: React.FC = () => {
-  const [submitting, setSubmitting] = useState(false);
-  const [userLoginState] = useState<API.LoginStateType>({});
-  const [type, setType] = useState<string>('account');
+  const [submitting, setSubmitting] = useState(false)
+  const [userLoginState] = useState<API.LoginStateType>({})
+  const [type, setType] = useState<string>('account')
   const globalStore = useGlobalStore()
   console.log(globalStore)
 
@@ -60,39 +64,41 @@ const Login: React.FC = () => {
   // };
 
   const handleSubmit = async (values: LoginParamsType) => {
-    setSubmitting(true);
+    setSubmitting(true)
 
     try {
       // 登录
-      const msg = await fakeAccountLogin({...values, type});
+      const msg = await fakeAccountLogin({ ...values, type })
 
       if (msg.status === 'ok') {
-        message.success('登录成功！');
+        message.success('登录成功！')
         // await fetchUserInfo();
         // goto();
-        return;
+        return
       } // 如果失败去设置用户错误信息
 
       // setUserLoginState(msg);
     } catch (error) {
-      message.error('登录失败，请重试！');
+      message.error('登录失败，请重试！')
     }
 
-    setSubmitting(false);
-  };
+    setSubmitting(false)
+  }
 
-  const {status, type: loginType} = userLoginState;
+  const { status, type: loginType } = userLoginState
   return (
     <div className={styles.container}>
       <div className={styles.content}>
         <div className={styles.top}>
           <div className={styles.header}>
             <Link to="/">
-              <img alt="logo" className={styles.logo} src="/logo.svg"/>
+              <img alt="logo" className={styles.logo} src="/logo.svg" />
               <span className={styles.title}>CyberCity Admin</span>
             </Link>
           </div>
-          <div className={styles.desc}>Ant Design 是西湖区最具影响力的 Web 设计规范</div>
+          <div className={styles.desc}>
+            Ant Design 是西湖区最具影响力的 Web 设计规范
+          </div>
         </div>
 
         <div className={styles.main}>
@@ -115,28 +121,16 @@ const Login: React.FC = () => {
             }}
             onFinish={async (values) => {
               // @ts-ignore
-              handleSubmit(values);
+              handleSubmit(values)
             }}
           >
             <Tabs activeKey={type} onChange={setType}>
-              <Tabs.TabPane
-                key="account"
-                tab={
-                  '账户密码登录'
-                }
-              />
-              <Tabs.TabPane
-                key="mobile"
-                tab={
-                  '手机号登录'
-                }
-              />
+              <Tabs.TabPane key="account" tab={'账户密码登录'} />
+              <Tabs.TabPane key="mobile" tab={'手机号登录'} />
             </Tabs>
 
             {status === 'error' && loginType === 'account' && (
-              <LoginMessage
-                content={'账户或密码错误（admin/ant.design)'}
-              />
+              <LoginMessage content={'账户或密码错误（admin/ant.design)'} />
             )}
             {type === 'account' && (
               <>
@@ -144,7 +138,7 @@ const Login: React.FC = () => {
                   name="username"
                   fieldProps={{
                     size: 'large',
-                    prefix: <UserOutlined className={styles.prefixIcon}/>,
+                    prefix: <UserOutlined className={styles.prefixIcon} />,
                   }}
                   placeholder={'用户名: admin or user'}
                   rules={[
@@ -158,7 +152,7 @@ const Login: React.FC = () => {
                   name="password"
                   fieldProps={{
                     size: 'large',
-                    prefix: <LockTwoTone className={styles.prefixIcon}/>,
+                    prefix: <LockTwoTone className={styles.prefixIcon} />,
                   }}
                   placeholder={'密码: ant.design'}
                   rules={[
@@ -171,13 +165,15 @@ const Login: React.FC = () => {
               </>
             )}
 
-            {status === 'error' && loginType === 'mobile' && <LoginMessage content="验证码错误"/>}
+            {status === 'error' && loginType === 'mobile' && (
+              <LoginMessage content="验证码错误" />
+            )}
             {type === 'mobile' && (
               <>
                 <ProFormText
                   fieldProps={{
                     size: 'large',
-                    prefix: <MobileTwoTone className={styles.prefixIcon}/>,
+                    prefix: <MobileTwoTone className={styles.prefixIcon} />,
                   }}
                   name="mobile"
                   placeholder={'手机号'}
@@ -195,7 +191,7 @@ const Login: React.FC = () => {
                 <ProFormCaptcha
                   fieldProps={{
                     size: 'large',
-                    prefix: <MailTwoTone className={styles.prefixIcon}/>,
+                    prefix: <MailTwoTone className={styles.prefixIcon} />,
                   }}
                   captchaProps={{
                     size: 'large',
@@ -203,13 +199,13 @@ const Login: React.FC = () => {
                   placeholder={'请输入验证码'}
                   captchaTextRender={(timing, count) => {
                     if (timing) {
-                      return `${count} 获取验证码`;
+                      return `${count} 获取验证码`
                     }
 
                     return {
                       id: 'pages.login.phoneLogin.getVerificationCode',
                       defaultMessage: '获取验证码',
-                    };
+                    }
                   }}
                   name="captcha"
                   rules={[
@@ -219,13 +215,13 @@ const Login: React.FC = () => {
                     },
                   ]}
                   onGetCaptcha={async (mobile) => {
-                    const result = await getFakeCaptcha(mobile);
+                    const result = await getFakeCaptcha(mobile)
 
                     if (result === false) {
-                      return;
+                      return
                     }
 
-                    message.success('获取验证码成功！验证码为：1234');
+                    message.success('获取验证码成功！验证码为：1234')
                   }}
                 />
               </>
@@ -249,15 +245,15 @@ const Login: React.FC = () => {
           </ProForm>
           <Space className={styles.other}>
             其他登录方式 :
-            <AlipayCircleOutlined className={styles.icon}/>
-            <TaobaoCircleOutlined className={styles.icon}/>
-            <WeiboCircleOutlined className={styles.icon}/>
+            <AlipayCircleOutlined className={styles.icon} />
+            <TaobaoCircleOutlined className={styles.icon} />
+            <WeiboCircleOutlined className={styles.icon} />
           </Space>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

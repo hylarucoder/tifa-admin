@@ -1,5 +1,5 @@
-import {Button, Result} from 'antd';
-import React from 'react';
+import { Button, Result } from 'antd'
+import React from 'react'
 
 const NoFoundPage: React.FC = () => (
   <Result
@@ -12,6 +12,6 @@ const NoFoundPage: React.FC = () => (
       </Button>
     }
   />
-);
+)
 
-export default NoFoundPage;
+export default NoFoundPage

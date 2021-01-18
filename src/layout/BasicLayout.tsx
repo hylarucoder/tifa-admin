@@ -1,10 +1,6 @@
-import React from "react";
+import React from 'react'
 
-export const BasicLayout = (
-  {
-    children
-  }: { children?: any }
-) => {
+export const BasicLayout = ({ children }: { children?: any }) => {
   return (
     <div>
       basiclayout
@@ -12,4 +8,4 @@ export const BasicLayout = (
     </div>
   )
 }
-export default BasicLayout;
+export default BasicLayout

@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {ProvideStore} from './hooks/useStore';
+import React, { useEffect } from 'react'
+import { ProvideStore } from './hooks/useStore'
 // import type {Settings as LayoutSettings} from '@ant-design/pro-layout';
 // import {PageLoading} from '@ant-design/pro-layout';
 // import {notification} from 'antd';
@@ -7,7 +7,7 @@ import {ProvideStore} from './hooks/useStore';
 // import Footer from '@/components/Footer';
 // import Tabs from '@/components/Tabs'
 // import {queryCurrent} from './services/user';
-import Router from "./Router";
+import Router from './Router'
 // import defaultSettings from '../config/defaultSettings';
 
 // import type {RequestConfig, RunTimeLayoutConfig,} from 'umi';
@@ -128,24 +128,22 @@ import Router from "./Router";
 //   throw error;
 // };
 
-
 function Main() {
   // const store = useGlobalStore();
   useEffect(() => {
     // TODO: login
     // store.login();
-  }, []);
-  return <Router/>;
+  }, [])
+  return <Router />
 }
-
 
 const App: React.FC = (props: { children?: React.ReactNode }) => {
   console.log(props)
   return (
     <ProvideStore>
-      <Main/>
+      <Main />
     </ProvideStore>
-  );
-};
+  )
+}
 
-export default App;
+export default App

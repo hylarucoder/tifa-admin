@@ -1,8 +1,8 @@
-import {useLocation} from "react-router";
-import React from "react";
+import { useLocation } from 'react-router'
+import React from 'react'
 
 const Tasks = () => {
-  const location = useLocation();
+  const location = useLocation()
   return (
     <div>
       <div>Tasks</div>

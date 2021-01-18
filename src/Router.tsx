@@ -1,25 +1,29 @@
-import React, {lazy, Suspense} from "react";
-import {Layout, Menu} from 'antd';
-import {
-  PieChartOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
+import React, { lazy, Suspense } from 'react'
+import { Layout, Menu } from 'antd'
+import { PieChartOutlined, UserOutlined } from '@ant-design/icons'
 
-const {Sider} = Layout;
-const {SubMenu} = Menu;
+const { Sider } = Layout
+const { SubMenu } = Menu
 // import Footer from '@/components/Footer';
 // import {PageLoading} from '@ant-design/pro-layout';
 
-import {BrowserRouter, Route, Redirect, Switch, Link} from "react-router-dom";
-import {layoutRoutes} from "@/routes";
-import GlobalHeaderRight from "@/components/GlobalHeaderRight";
+import { BrowserRouter, Route, Redirect, Switch, Link } from 'react-router-dom'
+import { layoutRoutes } from '@/routes'
+import GlobalHeaderRight from '@/components/GlobalHeaderRight'
 // import { useGlobalStore } from "@/hooks/useStore";
 
-
-const Error403 = lazy(() => import(/* webpackChunkName: "NotFound" */ "./pages/Common/Error403"));
-const Error404 = lazy(() => import(/* webpackChunkName: "NotFound" */ "./pages/Common/Error404"));
-const Error500 = lazy(() => import(/* webpackChunkName: "NotFound" */ "./pages/Common/Error500"));
-const Login = lazy(() => import(/* webpackChunkName: "Login" */ "./pages/Common/Login"));
+const Error403 = lazy(() =>
+  import(/* webpackChunkName: "NotFound" */ './pages/Common/Error403')
+)
+const Error404 = lazy(() =>
+  import(/* webpackChunkName: "NotFound" */ './pages/Common/Error404')
+)
+const Error500 = lazy(() =>
+  import(/* webpackChunkName: "NotFound" */ './pages/Common/Error500')
+)
+const Login = lazy(() =>
+  import(/* webpackChunkName: "Login" */ './pages/Common/Login')
+)
 
 // const isPromise = (value: any) => {
 //   return !!(
@@ -34,13 +38,16 @@ const Login = lazy(() => import(/* webpackChunkName: "Login" */ "./pages/Common/
 //   return func && {}.toString.call(func) === '[object Function]';
 // }
 
-
 type PrivateRouteProps = {
-  children: React.ReactNode;
-  path: string;
-  rest?: any;
-};
-const PrivateRoute: React.FC<PrivateRouteProps> = ({children, path, ...rest}: PrivateRouteProps) => {
+  children: React.ReactNode
+  path: string
+  rest?: any
+}
+const PrivateRoute: React.FC<PrivateRouteProps> = ({
+  children,
+  path,
+  ...rest
+}: PrivateRouteProps) => {
   // const store = useGlobalStore();
   // const loggedIn = store.loginedIn;
   const loggedIn = true
@@ -54,90 +61,88 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({children, path, ...rest}: Pr
         ) : (
           <Redirect
             to={{
-              pathname: "/login", // eslint-disable-next-line react/prop-types
-              state: {from: props.location},
+              pathname: '/login', // eslint-disable-next-line react/prop-types
+              state: { from: props.location },
             }}
           />
         )
       }
     />
-  );
-};
-
+  )
+}
 
 function LayoutRoutes() {
-  return <Layout style={{minHeight: '100vh'}}>
-    <Sider collapsible collapsed={false} onCollapse={() => {
-      console.log(1)
-    }} style={{
-      width: 208,
-    }}>
-      <div className="logo"/>
-      <Menu theme="light" defaultSelectedKeys={['1']} mode="inline">
-        {
-          layoutRoutes.map((node, idx) => {
-              if (!node.routes) {
-                return (
-                  <Menu.Item key={node.name} icon={<PieChartOutlined/>}>
-                    <Link to={node.path}>{node.name}</Link>
-                  </Menu.Item>
-                )
-              }
-              return (
-                <SubMenu key={node.name} icon={<UserOutlined/>} title={node.name}>
-                  {
-                    node.routes.map((node, idx) => {
-                      return (
-                        <Menu.Item key={node.name}>
-                          <Link to={node.path}>{node.name}</Link>
-                        </Menu.Item>
-                      )
-                    })
-                  }
-                </SubMenu>
-              )
-            }
-          )
-        }
-      </Menu>
-    </Sider>
-    <Layout className="site-layout">
-      <GlobalHeaderRight/>
-      {
-        layoutRoutes.map((node, idx) => {
-            const BaseComponent = node.component
+  return (
+    <Layout style={{ minHeight: '100vh' }}>
+      <Sider
+        collapsible
+        collapsed={false}
+        onCollapse={() => {
+          console.log(1)
+        }}
+        style={{
+          width: 208,
+        }}
+      >
+        <div className="logo" />
+        <Menu theme="light" defaultSelectedKeys={['1']} mode="inline">
+          {layoutRoutes.map((node, idx) => {
             if (!node.routes) {
               return (
-                <Route path={node.path}>
-                  <BaseComponent/>
-                </Route>
+                <Menu.Item key={node.name} icon={<PieChartOutlined />}>
+                  <Link to={node.path}>{node.name}</Link>
+                </Menu.Item>
               )
             }
             return (
-              <>
-                {
-                  node.routes.map((subNode, idx) => {
-                    const Component = subNode.component
-                    return (
-                      <Route path={subNode.path} key={subNode.name}>
-                        <BaseComponent>
-                          <Component/>
-                        </BaseComponent>
-                      </Route>
-                    )
-                  })
-                }
-              </>
+              <SubMenu
+                key={node.name}
+                icon={<UserOutlined />}
+                title={node.name}
+              >
+                {node.routes.map((node, idx) => {
+                  return (
+                    <Menu.Item key={node.name}>
+                      <Link to={node.path}>{node.name}</Link>
+                    </Menu.Item>
+                  )
+                })}
+              </SubMenu>
+            )
+          })}
+        </Menu>
+      </Sider>
+      <Layout className="site-layout">
+        <GlobalHeaderRight />
+        {layoutRoutes.map((node, idx) => {
+          const BaseComponent = node.component
+          if (!node.routes) {
+            return (
+              <Route path={node.path}>
+                <BaseComponent />
+              </Route>
             )
           }
-        )
-      }
+          return (
+            <>
+              {node.routes.map((subNode, idx) => {
+                const Component = subNode.component
+                return (
+                  <Route path={subNode.path} key={subNode.name}>
+                    <BaseComponent>
+                      <Component />
+                    </BaseComponent>
+                  </Route>
+                )
+              })}
+            </>
+          )
+        })}
 
-      <PrivateRoute path="/private">
-        p
-      </PrivateRoute>
+        <PrivateRoute path="/private">p</PrivateRoute>
+      </Layout>
     </Layout>
-  </Layout>
+  )
 }
 
 const Router: React.FC = () => (
@@ -145,28 +150,28 @@ const Router: React.FC = () => (
     <Suspense fallback={<div>Loading...</div>}>
       <Switch>
         <Route path="/login" exact>
-          <Login/>
+          <Login />
         </Route>
         <Route path="/403" exact>
-          <Error403/>
+          <Error403 />
         </Route>
         <Route path="/404" exact>
-          <Error404/>
+          <Error404 />
         </Route>
         <Route path="/500" exact>
-          <Error500/>
+          <Error500 />
         </Route>
         <Route path="*">
           <Switch>
-            <LayoutRoutes/>
+            <LayoutRoutes />
             <Route path="*">
-              <Error404/>
+              <Error404 />
             </Route>
           </Switch>
         </Route>
       </Switch>
     </Suspense>
   </BrowserRouter>
-);
+)
 
-export default Router;
+export default Router

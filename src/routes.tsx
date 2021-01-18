@@ -1,14 +1,18 @@
-﻿import React, {FunctionComponent, lazy} from "react";
+﻿import React, { FunctionComponent, lazy } from 'react'
 
 type RouteNode = {
-  path: string,
-  name: string,
-  icon?: string,
-  component: (() => Promise<any>) | React.ComponentType | FunctionComponent | string,
-  permission?: string,
-  isMultiPanel?: boolean,
-  keepAlive?: boolean,
-  routes?: RouteNode[],
+  path: string
+  name: string
+  icon?: string
+  component:
+    | (() => Promise<any>)
+    | React.ComponentType
+    | FunctionComponent
+    | string
+  permission?: string
+  isMultiPanel?: boolean
+  keepAlive?: boolean
+  routes?: RouteNode[]
 }
 
 const BasicLayout = lazy(() => import('@/layout/BasicLayout'))
@@ -18,7 +22,9 @@ export const layoutRoutes: RouteNode[] = [
     path: '/welcome',
     name: '欢迎页面',
     icon: 'smile',
-    component: lazy(() => import(/* webpackChunkName: "Welcome" */ "@/pages/Welcome")),
+    component: lazy(() =>
+      import(/* webpackChunkName: "Welcome" */ '@/pages/Welcome')
+    ),
   },
   {
     path: '/bpm',
@@ -518,6 +524,3 @@ export const layoutRoutes: RouteNode[] = [
   //   ],
   // },
 ]
-
-
-

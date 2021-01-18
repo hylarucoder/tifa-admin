@@ -1,15 +1,15 @@
-import React from 'react';
-import {PageContainer} from '@ant-design/pro-layout';
-import {Card, Alert, Typography} from 'antd';
-import styles from './index.less';
+import React from 'react'
+import { PageContainer } from '@ant-design/pro-layout'
+import { Card, Alert, Typography } from 'antd'
+import styles from './index.less'
 
-const CodePreview: React.FC = ({children}) => (
+const CodePreview: React.FC = ({ children }) => (
   <pre className={styles.pre}>
     <code>
       <Typography.Text copyable>{children}</Typography.Text>
     </code>
   </pre>
-);
+)
 
 const Welcome = () => {
   return (
@@ -54,8 +54,7 @@ const Welcome = () => {
         <CodePreview>yarn add @ant-design/pro-layout</CodePreview>
       </Card>
     </PageContainer>
-  );
-};
+  )
+}
 
 export default Welcome
-
