@@ -1,17 +1,17 @@
 ﻿import React, { lazy, LazyExoticComponent } from 'react'
+import BasicLayout from '@/layout/BasicLayout'
 
 type RouteNode = {
   path: string
   name: string
   icon?: string
-  component: React.ComponentType | React.FC | LazyExoticComponent<any>
+  component: React.ComponentType | React.FC | LazyExoticComponent<any> | JSX.Element
   permission?: string
   isMultiPanel?: boolean
   keepAlive?: boolean
   routes?: RouteNode[]
 }
 
-const BasicLayout = lazy(() => import('@/layout/BasicLayout'))
 
 export const layoutRoutes: RouteNode[] = [
   {
@@ -31,20 +31,20 @@ export const layoutRoutes: RouteNode[] = [
       {
         name: '我的任务',
         icon: 'smile',
-        path: '/bpm/tasks',
+        path: '/biz_process/tasks',
         component: lazy(() => import('@/pages/BizProcess/Tasks')),
       },
       {
         name: '发起流程',
         icon: 'smile',
-        path: '/bpm/process',
-        component: lazy(() => import('@/pages/BizProcess/Tasks')),
+        path: '/biz_process/process',
+        component: lazy(() => import('@/pages/BizProcess/Process')),
       },
       {
         name: '我的抄送',
         icon: 'smile',
-        path: '/bpm/cc',
-        component: lazy(() => import('@/pages/BizProcess/Tasks')),
+        path: '/biz_process/cc',
+        component: lazy(() => import('@/pages/BizProcess/CC')),
       },
     ],
   },
