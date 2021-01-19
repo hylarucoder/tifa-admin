@@ -2,10 +2,10 @@ import React from 'react'
 
 export const BasicLayout = ({ children }: { children?: never }) => {
   return (
-    <div>
-      basiclayout
-      <div> {children}</div>
-    </div>
+    <>
+      <h1>this is ulti tab</h1>
+      {children}
+    </>
   )
 }
 export default BasicLayout

@@ -2,8 +2,9 @@ const paths = require('./webpack.paths')
 const merge = require('webpack-merge')
 const common = require('./webpack.common.js')
 const webpack = require('webpack')
-// const ErrorOverlayPlugin = require('error-overlay-webpack-plugin')
+const ErrorOverlayPlugin = require('error-overlay-webpack-plugin')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 
 const config = merge(common, {
   mode: 'development',
@@ -39,13 +40,13 @@ const config = merge(common, {
   },
   output: { publicPath: '/' },
   plugins: [
-    // new ErrorOverlayPlugin(),
+    new ErrorOverlayPlugin(),
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development',
-      PUBLIC_URL: '/',
       DEBUG: false,
     }),
     new ReactRefreshWebpackPlugin(),
+    new ProgressBarPlugin(),
   ],
 })
 

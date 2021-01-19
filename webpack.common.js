@@ -23,8 +23,8 @@ const config = {
     }),
   ],
   output: {
-    filename: '[name].[fullhash:8].js',
-    chunkFilename: '[name].[chunkhash:8].chunk.js',
+    filename: '[name].[hash:8].js',
+    chunkFilename: '[name].[hash:8].chunk.js',
     path: paths.build,
     publicPath: '',
   },

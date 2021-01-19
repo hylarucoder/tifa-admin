@@ -17,3 +17,16 @@ export const isAntDesignProOrDev = (): boolean => {
   }
   return isAntDesignPro()
 }
+
+// const isPromise = (value: any) => {
+//   return !!(
+//     value &&
+//     value.then &&
+//     typeof value.then === 'function' &&
+//     value?.constructor?.name === 'Promise'
+//   )
+// }
+
+// function isFunction(func: any) {
+//   return func && {}.toString.call(func) === '[object Function]';
+// }
