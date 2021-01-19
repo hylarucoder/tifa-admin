@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Tag, message } from 'antd'
 import { groupBy } from 'lodash'
 import moment from 'moment'
-// @ts-ignore
-import { useModel } from 'umi'
 import { queryNotices } from '@/services/user'
 
 import NoticeIcon from './NoticeIcon'
@@ -15,9 +13,7 @@ export type GlobalHeaderRightProps = {
   onNoticeClear?: (tabName?: string) => void
 }
 
-const getNoticeData = (
-  notices: API.NoticeIconData[]
-): Record<string, API.NoticeIconData[]> => {
+const getNoticeData = (notices: any[]): Record<string, any[]> => {
   if (!notices || notices.length === 0 || !Array.isArray(notices)) {
     return {}
   }
@@ -58,7 +54,7 @@ const getNoticeData = (
   return groupBy(newNotices, 'type')
 }
 
-const getUnreadData = (noticeData: Record<string, API.NoticeIconData[]>) => {
+const getUnreadData = (noticeData: Record<string, any[]>) => {
   const unreadMsg: Record<string, number> = {}
   Object.keys(noticeData).forEach((key) => {
     const value = noticeData[key]
@@ -75,9 +71,12 @@ const getUnreadData = (noticeData: Record<string, API.NoticeIconData[]>) => {
 }
 
 const NoticeIconView = () => {
-  const { initialState } = useModel('@@initialState')
-  const { currentUser } = initialState || {}
-  const [notices, setNotices] = useState<API.NoticeIconData[]>([])
+  const { currentUser } = {
+    currentUser: {
+      unreadCount: 1,
+    },
+  }
+  const [notices, setNotices] = useState<any[]>([])
 
   useEffect(() => {
     queryNotices().then(({ data }) => setNotices(data))

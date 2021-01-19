@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
-import { ProvideStore } from './hooks/useStore'
+import { ProvideStore, useGlobalStore } from './hooks/useStore'
 import Router from './Router'
 
 function Main() {
-  // const store = useGlobalStore();
+  const store = useGlobalStore()
   useEffect(() => {
     // TODO: login
     // store.login();

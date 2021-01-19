@@ -16,7 +16,7 @@ export type NoticeIconProps = {
   className?: string
   loading?: boolean
   onClear?: (tabName: string, tabKey: string) => void
-  onItemClick?: (item: API.NoticeIconData, tabProps: NoticeIconTabProps) => void
+  onItemClick?: (item: any, tabProps: NoticeIconTabProps) => void
   onViewMore?: (tabProps: NoticeIconTabProps, e: MouseEvent) => void
   onTabChange?: (tabTile: string) => void
   style?: React.CSSProperties
@@ -47,45 +47,31 @@ const NoticeIcon: React.FC<NoticeIconProps> & {
       return null
     }
     const panes: React.ReactNode[] = []
-    React.Children.forEach(
-      children,
-      (child: React.ReactElement<NoticeIconTabProps>): void => {
-        if (!child) {
-          return
-        }
-        const {
-          list,
-          title,
-          count,
-          tabKey,
-          showClear,
-          showViewMore,
-        } = child.props
-        const len = list && list.length ? list.length : 0
-        const msgCount = count || count === 0 ? count : len
-        const tabTitle: string = msgCount > 0 ? `${title} (${msgCount})` : title
-        panes.push(
-          <TabPane tab={tabTitle} key={tabKey}>
-            <NoticeList
-              clearText={clearText}
-              viewMoreText={viewMoreText}
-              list={list}
-              tabKey={tabKey}
-              onClear={(): void => onClear && onClear(title, tabKey)}
-              onClick={(item): void =>
-                onItemClick && onItemClick(item, child.props)
-              }
-              onViewMore={(event): void =>
-                onViewMore && onViewMore(child.props, event)
-              }
-              showClear={showClear}
-              showViewMore={showViewMore}
-              title={title}
-            />
-          </TabPane>
-        )
+    React.Children.forEach(children, (child: React.ReactElement<NoticeIconTabProps>): void => {
+      if (!child) {
+        return
       }
-    )
+      const { list, title, count, tabKey, showClear, showViewMore } = child.props
+      const len = list && list.length ? list.length : 0
+      const msgCount = count || count === 0 ? count : len
+      const tabTitle: string = msgCount > 0 ? `${title} (${msgCount})` : title
+      panes.push(
+        <TabPane tab={tabTitle} key={tabKey}>
+          <NoticeList
+            clearText={clearText}
+            viewMoreText={viewMoreText}
+            list={list}
+            tabKey={tabKey}
+            onClear={(): void => onClear && onClear(title, tabKey)}
+            onClick={(item): void => onItemClick && onItemClick(item, child.props)}
+            onViewMore={(event): void => onViewMore && onViewMore(child.props, event)}
+            showClear={showClear}
+            showViewMore={showViewMore}
+            title={title}
+          />
+        </TabPane>
+      )
+    })
     return (
       <>
         <Spin spinning={loading} delay={300}>
@@ -108,11 +94,7 @@ const NoticeIcon: React.FC<NoticeIconProps> & {
   const NoticeBellIcon = bell || <BellOutlined className={styles.icon} />
   const trigger = (
     <span className={classNames(noticeButtonClass, { opened: visible })}>
-      <Badge
-        count={count}
-        style={{ boxShadow: 'none' }}
-        className={styles.badge}
-      >
+      <Badge count={count} style={{ boxShadow: 'none' }} className={styles.badge}>
         {NoticeBellIcon}
       </Badge>
     </span>
@@ -136,8 +118,7 @@ const NoticeIcon: React.FC<NoticeIconProps> & {
 }
 
 NoticeIcon.defaultProps = {
-  emptyImage:
-    'https://gw.alipayobjects.com/zos/rmsportal/wAhyIChODzsoKIOBHcBk.svg',
+  emptyImage: 'https://gw.alipayobjects.com/zos/rmsportal/wAhyIChODzsoKIOBHcBk.svg',
 }
 
 NoticeIcon.Tab = NoticeList
