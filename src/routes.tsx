@@ -12,15 +12,38 @@ type RouteNode = {
   routes?: RouteNode[]
 }
 
-
 export const layoutRoutes: RouteNode[] = [
   {
     path: '/welcome',
     name: '欢迎页面',
     icon: 'smile',
-    component: lazy(() =>
-      import(/* webpackChunkName: "Welcome" */ '@/pages/Welcome')
-    ),
+    component: lazy(() => import(/* webpackChunkName: "Welcome" */ '@/pages/Welcome')),
+  },
+  {
+    path: '/dashboard',
+    name: '仪表盘',
+    icon: 'crown',
+    component: BasicLayout,
+    routes: [
+      {
+        name: '流量图',
+        icon: 'smile',
+        path: '/dashboard/traffic',
+        component: lazy(() => import('@/pages/Dashboard/Traffic')),
+      },
+      {
+        name: '发起流程',
+        icon: 'smile',
+        path: '/dashboard/traffic2',
+        component: lazy(() => import('@/pages/Dashboard/TrafficV2')),
+      },
+      {
+        name: '我的抄送',
+        icon: 'smile',
+        path: '/dashboard/tr2',
+        component: lazy(() => import('@/pages/Dashboard/Traffic')),
+      },
+    ],
   },
   {
     path: '/biz_process',

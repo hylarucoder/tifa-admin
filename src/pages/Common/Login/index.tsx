@@ -1,7 +1,7 @@
 import React, { useEffect, FC } from 'react'
 import { useHistory } from 'react-router-dom'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
-import { Form, Input, Button, message } from 'antd'
+import { Form, Input, Button } from 'antd'
 import ReactCanvasNest from 'react-canvas-nest'
 import './index.less'
 
@@ -44,7 +44,7 @@ const Login: FC<any> = ({}) => {
       />
       <div className="logo-box">
         {/*<img alt="" className="logo" src={bgLogin}/>*/}
-        <span className="logo-name">React-Antd Multi-Tab</span>
+        <span className="logo-name">Antd Multi-Tab</span>
       </div>
       {FormView}
     </div>

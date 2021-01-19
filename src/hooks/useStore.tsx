@@ -45,10 +45,5 @@ export function useGlobalProviderStore() {
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function ProvideStore({ children }: { children: React.ReactNode }) {
   const globalStore = useGlobalProviderStore()
-  return (
-    <StoreContext.Provider value={globalStore}>
-      {' '}
-      {children}{' '}
-    </StoreContext.Provider>
-  )
+  return <StoreContext.Provider value={globalStore}> {children} </StoreContext.Provider>
 }
