@@ -4,7 +4,7 @@ import { Avatar, Menu, Spin } from 'antd'
 import { outLogin } from '@/services/login'
 // import { stringify } from 'querystring';
 import HeaderDropdown from '../HeaderDropdown'
-import styles from './index.less'
+import styles from './index.module.less'
 
 export type GlobalHeaderRightProps = {
   menu?: boolean

@@ -4,7 +4,7 @@ import React from 'react'
 import Avatar from './AvatarDropdown'
 import HeaderDropdown from '../HeaderDropdown'
 import HeaderSearch from '../HeaderSearch'
-import styles from './index.less'
+import styles from './index.module.less'
 
 export const GlobalHeaderRight: React.FC = () => {
   const { initialState } = {
