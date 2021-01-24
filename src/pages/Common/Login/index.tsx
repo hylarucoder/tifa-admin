@@ -12,9 +12,11 @@ import React, { useState } from 'react'
 import ProForm, { ProFormCaptcha, ProFormCheckbox, ProFormText } from '@ant-design/pro-form'
 import Footer from '@/components/Footer'
 import styles from './index.module.less'
-import { fakeAccountLogin, getFakeCaptcha, LoginParamsType } from '@/services/login'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory, useParams } from 'react-router-dom'
 import { useGlobalStore } from '@/hooks/useStore'
+import { useBoolean } from '@/hooks/useBoolean'
+import { accountGetCaptcha, accountLogin, fetchInitialData, LoginParamsType } from '@/api/login'
+import { useEnum } from '@/hooks/useEnum'
 
 const LoginMessage: React.FC<{
   content: string
@@ -28,63 +30,34 @@ const LoginMessage: React.FC<{
     showIcon
   />
 )
-/**
- * 此方法会跳转到 redirect 参数所在的位置
- */
 
-const goto = () => {
-  // const history = useHistory()
-  // if (!history) return
-  // setTimeout(() => {
-  //     const {query} = history.location
-  //     const {redirect} = query as {
-  //         redirect: string
-  //     }
-  //     history.push(redirect || '/')
-  // }, 10)
-}
+type LoginType = 'username' | 'mobile'
 
 const Login: React.FC = () => {
-  const [submitting, setSubmitting] = useState(false)
-  const [userLoginState, setUserLoginState] = useState({})
-  const [type, setType] = useState<string>('account')
-  const [initialState, setInitialState] = useState({})
-
-  const fetchUserInfo = async () => {
-    // @ts-ignore
-    const userInfo = await initialState?.fetchUserInfo?.()
-
-    if (userInfo) {
-      setInitialState({ ...initialState, currentUser: userInfo })
-    }
-  }
+  const usedSubmitting = useBoolean(false)
+  const usedLoginType = useEnum<LoginType>('username')
   const store = useGlobalStore()
+  const params = useParams<any>()
+  const history = useHistory()
 
   const handleSubmit = async (values: LoginParamsType) => {
-    setSubmitting(true)
-    store.login()
-
     try {
-      // 登录
-      const msg = await fakeAccountLogin({ ...values, type })
-
-      if (msg.status === 'ok') {
-        message.success('登录成功！')
-        await fetchUserInfo()
-        goto()
+      usedSubmitting.setTrue()
+      store.login()
+      const data = await accountLogin({ ...values, type: usedLoginType.value })
+      if (data.token) {
+        const initialData = fetchInitialData()
+        store.initialize(initialData)
+        history.push(params.redirect || '/')
         return
       } // 如果失败去设置用户错误信息
-
-      setUserLoginState(msg)
     } catch (error) {
       message.error('登录失败，请重试！')
+    } finally {
+      usedSubmitting.setFalse()
     }
-
-    setSubmitting(false)
   }
 
-  // @ts-ignore
-  const { status, type: loginType } = userLoginState
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -109,7 +82,7 @@ const Login: React.FC = () => {
               },
               render: (_, dom) => dom.pop(),
               submitButtonProps: {
-                loading: submitting,
+                loading: usedSubmitting.value,
                 size: 'large',
                 style: {
                   width: '100%',
@@ -120,15 +93,16 @@ const Login: React.FC = () => {
               handleSubmit(values as LoginParamsType)
             }}
           >
-            <Tabs activeKey={type} onChange={setType}>
-              <Tabs.TabPane key="account" tab={'账户密码登录'} />
+            {/*// @ts-ignore*/}
+            <Tabs activeKey={usedLoginType.value} onChange={usedLoginType.setValue}>
+              <Tabs.TabPane key="username" tab={'账户密码登录'} />
               <Tabs.TabPane key="mobile" tab={'手机号登录'} />
             </Tabs>
 
-            {status === 'error' && loginType === 'account' && (
+            {status === 'error' && usedLoginType.value === 'username' && (
               <LoginMessage content={'账户或密码错误（admin/ant.design)'} />
             )}
-            {type === 'account' && (
+            {usedLoginType.value === 'username' && (
               <>
                 <ProFormText
                   name="username"
@@ -161,8 +135,10 @@ const Login: React.FC = () => {
               </>
             )}
 
-            {status === 'error' && loginType === 'mobile' && <LoginMessage content="验证码错误" />}
-            {type === 'mobile' && (
+            {status === 'error' && usedLoginType.value === 'mobile' && (
+              <LoginMessage content="验证码错误" />
+            )}
+            {usedLoginType.value === 'mobile' && (
               <>
                 <ProFormText
                   fieldProps={{
@@ -206,7 +182,7 @@ const Login: React.FC = () => {
                     },
                   ]}
                   onGetCaptcha={async (mobile) => {
-                    const result = await getFakeCaptcha(mobile)
+                    const result = await accountGetCaptcha(mobile)
 
                     if (result === false) {
                       return

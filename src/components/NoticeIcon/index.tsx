@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Tag, message } from 'antd'
 import { groupBy } from 'lodash'
 import moment from 'moment'
-import { queryNotices } from '@/services/user'
 
 import NoticeIcon from './NoticeIcon'
 import styles from './index.less'
@@ -79,7 +78,7 @@ const NoticeIconView = () => {
   const [notices, setNotices] = useState<any[]>([])
 
   useEffect(() => {
-    queryNotices().then(({ data }) => setNotices(data))
+    // queryNotices().then(({ data }) => setNotices(data))
   }, [])
 
   const noticeData = getNoticeData(notices)

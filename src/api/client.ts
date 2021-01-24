@@ -44,7 +44,7 @@ httpClient.interceptors.response.use(
   }
 )
 
-export function httpGet(url: string, params = {}) {
+export function httpGet(url: string, params = {}): Promise<any> {
   return new Promise((resolve) => {
     httpClient
       .get(url, {
@@ -64,7 +64,7 @@ export function httpGet(url: string, params = {}) {
   })
 }
 
-export function httpPost(url: string, data = {}, strict = true) {
+export function httpPost(url: string, data = {}, strict = true): Promise<any> {
   return new Promise((resolve, reject) => {
     httpClient.post(url, data).then(
       (response) => {
@@ -75,8 +75,4 @@ export function httpPost(url: string, data = {}, strict = true) {
       }
     )
   })
-}
-
-export async function fetchInitialData(): Promise<any> {
-  return httpGet(`${API_URL}/initial/data`)
 }

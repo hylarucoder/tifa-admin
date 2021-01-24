@@ -10,14 +10,12 @@ import {
 const { Sider } = Layout
 const { SubMenu } = Menu
 
-import { BrowserRouter, Route, Redirect, Switch, Link, useHistory } from 'react-router-dom'
+import { BrowserRouter, Route, Redirect, Switch, Link } from 'react-router-dom'
 import { layoutRoutes } from '@/routes'
 import GlobalHeaderRight from '@/components/GlobalHeaderRight'
 import { Header } from 'antd/lib/layout/layout'
 import { PageLoading } from '@ant-design/pro-layout'
 import { useGlobalStore } from '@/hooks/useStore'
-import { observer } from 'mobx-react'
-// import { useGlobalStore } from "@/hooks/useStore";
 
 const Error403 = lazy(() => import(/* webpackChunkName: "NotFound" */ './pages/Common/Error403'))
 const Error404 = lazy(() => import(/* webpackChunkName: "NotFound" */ './pages/Common/Error404'))

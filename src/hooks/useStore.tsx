@@ -34,7 +34,7 @@ export function useGlobalProviderStore() {
       logout: action(() => {
         store.loggedIn = false
       }),
-      initialize: action(() => {
+      initialize: action((initialData: any) => {
         store.loggedIn = true
         store.isInitialized = true
       }),
