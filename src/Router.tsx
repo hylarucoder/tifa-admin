@@ -9,15 +9,13 @@ import {
 
 const { Sider } = Layout
 const { SubMenu } = Menu
-// import Footer from '@/components/Footer';
-// import {PageLoading} from '@ant-design/pro-layout';
 
 import { BrowserRouter, Route, Redirect, Switch, Link } from 'react-router-dom'
 import { layoutRoutes } from '@/routes'
 import GlobalHeaderRight from '@/components/GlobalHeaderRight'
 import { Header } from 'antd/lib/layout/layout'
 import { PageLoading } from '@ant-design/pro-layout'
-// import { useGlobalStore } from "@/hooks/useStore";
+import { useGlobalStore } from '@/hooks/useStore'
 
 const Error403 = lazy(() => import(/* webpackChunkName: "NotFound" */ './pages/Common/Error403'))
 const Error404 = lazy(() => import(/* webpackChunkName: "NotFound" */ './pages/Common/Error404'))
@@ -34,9 +32,9 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
   path,
   ...rest
 }: PrivateRouteProps) => {
-  // const store = useGlobalStore();
-  // const loggedIn = store.loginedIn;
-  const loggedIn = true
+  const store = useGlobalStore()
+  const loggedIn = store.loggedIn
+  console.log('logged in ', store.loggedIn)
   return (
     <Route
       path={path}
@@ -57,7 +55,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
   )
 }
 
-function LayoutRoutes() {
+const LayoutRoutes = () => {
   const [collapsed, setCollapsed] = useState(false)
   return (
     <Layout style={{ minHeight: '100vh' }}>
@@ -128,8 +126,6 @@ function LayoutRoutes() {
               </>
             )
           })}
-
-          <PrivateRoute path="/private">p</PrivateRoute>
         </Suspense>
       </Layout>
     </Layout>
@@ -140,6 +136,9 @@ const Router: React.FC = () => (
   <BrowserRouter>
     <Suspense fallback={<PageLoading />}>
       <Switch>
+        <Route path="/" exact>
+          <Redirect to={'/welcome'} />
+        </Route>
         <Route path="/login" exact>
           <Login />
         </Route>
@@ -152,9 +151,9 @@ const Router: React.FC = () => (
         <Route path="/500" exact>
           <Error500 />
         </Route>
-        <Route path="*">
+        <PrivateRoute path="*">
           <LayoutRoutes />
-        </Route>
+        </PrivateRoute>
       </Switch>
     </Suspense>
   </BrowserRouter>

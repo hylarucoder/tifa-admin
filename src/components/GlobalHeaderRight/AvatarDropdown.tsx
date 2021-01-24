@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from 'react'
 import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons'
 import { Avatar, Menu, Spin } from 'antd'
-import { outLogin } from '@/services/login'
 // import { stringify } from 'querystring';
 import HeaderDropdown from '../HeaderDropdown'
 import styles from './index.module.less'
+import { accountLogout } from '@/api/login'
 
 export type GlobalHeaderRightProps = {
   menu?: boolean
@@ -14,7 +14,7 @@ export type GlobalHeaderRightProps = {
  * 退出登录，并且将当前的 url 保存
  */
 const loginOut = async () => {
-  await outLogin()
+  await accountLogout()
   // const { query, pathname } = history.location;
   // const { redirect } = query;
   // // Note: There may be security issues, please note
