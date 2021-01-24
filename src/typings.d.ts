@@ -34,3 +34,5 @@ declare let ga: () => void
 
 declare const REACT_APP_ENV: 'test' | 'dev' | 'pre' | false
 declare module 'react-canvas-nest'
+declare module 'react-fittext'
+declare module 'bizcharts-plugin-slider'

@@ -63,14 +63,13 @@ function LayoutRoutes() {
     <Layout style={{ minHeight: '100vh' }}>
       <Sider
         collapsed={collapsed}
-        onCollapse={() => {
-          setCollapsed(!collapsed)
-        }}
+        onCollapse={() => {}}
         style={{
           width: 208,
+          background: '#FFF',
         }}
       >
-        <div className="logo" />
+        <div className="logo">CyberCity Admin</div>
         <Menu theme="light" defaultSelectedKeys={['1']} mode="inline">
           {layoutRoutes.map((node) => {
             if (!node.routes) {
@@ -99,7 +98,7 @@ function LayoutRoutes() {
           {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
             className: 'trigger',
             onClick: () => {
-              console.log()
+              setCollapsed(!collapsed)
             },
           })}
           <GlobalHeaderRight />
@@ -155,9 +154,6 @@ const Router: React.FC = () => (
         </Route>
         <Route path="*">
           <LayoutRoutes />
-          <Route path="*">
-            <Error404 />
-          </Route>
         </Route>
       </Switch>
     </Suspense>
