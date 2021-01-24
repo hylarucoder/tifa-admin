@@ -4,14 +4,8 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": [
-    "@typescript-eslint",
-    "react-hooks"
-  ],
-  "extends": [
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended"
-  ],
+  "plugins": ["@typescript-eslint", "react-hooks"],
+  "extends": ["plugin:react/recommended", "plugin:@typescript-eslint/recommended"],
   "rules": {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
@@ -21,6 +15,7 @@
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/ban-types": "off",
     "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-extra-semi": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off"
   },
   "settings": {

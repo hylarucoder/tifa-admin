@@ -14,6 +14,7 @@ import Footer from '@/components/Footer'
 import styles from './index.module.less'
 import { fakeAccountLogin, getFakeCaptcha, LoginParamsType } from '@/services/login'
 import { Link, useHistory } from 'react-router-dom'
+import { useGlobalStore } from '@/hooks/useStore'
 
 const LoginMessage: React.FC<{
   content: string
@@ -57,9 +58,11 @@ const Login: React.FC = () => {
       setInitialState({ ...initialState, currentUser: userInfo })
     }
   }
+  const store = useGlobalStore()
 
   const handleSubmit = async (values: LoginParamsType) => {
     setSubmitting(true)
+    store.login()
 
     try {
       // 登录

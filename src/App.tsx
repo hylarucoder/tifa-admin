@@ -5,8 +5,10 @@ import Router from './Router'
 function Main() {
   const store = useGlobalStore()
   useEffect(() => {
-    // TODO: login
-    // store.login();
+    /**
+     * 向服务器发起请求，如果测试
+     */
+    store.initialize()
   }, [])
   return <Router />
 }

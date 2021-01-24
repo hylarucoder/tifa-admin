@@ -356,7 +356,7 @@ export const layoutRoutes: RouteNode[] = [
     component: BasicLayout,
     routes: [
       {
-        name: '工单申请',
+        name: '账户设置',
         icon: 'smile',
         path: '/account/settings',
         component: lazy(() => import('@/pages/Account/Settings')),

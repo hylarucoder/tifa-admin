@@ -3,35 +3,40 @@ import { useLocalObservable } from 'mobx-react'
 import { action } from 'mobx'
 
 export interface TInitialState {
-  loginedIn: boolean
+  isInitialized: boolean
+  loggedIn: boolean
 }
 
 export interface MGlobalStore extends TInitialState {
+  initialize: Function
   login: Function
   logout: Function
 }
 
 export const INITIAL_STORE: TInitialState = {
-  loginedIn: false,
+  loggedIn: false,
+  isInitialized: false,
 }
 
 export const StoreContext = React.createContext(INITIAL_STORE)
 
 export const useGlobalStore = (): MGlobalStore => {
-  // @ts-ignore
-  return React.useContext(StoreContext)
+  return React.useContext(StoreContext) as MGlobalStore
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function useGlobalProviderStore() {
   const store = useLocalObservable(() => {
     return {
       ...INITIAL_STORE,
       login: action(() => {
-        store.loginedIn = true
+        store.loggedIn = true
       }),
       logout: action(() => {
-        store.loginedIn = false
+        store.loggedIn = false
+      }),
+      initialize: action(() => {
+        store.loggedIn = true
+        store.isInitialized = true
       }),
     }
   })
