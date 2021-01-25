@@ -37,7 +37,8 @@ const Page = () => {
       }
 
       let mode: 'inline' | 'horizontal' = 'inline'
-      const { offsetWidth } = refMain.current
+      // @ts-ignore
+      const offsetWidth = refMain.current.offsetWidth
 
       if (offsetWidth < 641 && offsetWidth > 400) {
         mode = 'horizontal'
@@ -70,11 +71,8 @@ const Page = () => {
     // @ts-ignore
     return menuMap[menuKey]
   }
-  // @ts-ignore
   const selectKey1 = (key: AccountSettingsStateKeys) => {
-    // setState({
-    //     selectKey: key,
-    // })
+    setMenuKey(key)
   }
 
   const renderChildren = () => {
