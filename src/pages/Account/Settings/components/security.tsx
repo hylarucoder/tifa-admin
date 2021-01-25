@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { List } from 'antd'
+
 type Unpacked<T> = T extends (infer U)[] ? U : T
 const passwordStrength = {
   strong: <span className="strong">强</span>,
@@ -7,8 +8,8 @@ const passwordStrength = {
   weak: <span className="weak">弱 Weak</span>,
 }
 
-class SecurityView extends Component {
-  getData = () => [
+const SecurityView = () => {
+  const getData = () => [
     {
       title: '账户密码',
       description: (
@@ -41,22 +42,20 @@ class SecurityView extends Component {
     },
   ]
 
-  render() {
-    const data = this.getData()
-    return (
-      <>
-        <List<Unpacked<typeof data>>
-          itemLayout="horizontal"
-          dataSource={data}
-          renderItem={(item) => (
-            <List.Item actions={item.actions}>
-              <List.Item.Meta title={item.title} description={item.description} />
-            </List.Item>
-          )}
-        />
-      </>
-    )
-  }
+  const data = getData()
+  return (
+    <>
+      <List<Unpacked<typeof data>>
+        itemLayout="horizontal"
+        dataSource={data}
+        renderItem={(item) => (
+          <List.Item actions={item.actions}>
+            <List.Item.Meta title={item.title} description={item.description} />
+          </List.Item>
+        )}
+      />
+    </>
+  )
 }
 
 export default SecurityView

@@ -12,10 +12,8 @@ const nullSelectItem: LabeledValue = {
   key: '',
 }
 
-class GeographicView extends Component {
-  componentDidMount = () => {}
-
-  getProvinceOption() {
+const GeographicView = () => {
+  const getProvinceOption = () => {
     // const { province } = this.props
     // if (province) {
     //   return this.getOption(province)
@@ -23,7 +21,7 @@ class GeographicView extends Component {
     return []
   }
 
-  getCityOption = () => {
+  const getCityOption = () => {
     // const { city } = this.props
     // if (city) {
     //   return this.getOption(city)
@@ -31,7 +29,7 @@ class GeographicView extends Component {
     return []
   }
 
-  getOption = (list: GeographicItemType[]) => {
+  const getOption = (list: GeographicItemType[]) => {
     if (!list || list.length < 1) {
       return (
         <Option key={0} value={0}>
@@ -46,44 +44,42 @@ class GeographicView extends Component {
     ))
   }
 
-  selectProvinceItem = (item: LabeledValue) => {}
+  const selectProvinceItem = (item: LabeledValue) => {}
 
-  selectCityItem = (item: LabeledValue) => {}
+  const selectCityItem = (item: LabeledValue) => {}
 
-  conversionObject() {
+  const conversionObject = () => {
     return {
       province: nullSelectItem,
       city: nullSelectItem,
     }
   }
 
-  render() {
-    const { province, city } = this.conversionObject()
-    const loading = false
+  const { province, city } = conversionObject()
+  const loading = false
 
-    return (
-      <Spin spinning={loading} wrapperClassName={styles.row}>
-        <Select
-          className={styles.item}
-          value={province}
-          labelInValue
-          showSearch
-          onSelect={this.selectProvinceItem}
-        >
-          {this.getProvinceOption()}
-        </Select>
-        <Select
-          className={styles.item}
-          value={city}
-          labelInValue
-          showSearch
-          onSelect={this.selectCityItem}
-        >
-          {this.getCityOption()}
-        </Select>
-      </Spin>
-    )
-  }
+  return (
+    <Spin spinning={loading} wrapperClassName={styles.row}>
+      <Select
+        className={styles.item}
+        value={province}
+        labelInValue
+        showSearch
+        onSelect={selectProvinceItem}
+      >
+        {getProvinceOption()}
+      </Select>
+      <Select
+        className={styles.item}
+        value={city}
+        labelInValue
+        showSearch
+        onSelect={selectCityItem}
+      >
+        {getCityOption()}
+      </Select>
+    </Spin>
+  )
 }
 
 export default GeographicView

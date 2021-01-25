@@ -1,9 +1,9 @@
 import { AlipayOutlined, DingdingOutlined, TaobaoOutlined } from '@ant-design/icons'
 import { List } from 'antd'
-import React, { Component, Fragment } from 'react'
+import React from 'react'
 
-class BindingView extends Component {
-  getData = () => [
+export default () => {
+  const items = [
     {
       title: '绑定淘宝',
       description: '当前未绑定淘宝账号',
@@ -24,25 +24,21 @@ class BindingView extends Component {
     },
   ]
 
-  render() {
-    return (
-      <Fragment>
-        <List
-          itemLayout="horizontal"
-          dataSource={this.getData()}
-          renderItem={(item) => (
-            <List.Item actions={item.actions}>
-              <List.Item.Meta
-                avatar={item.avatar}
-                title={item.title}
-                description={item.description}
-              />
-            </List.Item>
-          )}
-        />
-      </Fragment>
-    )
-  }
+  return (
+    <>
+      <List
+        itemLayout="horizontal"
+        dataSource={items}
+        renderItem={(item) => (
+          <List.Item actions={item.actions}>
+            <List.Item.Meta
+              avatar={item.avatar}
+              title={item.title}
+              description={item.description}
+            />
+          </List.Item>
+        )}
+      />
+    </>
+  )
 }
-
-export default BindingView
