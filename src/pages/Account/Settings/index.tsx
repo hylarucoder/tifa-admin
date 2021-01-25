@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { GridContent } from '@ant-design/pro-layout'
 import { Menu } from 'antd'
 import BaseView from './components/base'
@@ -18,38 +18,39 @@ const Page = () => {
     notification: '新消息通知',
   }
 
+  const [menuKey, setMenuKey] = useState('base')
+
   const state = {
     mode: 'inline',
     menuMap,
-    selectKey: 'base',
   }
-  // @ts-ignore
-  const { mode, selectKey } = state
+  const refMain = useRef(null)
+  const { mode } = state
   const resize = () => {
-    // if (!this.main) {
-    //     return
-    // }
-    //
-    // requestAnimationFrame(() => {
-    //     if (!this.main) {
-    //         return
-    //     }
-    //
-    //     let mode: 'inline' | 'horizontal' = 'inline'
-    //     const {offsetWidth} = this.main
-    //
-    //     if (this.main.offsetWidth < 641 && offsetWidth > 400) {
-    //         mode = 'horizontal'
-    //     }
-    //
-    //     if (window.innerWidth < 768 && offsetWidth > 400) {
-    //         mode = 'horizontal'
-    //     }
-    //
-    //     this.setState({
-    //         mode,
-    //     })
-    // })
+    if (!refMain) {
+      return
+    }
+
+    requestAnimationFrame(() => {
+      if (!refMain) {
+        return
+      }
+
+      let mode: 'inline' | 'horizontal' = 'inline'
+      const { offsetWidth } = refMain.current
+
+      if (offsetWidth < 641 && offsetWidth > 400) {
+        mode = 'horizontal'
+      }
+
+      if (window.innerWidth < 768 && offsetWidth > 400) {
+        mode = 'horizontal'
+      }
+
+      // this.setState({
+      //     mode,
+      // })
+    })
   }
   useEffect(() => {
     resize()
@@ -65,9 +66,9 @@ const Page = () => {
     return Object.keys(menuMap).map((item) => <Item key={item}>{menuMap[item]}</Item>)
   }
   const getRightTitle = () => {
-    const { selectKey, menuMap } = state
+    const { menuMap } = state
     // @ts-ignore
-    return menuMap[selectKey]
+    return menuMap[menuKey]
   }
   // @ts-ignore
   const selectKey1 = (key: AccountSettingsStateKeys) => {
@@ -77,9 +78,7 @@ const Page = () => {
   }
 
   const renderChildren = () => {
-    const { selectKey } = state
-
-    switch (selectKey) {
+    switch (menuKey) {
       case 'base':
         return <BaseView />
 
@@ -101,12 +100,12 @@ const Page = () => {
 
   return (
     <GridContent>
-      <div className={styles.main}>
+      <div className={styles.main} ref={refMain}>
         <div className={styles.leftMenu}>
           <Menu
             // @ts-ignore
             mode={mode}
-            selectedKeys={[selectKey]}
+            selectedKeys={[menuKey]}
             onClick={({ key }) => {
               // @ts-ignore
               selectKey1(key as AccountSettingsStateKeys)
