@@ -4,7 +4,7 @@ import { RangePickerProps } from 'antd/es/date-picker/generatePicker'
 type RangePickerValue = RangePickerProps<moment.Moment>['value']
 
 export function fixedZero(val: number) {
-  return val * 1 < 10 ? `0${val}` : val
+  return val < 10 ? `0${val}` : val
 }
 
 export function getTimeDistance(type: 'today' | 'week' | 'month' | 'year'): RangePickerValue {

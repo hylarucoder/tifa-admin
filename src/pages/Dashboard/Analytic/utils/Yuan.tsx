@@ -1,5 +1,6 @@
 import React from 'react'
-import { yuan } from '../components/Charts'
+import { Yuan as OldYuan } from '../components/Charts'
+
 /**
  * 减少使用 dangerouslySetInnerHTML
  */
@@ -19,7 +20,7 @@ export default class Yuan extends React.Component<{
   renderToHtml = () => {
     const { children } = this.props
     if (this.main) {
-      this.main.innerHTML = yuan(children)
+      this.main.innerHTML = OldYuan(children)
     }
   }
 

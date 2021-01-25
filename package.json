@@ -5,7 +5,7 @@
   "description": "CyberCity Admin",
   "scripts": {
     "lint": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
-    "start": "react-app-rewired start",
+    "start": "FAST_REFRESH=true react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject"

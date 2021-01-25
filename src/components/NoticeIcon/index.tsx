@@ -6,12 +6,6 @@ import moment from 'moment'
 import NoticeIcon from './NoticeIcon'
 import styles from './index.module.less'
 
-export type GlobalHeaderRightProps = {
-  fetchingNotices?: boolean
-  onNoticeVisibleChange?: (visible: boolean) => void
-  onNoticeClear?: (tabName?: string) => void
-}
-
 const getNoticeData = (notices: any[]): Record<string, any[]> => {
   if (!notices || notices.length === 0 || !Array.isArray(notices)) {
     return {}

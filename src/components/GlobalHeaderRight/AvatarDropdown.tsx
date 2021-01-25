@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons'
 import { Avatar, Menu, Spin } from 'antd'
-// import { stringify } from 'querystring';
 import HeaderDropdown from '../HeaderDropdown'
 import styles from './index.module.less'
 import { accountLogout } from '@/api/login'

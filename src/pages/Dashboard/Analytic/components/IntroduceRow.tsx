@@ -19,8 +19,7 @@ const topColResponsiveProps = {
 }
 
 const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: VisitDataType[] }) => (
-  // @ts-ignore
-  <Row gutter={24} type="flex">
+  <Row gutter={24} align="top">
     <Col {...topColResponsiveProps}>
       <ChartCard
         bordered={false}

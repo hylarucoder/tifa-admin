@@ -56,7 +56,7 @@ export interface MGlobalStore extends TInitialState {
 }
 
 export const INITIAL_STORE: TInitialState = {
-  loggedIn: false,
+  loggedIn: true,
   isInitialized: false,
   profile: {
     name: 'Serati Ma',
