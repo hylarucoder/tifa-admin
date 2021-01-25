@@ -8,7 +8,7 @@ import {
   WeiboCircleOutlined,
 } from '@ant-design/icons'
 import { Alert, Space, message, Tabs } from 'antd'
-import React, { useState } from 'react'
+import React from 'react'
 import ProForm, { ProFormCaptcha, ProFormCheckbox, ProFormText } from '@ant-design/pro-form'
 import Footer from '@/components/Footer'
 import styles from './index.module.less'

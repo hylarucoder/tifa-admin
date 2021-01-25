@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Select, Spin } from 'antd'
 import { LabeledValue } from 'antd/es/select'
 import { GeographicItemType } from '../data'
-import styles from './GeographicView.less'
+import styles from './GeographicView.module.less'
 
 const { Option } = Select
 
@@ -14,8 +14,6 @@ const nullSelectItem: LabeledValue = {
 
 class GeographicView extends Component {
   componentDidMount = () => {}
-
-  componentDidUpdate(props: any) {}
 
   getProvinceOption() {
     // const { province } = this.props

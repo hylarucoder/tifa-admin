@@ -1,10 +1,8 @@
-import { useLocation } from 'react-router'
 import React from 'react'
 import { PageContainer } from '@ant-design/pro-layout'
 import { Button } from 'antd'
 
 const Tasks = () => {
-  const location = useLocation()
   return (
     <PageContainer
       content="欢迎使用 ProLayout 组件"

@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { CurrentUser } from '../data'
 import GeographicView from './GeographicView'
 import PhoneView from './PhoneView'
-import styles from './BaseView.less'
+import styles from './BaseView.module.less'
 const { Option } = Select // 头像组件 方便以后独立，增加裁剪之类的功能
 
 const AvatarView = ({ avatar }: { avatar: string }) => (

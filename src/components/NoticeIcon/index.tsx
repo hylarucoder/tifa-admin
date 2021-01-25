@@ -4,7 +4,7 @@ import { groupBy } from 'lodash'
 import moment from 'moment'
 
 import NoticeIcon from './NoticeIcon'
-import styles from './index.less'
+import styles from './index.module.less'
 
 export type GlobalHeaderRightProps = {
   fetchingNotices?: boolean

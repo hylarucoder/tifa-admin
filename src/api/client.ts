@@ -65,14 +65,22 @@ export function httpGet(url: string, params = {}): Promise<any> {
 }
 
 export function httpPost(url: string, data = {}, strict = true): Promise<any> {
-  return new Promise((resolve, reject) => {
-    httpClient.post(url, data).then(
-      (response) => {
+  return new Promise((resolve) => {
+    httpClient
+      .post(url, data)
+      .then((response) => {
         resolve(response.data)
-      },
-      (err) => {
-        reject(err)
-      }
-    )
+      })
+      .catch((err) => {
+        if (err && err.status) {
+          console.log(`请求${url}错误,${err.status}`)
+          if (!strict) {
+            message.error(err.message)
+          }
+          if (err.status === 401 || err.status === 403) {
+            localStorage.removeItem(ACCESS_TOKEN)
+          }
+        }
+      })
   })
 }

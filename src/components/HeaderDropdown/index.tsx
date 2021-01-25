@@ -2,7 +2,7 @@ import type { DropDownProps } from 'antd/es/dropdown'
 import { Dropdown } from 'antd'
 import React from 'react'
 import classNames from 'classnames'
-import styles from './index.less'
+import styles from './index.module.less'
 
 export type HeaderDropdownProps = {
   overlayClassName?: string

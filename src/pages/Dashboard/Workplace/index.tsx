@@ -1,14 +1,15 @@
 import { Avatar, Card, Col, List, Skeleton, Row, Statistic } from 'antd'
-import React, { Component } from 'react'
+import React from 'react'
 
 import { PageContainer } from '@ant-design/pro-layout'
 import moment from 'moment'
 import Radar from './components/Radar'
 import EditableLinkGroup from './components/EditableLinkGroup'
 import styles from './style.module.less'
-import { ActivitiesType, CurrentUser } from './data'
+import { ActivitiesType } from './data'
 import { Link } from 'react-router-dom'
 import { getActivities, getNotice, radarData } from '@/pages/Dashboard/Workplace/_mock'
+import { TProfile, useProfile } from '@/hooks/useStore'
 
 const links = [
   {
@@ -37,24 +38,24 @@ const links = [
   },
 ]
 
-const PageHeaderContent: React.FC<{ currentUser: CurrentUser }> = ({ currentUser }) => {
-  const loading = currentUser && Object.keys(currentUser).length
+const PageHeaderContent: React.FC<{ profile: TProfile }> = ({ profile }) => {
+  const loading = profile && Object.keys(profile).length
   if (!loading) {
     return <Skeleton avatar paragraph={{ rows: 1 }} active />
   }
   return (
     <div className={styles.pageHeaderContent}>
       <div className={styles.avatar}>
-        <Avatar size="large" src={currentUser.avatar} />
+        <Avatar size="large" src={profile.avatar} />
       </div>
       <div className={styles.content}>
         <div className={styles.contentTitle}>
           早安，
-          {currentUser.name}
+          {profile.name}
           ，祝你开心每一天！
         </div>
         <div>
-          {currentUser.title} |{currentUser.group}
+          {profile.title} |{profile.group}
         </div>
       </div>
     </div>
@@ -76,6 +77,7 @@ const ExtraContent: React.FC<{}> = () => (
 )
 
 export default () => {
+  const profile = useProfile()
   const renderActivities = (item: ActivitiesType) => {
     const events = item.template.split(/@\{([^{}]*)\}/gi).map((key) => {
       // @ts-ignore
@@ -110,68 +112,14 @@ export default () => {
       </List.Item>
     )
   }
-  const currentUser = {
-    name: 'Serati Ma',
-    avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
-    userid: '00000001',
-    email: 'antdesign@alipay.com',
-    signature: '海纳百川，有容乃大',
-    title: '交互专家',
-    group: '蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED',
-    tags: [
-      {
-        key: '0',
-        label: '很有想法的',
-      },
-      {
-        key: '1',
-        label: '专注设计',
-      },
-      {
-        key: '2',
-        label: '辣~',
-      },
-      {
-        key: '3',
-        label: '大长腿',
-      },
-      {
-        key: '4',
-        label: '川妹子',
-      },
-      {
-        key: '5',
-        label: '海纳百川',
-      },
-    ],
-    notice: [],
-    notifyCount: 12,
-    unreadCount: 11,
-    country: 'China',
-    geographic: {
-      province: {
-        label: '浙江省',
-        key: '330000',
-      },
-      city: {
-        label: '杭州市',
-        key: '330100',
-      },
-    },
-    address: '西湖区工专路 77 号',
-    phone: '0752-268888888',
-  }
   const activities = getActivities
   const projectLoading = false
   const activitiesLoading = false
   const projectNotice = getNotice
 
-  if (!currentUser || !currentUser.userid) {
-    return null
-  }
   return (
     <PageContainer
-      content={<PageHeaderContent currentUser={currentUser} />}
+      content={<PageHeaderContent profile={profile} />}
       extraContent={<ExtraContent />}
     >
       <Row gutter={24}>

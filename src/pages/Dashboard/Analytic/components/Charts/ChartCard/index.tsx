@@ -36,7 +36,8 @@ export interface ChartCardProps extends CardProps {
 
 class ChartCard extends React.Component<ChartCardProps> {
   renderContent = () => {
-    const { contentHeight, title, avatar, action, total, footer, children, loading } = this.props
+    const { title, avatar, action, total, footer, children, loading } = this.props
+    const contentHeight = false
     if (loading) {
       return false
     }
@@ -58,7 +59,7 @@ class ChartCard extends React.Component<ChartCardProps> {
         </div>
         {children && (
           <div className={styles.content} style={{ height: contentHeight || 'auto' }}>
-            <div className={contentHeight && styles.contentFixed}>{children}</div>
+            <div className={styles.contentFixed}>{children}</div>
           </div>
         )}
         {footer && (
