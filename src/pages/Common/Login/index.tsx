@@ -1,14 +1,11 @@
 import {
-  AlipayCircleOutlined,
   LockTwoTone,
   MailTwoTone,
   MobileTwoTone,
-  TaobaoCircleOutlined,
   UserOutlined,
-  WeiboCircleOutlined,
 } from '@ant-design/icons'
-import { Alert, Space, message, Tabs } from 'antd'
-import React, { useState } from 'react'
+import { Alert, message, Tabs } from 'antd'
+import React from 'react'
 import ProForm, { ProFormCaptcha, ProFormCheckbox, ProFormText } from '@ant-design/pro-form'
 import Footer from '@/components/Footer'
 import styles from './index.module.less'
@@ -41,10 +38,11 @@ const Login: React.FC = () => {
   const history = useHistory()
 
   const handleSubmit = async (values: LoginParamsType) => {
+    console.log('handle submit')
     try {
       usedSubmitting.setTrue()
-      store.login()
       const data = await accountLogin({ ...values, type: usedLoginType.value })
+      store.login()
       if (data.token) {
         const initialData = fetchInitialData()
         store.initialize(initialData)
@@ -65,10 +63,10 @@ const Login: React.FC = () => {
           <div className={styles.header}>
             <Link to="/">
               <img alt="logo" className={styles.logo} src="/logo.svg" />
-              <span className={styles.title}>Ant Design</span>
+              <span className={styles.title}>CyberCity</span>
             </Link>
           </div>
-          <div className={styles.desc}>Ant Design 是西湖区最具影响力的 Web 设计规范</div>
+          <div className={styles.desc}>One Full Stack Admin For Flask</div>
         </div>
 
         <div className={styles.main}>
@@ -100,7 +98,7 @@ const Login: React.FC = () => {
             </Tabs>
 
             {status === 'error' && usedLoginType.value === 'username' && (
-              <LoginMessage content={'账户或密码错误（admin/ant.design)'} />
+              <LoginMessage content={'账户或密码错误（admin/cybercity)'} />
             )}
             {usedLoginType.value === 'username' && (
               <>
@@ -110,7 +108,7 @@ const Login: React.FC = () => {
                     size: 'large',
                     prefix: <UserOutlined className={styles.prefixIcon} />,
                   }}
-                  placeholder={'用户名: admin or user'}
+                  placeholder={'用户名: admin'}
                   rules={[
                     {
                       required: true,
@@ -124,7 +122,7 @@ const Login: React.FC = () => {
                     size: 'large',
                     prefix: <LockTwoTone className={styles.prefixIcon} />,
                   }}
-                  placeholder={'密码: ant.design'}
+                  placeholder={'密码: cybercity'}
                   rules={[
                     {
                       required: true,
@@ -210,12 +208,6 @@ const Login: React.FC = () => {
               </a>
             </div>
           </ProForm>
-          <Space className={styles.other}>
-            其他登录方式 :
-            <AlipayCircleOutlined className={styles.icon} />
-            <TaobaoCircleOutlined className={styles.icon} />
-            <WeiboCircleOutlined className={styles.icon} />
-          </Space>
         </div>
       </div>
       <Footer />
