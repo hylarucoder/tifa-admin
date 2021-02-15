@@ -3,7 +3,6 @@ import { useLocalObservable } from 'mobx-react'
 import { action } from 'mobx'
 
 export interface TInitialState {
-  isInitialized: boolean
   loggedIn: boolean
 }
 
@@ -15,7 +14,6 @@ export interface MGlobalStore extends TInitialState {
 
 export const INITIAL_STORE: TInitialState = {
   loggedIn: false,
-  isInitialized: false,
 }
 
 export const StoreContext = React.createContext(INITIAL_STORE)
@@ -34,14 +32,16 @@ export function useGlobalProviderStore() {
       logout: action(() => {
         store.loggedIn = false
       }),
-      initialize: action((initialData: any) => {
-        store.loggedIn = true
-        store.isInitialized = true
+      initialize: action((data?: any) => {
+        if (data) {
+          store.loggedIn = true
+        }
       }),
     }
   })
 
-  useEffect(() => {}, [])
+  useEffect(() => {
+  }, [])
 
   // Return the user object and auth methods
   return store

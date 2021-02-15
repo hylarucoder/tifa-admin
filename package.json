@@ -4,16 +4,12 @@
   "private": true,
   "description": "CyberCity Admin",
   "scripts": {
+    "postinstall": "husky install",
     "lint": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "**/*.{js,jsx,tsx,ts,less,md,json}": [
@@ -86,11 +82,13 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-standard": "^5.0.0",
     "husky": "^5.0.9",
     "less": "~3.11.1",
     "less-loader": "~5.0.0",
     "lint-staged": "^10.5.3",
+    "pinst": "^2.1.4",
     "prettier": "^2.2.1",
     "react-app-rewired": "^2.1.8",
     "react-scripts": "4.0.2",

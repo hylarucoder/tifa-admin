@@ -1,8 +1,8 @@
-import { API_URL } from '@/consts'
-import { httpGet } from '@/api/client'
+import { httpGet, httpPost } from '@/api/client'
 
 export async function fetchInitialData() {
-  return await httpGet(`${API_URL}/initial/data`)
+  const resp = await httpGet(`/admin/initial`)
+  return resp.data as any
 }
 
 export type LoginParamsType = {
@@ -14,13 +14,13 @@ export type LoginParamsType = {
 }
 
 export async function accountLogin(params: LoginParamsType) {
-  return {
-    status: 'ok',
-  } as any
+  const resp = await httpPost('/admin/login', params)
+  return resp.data as any
 }
 
 export async function accountGetCaptcha(mobile: string) {
   return {}
 }
 
-export async function accountLogout() {}
+export async function accountLogout() {
+}

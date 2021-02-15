@@ -16,6 +16,7 @@ import GlobalHeaderRight from '@/components/GlobalHeaderRight'
 import { Header } from 'antd/lib/layout/layout'
 import { PageLoading } from '@ant-design/pro-layout'
 import { useGlobalStore } from '@/hooks/useStore'
+import { observer } from 'mobx-react'
 
 const Error403 = lazy(() => import(/* webpackChunkName: "NotFound" */ './pages/Common/Error403'))
 const Error404 = lazy(() => import(/* webpackChunkName: "NotFound" */ './pages/Common/Error404'))
@@ -25,19 +26,23 @@ const Login = lazy(() => import(/* webpackChunkName: "Login" */ './pages/Common/
 type PrivateRouteProps = {
   children: React.ReactNode
   path: string
+  exact?: boolean
   rest?: never
 }
-const PrivateRoute: React.FC<PrivateRouteProps> = ({
-  children,
-  path,
-  ...rest
-}: PrivateRouteProps) => {
+const PrivateRoute: React.FC<PrivateRouteProps> = (
+  {
+    children,
+    path,
+    exact,
+    ...rest
+  }: PrivateRouteProps) => {
   const store = useGlobalStore()
   const loggedIn = store.loggedIn
-  console.log('logged in ', store.loggedIn)
+  console.log(store.loggedIn, '??')
   return (
     <Route
       path={path}
+      exact={exact}
       {...rest}
       render={(props) =>
         loggedIn ? (
@@ -61,7 +66,8 @@ const LayoutRoutes = () => {
     <Layout style={{ minHeight: '100vh' }}>
       <Sider
         collapsed={collapsed}
-        onCollapse={() => {}}
+        onCollapse={() => {
+        }}
         style={{
           width: 208,
           background: '#FFF',
@@ -106,7 +112,7 @@ const LayoutRoutes = () => {
             const BaseComponent = node.component as React.ComponentType
             if (!node.routes) {
               return (
-                <Route path={node.path}>
+                <Route path={node.path} key={node.name}>
                   <BaseComponent />
                 </Route>
               )
@@ -136,9 +142,9 @@ const Router: React.FC = () => (
   <BrowserRouter>
     <Suspense fallback={<PageLoading />}>
       <Switch>
-        <Route path="/" exact>
+        <PrivateRoute path="/" exact>
           <Redirect to={'/welcome'} />
-        </Route>
+        </PrivateRoute>
         <Route path="/login" exact>
           <Login />
         </Route>
