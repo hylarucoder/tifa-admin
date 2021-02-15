@@ -182,32 +182,6 @@ export const layoutRoutes: RouteNode[] = [
     ],
   },
   {
-    path: '/oa',
-    name: 'OA办公',
-    icon: 'crown',
-    component: BasicLayout,
-    routes: [
-      {
-        name: '工单申请',
-        icon: 'smile',
-        path: '/oa/tickets',
-        component: lazy(() => import('@/pages/BizProcess/Tasks')),
-      },
-      {
-        name: '我的工单',
-        icon: 'smile',
-        path: '/oa/my_tickets',
-        component: lazy(() => import('@/pages/BizProcess/Tasks')),
-      },
-      {
-        name: '工单查询',
-        icon: 'smile',
-        path: '/oa/ticket',
-        component: lazy(() => import('@/pages/BizProcess/Tasks')),
-      },
-    ],
-  },
-  {
     path: '/system',
     name: '系统管理',
     icon: 'crown',
