@@ -11,11 +11,6 @@
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "**/*.{js,jsx,tsx,ts,less,md,json}": [
       "prettier --write"
