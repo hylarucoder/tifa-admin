@@ -18,7 +18,7 @@ function Main() {
   }
   useEffect(() => {
     initial()
-  }, [initializer.value])
+  }, [initial, initializer.value])
   if (initializer.value) {
     return <Router />
   } else {

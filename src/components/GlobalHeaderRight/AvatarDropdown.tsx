@@ -68,7 +68,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
 
   const currentUser = {
     name: 't',
-    avatar: 'http://img.jpg',
+    avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
   }
 
   if (!currentUser || !currentUser.name) {

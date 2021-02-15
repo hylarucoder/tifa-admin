@@ -112,7 +112,7 @@ const LayoutRoutes = () => {
             const BaseComponent = node.component as React.ComponentType
             if (!node.routes) {
               return (
-                <Route path={node.path}>
+                <Route path={node.path} key={node.name}>
                   <BaseComponent />
                 </Route>
               )
