@@ -256,6 +256,12 @@ export const layoutRoutes: RouteNode[] = [
     component: BasicLayout,
     routes: [
       {
+        name: '性能监控 - 请求',
+        icon: 'smile',
+        path: '/monitor/request',
+        component: lazy(() => import('@/pages/Monitor/PerformanceRequest')),
+      },
+      {
         name: '数据源管理',
         icon: 'smile',
         path: '/monitor/data_sources',
@@ -290,36 +296,6 @@ export const layoutRoutes: RouteNode[] = [
         icon: 'smile',
         path: '/monitor/redis',
         component: lazy(() => import('@/pages/Monitor/PerformanceRedis')),
-      },
-      {
-        name: '性能监控 - 请求',
-        icon: 'smile',
-        path: '/monitor/request',
-        component: lazy(() => import('@/pages/Monitor/PerformanceRequest')),
-      },
-      {
-        name: '性能监控 - 虚拟机',
-        icon: 'smile',
-        path: '/monitor/python',
-        component: lazy(() => import('@/pages/Monitor/PerformancePython')),
-      },
-      {
-        name: '性能监控 - 服务器',
-        icon: 'smile',
-        path: '/monitor/server',
-        component: lazy(() => import('@/pages/Monitor/PerformanceServer')),
-      },
-      {
-        name: '性能监控 - Gunicorn',
-        icon: 'smile',
-        path: '/monitor/gunicorn',
-        component: lazy(() => import('@/pages/Monitor/PerformanceGunicorn')),
-      },
-      {
-        name: '性能监控 - 磁盘',
-        icon: 'smile',
-        path: '/monitor/disk',
-        component: lazy(() => import('@/pages/Monitor/PerformanceDisk')),
       },
     ],
   },

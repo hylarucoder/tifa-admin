@@ -46,6 +46,7 @@
     "numeral": "^2.0.6",
     "nzh": "^1.0.4",
     "omit.js": "^2.0.2",
+    "prism-react-renderer": "^1.1.1",
     "qs": "^6.9.6",
     "react": "^17.0.1",
     "react-canvas-nest": "^1.1.1",
@@ -54,7 +55,9 @@
     "react-helmet-async": "^1.0.7",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-sortable-hoc": "^1.11.0"
+    "react-sortable-hoc": "^1.11.0",
+    "sql-formatter": "^4.0.2",
+    "styled-components": "^5.2.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.9",
@@ -68,6 +71,7 @@
     "@types/react": "^17.0.1",
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.1.7",
+    "@types/styled-components": "^5.1.7",
     "@typescript-eslint/eslint-plugin": "^4.14.2",
     "@typescript-eslint/parser": "^4.14.2",
     "autoprefixer": "^10.2.4",
