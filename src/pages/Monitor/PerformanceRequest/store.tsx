@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import { useLocalObservable } from 'mobx-react';
-import { action } from 'mobx';
+import React, { useEffect } from 'react'
+import { useLocalObservable } from 'mobx-react'
+import { action } from 'mobx'
 
 type PanelIdType =
   | 'VersionsPanel'
@@ -37,8 +37,7 @@ export type TSQLPanelQueryTemplateInfo = {
 
 export type TSQLPanelQuery = {
   isSlow: boolean;
-  collapsedSQL: string;
-  uncollapsedSQL: string;
+  query: string;
   rgbColor: string;
   similarCount: number;
   similarColor: string;
@@ -49,13 +48,9 @@ export type TSQLPanelQuery = {
   startOffset: number;
   endOffset: number;
   duration: number;
-  params: string;
   isSelect: boolean;
-  status: string;
   stacktrace: string;
   templateInfo: TSQLPanelQueryTemplateInfo;
-  vendor: 'mysql' | 'postgresql';
-  collapsed: boolean;
 };
 
 export interface TSQLPanel extends TPanel {
@@ -104,7 +99,6 @@ export type PanelType =
 
 export interface TInitialState {
   toolbarVisible: boolean;
-  panelIds: PanelIdType[];
   VersionsPanel: TVersionsPanel;
   HistoryPanel: THistoryPanel;
   RequestPanel: TRequestPanel;
@@ -128,19 +122,19 @@ export const INITIAL_STORE: TInitialState = {
     id: 'VersionsPanel',
     title: '版本',
     subtitle: 'Flask 1.2.2',
-    ContentVisible: false
+    ContentVisible: false,
   },
   HistoryPanel: {
     id: 'HistoryPanel',
     title: '历史版本',
     subtitle: 'HistoryPanel',
-    ContentVisible: false
+    ContentVisible: false,
   },
   RequestPanel: {
     id: 'RequestPanel',
     title: '请求',
     subtitle: 'CPU 100ms (总耗时: 530ms)',
-    ContentVisible: false
+    ContentVisible: false,
   },
   SQLPanel: {
     id: 'SQLPanel',
@@ -153,10 +147,8 @@ export const INITIAL_STORE: TInitialState = {
     ContentVisible: false,
     queries: [
       {
-        collapsed: true,
         isSlow: false,
-        collapsedSQL: 'select verions();',
-        uncollapsedSQL: 'select verions();',
+        query: 'select versions();',
         rgbColor: '#EE2200',
         similarCount: 3,
         similarColor: '#f3f302',
@@ -167,10 +159,7 @@ export const INITIAL_STORE: TInitialState = {
         startOffset: 1,
         endOffset: 3,
         duration: 100,
-        params: 'params',
         isSelect: true,
-        vendor: 'mysql',
-        status: 'ok',
         stacktrace: '# just blank',
         templateInfo: {
           name: 'name',
@@ -178,17 +167,17 @@ export const INITIAL_STORE: TInitialState = {
             {
               num: 1,
               highlight: true,
-              content: 'content'
+              content: 'content',
             },
             {
               num: 1,
               highlight: true,
-              content: 'content'
-            }
-          ]
-        }
-      }
-    ]
+              content: 'content',
+            },
+          ],
+        },
+      },
+    ],
   },
   CachePanel: {
     id: 'CachePanel',
@@ -202,8 +191,8 @@ export const INITIAL_STORE: TInitialState = {
     counts: [
       {
         name: '123',
-        value: '123'
-      }
+        value: '123',
+      },
     ],
     calls: [
       {
@@ -212,29 +201,20 @@ export const INITIAL_STORE: TInitialState = {
         args: 'args',
         kwargs: 'kwargs',
         backend: 'backend',
-        trace: 'trace'
-      }
-    ]
+        trace: 'trace',
+      },
+    ],
   },
   LoggingPanel: {
     id: 'LoggingPanel',
     title: '日志',
     subtitle: '0条消息',
-    ContentVisible: false
+    ContentVisible: false,
   },
   ProfilingPanel: {
     id: 'ProfilingPanel',
     title: 'Profile',
     subtitle: '0条消息',
-    ContentVisible: false
+    ContentVisible: false,
   },
-  panelIds: [
-    'VersionsPanel',
-    'HistoryPanel',
-    'RequestPanel',
-    'SQLPanel',
-    'CachePanel',
-    'LoggingPanel',
-    'ProfilingPanel'
-  ]
-};
+}

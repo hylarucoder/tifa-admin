@@ -64,7 +64,7 @@ const Page = () => {
         </Button>,
       ]}
     >
-      <ProCard>
+      <>
         {
           tabKey === 'BasePanel' && <HistoryPanel panel={INITIAL_STORE.HistoryPanel} />
         }
@@ -86,7 +86,7 @@ const Page = () => {
         {
           tabKey === 'ProfilingPanel' && <ProfilingPanel panel={INITIAL_STORE.ProfilingPanel} />
         }
-      </ProCard>
+      </>
     </PageContainer>
   )
 }
