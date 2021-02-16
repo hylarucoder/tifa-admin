@@ -7,30 +7,13 @@ import HeaderSearch from '../HeaderSearch'
 import styles from './index.module.less'
 
 export const GlobalHeaderRight: React.FC = () => {
-  const { initialState } = {
-    initialState: {
-      settings: {},
-    },
-  }
-
-  if (!initialState || !initialState.settings) {
-    return null
-  }
-
-  let className = styles.right
-  const navTheme = 'dark'
-  const layout = 'mix'
-  console.log(styles)
-
-  if (navTheme === 'dark' || layout === 'mix') {
-    className = `${styles.right}  ${styles.dark}`
-  }
   return (
-    <Space className={className}>
+    <Space className={`${styles.right}  ${styles.light}`}>
       <HeaderSearch
         className={`${styles.action} ${styles.search}`}
         placeholder="站内搜索"
-        defaultValue="umi ui"
+        defaultValue=""
+        defaultVisible={false}
         options={[
           {
             label: <a href="https://umijs.org/zh/guide/umi-ui.html">umi ui</a>,
@@ -49,9 +32,9 @@ export const GlobalHeaderRight: React.FC = () => {
             value: 'Pro Layout',
           },
         ]}
-        // onSearch={value => {
-        //   console.log('input', value);
-        // }}
+        onSearch={value => {
+          console.log('input', value);
+        }}
       />
       <HeaderDropdown
         overlay={
