@@ -1,10 +1,11 @@
 import { UploadOutlined } from '@ant-design/icons'
-import { Button, Input, Select, Upload, Form, message } from 'antd'
+import { Button, Form, Input, message, Select, Upload } from 'antd'
 import React, { Component } from 'react'
 import { CurrentUser } from '../data'
 import GeographicView from './GeographicView'
 import PhoneView from './PhoneView'
-import styles from './BaseView.less'
+import styles from './BaseView.module.less'
+
 const { Option } = Select // 头像组件 方便以后独立，增加裁剪之类的功能
 
 const AvatarView = ({ avatar }: { avatar: string }) => (
@@ -79,8 +80,7 @@ class BaseView extends Component<BaseViewProps> {
         return currentUser.avatar
       }
 
-      const url = 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png'
-      return url
+      return 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png'
     }
 
     return ''
