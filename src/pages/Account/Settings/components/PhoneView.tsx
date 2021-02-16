@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Input } from 'antd'
-import styles from './PhoneView.less'
+import styles from './PhoneView.module.less'
 
 interface PhoneViewProps {
   value?: string
