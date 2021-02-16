@@ -8,5 +8,5 @@ export const HistoryPanel = (
     panel: THistoryPanel
   }
 ) => {
-  return <div>HistoryPanel panel</div>;
+  return <>HistoryPanel panel</>;
 };
