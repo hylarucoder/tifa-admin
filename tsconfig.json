@@ -19,6 +19,10 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
     "plugins": [
       {
         "name": "typescript-plugin-css-modules"
@@ -28,5 +32,4 @@
   "include": [
     "src"
   ],
-  "extends": "./tsconfig.paths.json"
 }

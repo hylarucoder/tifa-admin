@@ -26,7 +26,7 @@ function Main() {
   }
 }
 
-const App: React.FC = (props: { children?: React.ReactNode }) => {
+export const App: React.FC = (props: { children?: React.ReactNode }) => {
   return (
     <ProvideStore>
       <Main />
