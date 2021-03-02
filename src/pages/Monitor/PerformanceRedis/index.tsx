@@ -14,25 +14,19 @@ const Page = () => {
 
   useEffect(() => {
     initial()
-
   }, [])
   return (
     <PageContainer>
       <Card>
-        <ProDescriptions
-          title={'Redis'}
-          column={1}
-        >
-          {
-            data.map((item: any) => {
-              const v = JSON.stringify(item.value)
-              return (
-                <ProDescriptions.Item label={item.name} key={item.name}>
-                  {v} -- {item.desc}
-                </ProDescriptions.Item>
-              )
-            })
-          }
+        <ProDescriptions title={'Redis'} column={1}>
+          {data.map((item: any) => {
+            const v = JSON.stringify(item.value)
+            return (
+              <ProDescriptions.Item label={item.name} key={item.name}>
+                {v} -- {item.desc}
+              </ProDescriptions.Item>
+            )
+          })}
         </ProDescriptions>
       </Card>
     </PageContainer>

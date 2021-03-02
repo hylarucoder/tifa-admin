@@ -12,12 +12,14 @@ type RouteNode = {
   routes?: RouteNode[]
 }
 
+import Welcome from '@/pages/Welcome'
+
 export const layoutRoutes: RouteNode[] = [
   {
     path: '/welcome',
     name: '欢迎页面',
     icon: 'smile',
-    component: lazy(() => import(/* webpackChunkName: "Welcome" */ '@/pages/Welcome')),
+    component: Welcome,
   },
   {
     path: '/dashboard',

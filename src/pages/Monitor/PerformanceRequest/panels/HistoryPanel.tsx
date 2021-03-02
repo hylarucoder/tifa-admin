@@ -1,12 +1,6 @@
-import React from 'react';
-import { THistoryPanel } from '../store';
+import React from 'react'
+import { THistoryPanel } from '../store'
 
-export const HistoryPanel = (
-  {
-    panel
-  }: {
-    panel: THistoryPanel
-  }
-) => {
-  return <>HistoryPanel panel</>;
-};
+export const HistoryPanel = ({ panel }: { panel: THistoryPanel }) => {
+  return <>HistoryPanel panel</>
+}

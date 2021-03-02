@@ -78,8 +78,7 @@ export const SQLCodeBlockOneLiner = ({ sql }: { sql: string }) => {
   )
 }
 
-
-export const CodeBlock = ({ snippet, language }: { snippet: string, language: Language }) => {
+export const CodeBlock = ({ snippet, language }: { snippet: string; language: Language }) => {
   return (
     <Highlight {...defaultProps} theme={theme} code={snippet} language={language}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
