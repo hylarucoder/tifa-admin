@@ -6,9 +6,9 @@ import NumberInfo from './NumberInfo'
 import styles from '../style.module.less'
 
 const CustomTab = ({
-  data,
-  currentTabKey: currentKey,
-}: {
+                     data,
+                     currentTabKey: currentKey,
+                   }: {
   data: OfflineDataType
   currentTabKey: string
 }) => (
@@ -51,12 +51,12 @@ const CustomTab = ({
 const { TabPane } = Tabs
 
 const OfflineData = ({
-  activeKey,
-  loading,
-  offlineData,
-  offlineChartData,
-  handleTabChange,
-}: {
+                       activeKey,
+                       loading,
+                       offlineData,
+                       offlineChartData,
+                       handleTabChange,
+                     }: {
   activeKey: string
   loading: boolean
   offlineData: OfflineDataType[]
