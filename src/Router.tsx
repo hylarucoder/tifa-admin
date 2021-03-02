@@ -1,5 +1,5 @@
 import React, { lazy, LazyExoticComponent, Suspense, useState } from 'react'
-import { Layout, Menu } from 'antd/es'
+import { Layout, Menu } from 'antd'
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
