@@ -1,9 +1,4 @@
-import {
-  LockTwoTone,
-  MailTwoTone,
-  MobileTwoTone,
-  UserOutlined,
-} from '@ant-design/icons'
+import { LockTwoTone, MailTwoTone, MobileTwoTone, UserOutlined } from '@ant-design/icons'
 import { Alert, message, Tabs } from 'antd'
 import React from 'react'
 import ProForm, { ProFormCaptcha, ProFormCheckbox, ProFormText } from '@ant-design/pro-form'

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
-import { ProvideStore, useGlobalStore } from './hooks/useStore'
-import Router from './Router'
-import { fetchInitialData } from '@/api/login'
-import { PageLoading } from '@ant-design/pro-layout'
+import { ProvideStore, useGlobalStore } from '@/hooks/useStore'
 import { useBoolean } from '@/hooks/useBoolean'
+import Router from '@/Router'
+import { PageLoading } from '@ant-design/pro-layout'
+import { fetchInitialData } from '@/api/login'
 
 function Main() {
   const initializer = useBoolean(false)
@@ -12,8 +12,7 @@ function Main() {
     try {
       const resp = await fetchInitialData()
       store.initialize(resp)
-    } catch (e) {
-    }
+    } catch (e) {}
     initializer.setTrue()
   }
   useEffect(() => {

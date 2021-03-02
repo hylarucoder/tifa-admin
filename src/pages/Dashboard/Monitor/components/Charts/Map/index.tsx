@@ -28,7 +28,7 @@ export default class Map extends React.Component {
 
   public render() {
     const { data, grid, loading } = this.state
-    return loading === false ? (
+    return !loading ? (
       <PageLoading />
     ) : (
       <MapboxScene

@@ -18,7 +18,7 @@ const Page = () => {
     notification: '新消息通知',
   }
 
-  const [selectKey, setSelectKey] = useState("base")
+  const [selectKey, setSelectKey] = useState('base')
 
   const state = {
     mode: 'inline',

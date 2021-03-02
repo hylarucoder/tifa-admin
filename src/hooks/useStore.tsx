@@ -40,8 +40,7 @@ export function useGlobalProviderStore() {
     }
   })
 
-  useEffect(() => {
-  }, [])
+  useEffect(() => {}, [])
 
   // Return the user object and auth methods
   return store

@@ -5,7 +5,6 @@ import { Button, Tooltip, Dropdown, Menu, Input, Progress } from 'antd'
 import type { ProColumns } from '@ant-design/pro-table'
 import ProTable, { TableDropdown } from '@ant-design/pro-table'
 
-
 const expandedRowRender = (props: any) => {
   return (
     <div>
@@ -36,10 +35,7 @@ const columns: ProColumns<TSQLPanelQuery>[] = [
     width: 180,
     key: 'option',
     valueType: 'option',
-    render: () => [
-      <a key="link">Sel</a>,
-      <a key="link">Expl</a>,
-    ],
+    render: () => [<a key="link">Sel</a>, <a key="link">Expl</a>],
   },
 ]
 
@@ -56,7 +52,7 @@ export const SQLPanel = ({ panel }: { panel: TSQLPanel }) => {
           success: true,
         })
       }}
-      size={"small"}
+      size={'small'}
       expandable={{ expandedRowRender }}
       rowKey="key"
       pagination={{

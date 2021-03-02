@@ -1,5 +1,5 @@
 import React, { lazy, LazyExoticComponent, Suspense, useState } from 'react'
-import { Layout, Menu } from 'antd'
+import { Layout, Menu } from 'antd/es'
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -13,15 +13,13 @@ const { SubMenu } = Menu
 import { BrowserRouter, Route, Redirect, Switch, Link } from 'react-router-dom'
 import { layoutRoutes } from '@/routes'
 import GlobalHeaderRight from '@/components/GlobalHeaderRight'
-import { Header } from 'antd/lib/layout/layout'
+import { Header } from 'antd/es/layout/layout'
 import { PageLoading } from '@ant-design/pro-layout'
+import Login from '@/pages/Common/Login'
+import Error403 from './pages/Common/Error403'
+import Error404 from './pages/Common/Error404'
+import Error500 from './pages/Common/Error500'
 import { useGlobalStore } from '@/hooks/useStore'
-import { observer } from 'mobx-react'
-
-const Error403 = lazy(() => import(/* webpackChunkName: "NotFound" */ './pages/Common/Error403'))
-const Error404 = lazy(() => import(/* webpackChunkName: "NotFound" */ './pages/Common/Error404'))
-const Error500 = lazy(() => import(/* webpackChunkName: "NotFound" */ './pages/Common/Error500'))
-const Login = lazy(() => import(/* webpackChunkName: "Login" */ './pages/Common/Login'))
 
 type PrivateRouteProps = {
   children: React.ReactNode
@@ -29,13 +27,12 @@ type PrivateRouteProps = {
   exact?: boolean
   rest?: never
 }
-const PrivateRoute: React.FC<PrivateRouteProps> = (
-  {
-    children,
-    path,
-    exact,
-    ...rest
-  }: PrivateRouteProps) => {
+const PrivateRoute: React.FC<PrivateRouteProps> = ({
+  children,
+  path,
+  exact,
+  ...rest
+}: PrivateRouteProps) => {
   const store = useGlobalStore()
   const loggedIn = store.loggedIn
   console.log(store.loggedIn, '??')
@@ -66,8 +63,7 @@ const LayoutRoutes = () => {
     <Layout style={{ minHeight: '100vh' }}>
       <Sider
         collapsed={collapsed}
-        onCollapse={() => {
-        }}
+        onCollapse={() => {}}
         style={{
           width: 208,
           background: '#FFF',
@@ -142,9 +138,9 @@ const Router: React.FC = () => (
   <BrowserRouter>
     <Suspense fallback={<PageLoading />}>
       <Switch>
-        <PrivateRoute path="/" exact>
+        <Route path="/" exact>
           <Redirect to={'/welcome'} />
-        </PrivateRoute>
+        </Route>
         <Route path="/login" exact>
           <Login />
         </Route>
@@ -157,9 +153,9 @@ const Router: React.FC = () => (
         <Route path="/500" exact>
           <Error500 />
         </Route>
-        <PrivateRoute path="*">
+        <Route path="*">
           <LayoutRoutes />
-        </PrivateRoute>
+        </Route>
       </Switch>
     </Suspense>
   </BrowserRouter>

@@ -9,84 +9,84 @@ type PanelIdType =
   | 'SQLPanel'
   | 'CachePanel'
   | 'LoggingPanel'
-  | 'ProfilingPanel';
+  | 'ProfilingPanel'
 
 export interface TPanel {
-  id: PanelIdType;
-  title: string;
-  subtitle: string;
-  ContentVisible: boolean;
+  id: PanelIdType
+  title: string
+  subtitle: string
+  ContentVisible: boolean
 }
 
-export type TVersionsPanel = TPanel;
+export type TVersionsPanel = TPanel
 
-export type THistoryPanel = TPanel;
+export type THistoryPanel = TPanel
 
-export type TRequestPanel = TPanel;
+export type TRequestPanel = TPanel
 
 export type TSQLPanelQueryTemplateInfoLine = {
-  num: number;
-  highlight: boolean;
-  content: string;
+  num: number
+  highlight: boolean
+  content: string
 }
 
 export type TSQLPanelQueryTemplateInfo = {
-  name: string;
-  lines: TSQLPanelQueryTemplateInfoLine[];
+  name: string
+  lines: TSQLPanelQueryTemplateInfoLine[]
 }
 
 export type TSQLPanelQuery = {
-  isSlow: boolean;
-  query: string;
-  rgbColor: string;
-  similarCount: number;
-  similarColor: string;
-  duplicateCount: number;
-  duplicateColor: string;
-  traceColor: string;
-  widthRatio: number;
-  startOffset: number;
-  endOffset: number;
-  duration: number;
-  isSelect: boolean;
-  stacktrace: string;
-  templateInfo: TSQLPanelQueryTemplateInfo;
-};
+  isSlow: boolean
+  query: string
+  rgbColor: string
+  similarCount: number
+  similarColor: string
+  duplicateCount: number
+  duplicateColor: string
+  traceColor: string
+  widthRatio: number
+  startOffset: number
+  endOffset: number
+  duration: number
+  isSelect: boolean
+  stacktrace: string
+  templateInfo: TSQLPanelQueryTemplateInfo
+}
 
 export interface TSQLPanel extends TPanel {
-  queries: TSQLPanelQuery[];
-  timeSpent: number;
-  numQueries: number;
-  similarCount: number;
-  duplicateCount: number;
+  queries: TSQLPanelQuery[]
+  timeSpent: number
+  numQueries: number
+  similarCount: number
+  duplicateCount: number
 }
 
 export type TCachePanelCount = {
-  name: string;
-  value: string;
-};
-
-export type TCachePanelCall = {
-  time: number;
-  name: string;
-  args: string;
-  kwargs: string;
-  backend: string;
-  trace: string;
-};
-
-export interface TCachePanel extends TPanel {
-  totalCalls: number;
-  hits: number;
-  totalTime: number;
-  misses: number;
-  counts: TCachePanelCount[];
-  calls: TCachePanelCall[];
+  name: string
+  value: string
 }
 
-export type TLoggingPanel = TPanel;
+export type TCachePanelCall = {
+  time: number
+  name: string
+  args: string
+  kwargs: string
+  backend: string
+  trace: string
+}
 
-export type TProfilingPanel = TPanel;
+export interface TCachePanel extends TPanel {
+  totalCalls: number
+  hits: number
+  totalTime: number
+  misses: number
+  counts: TCachePanelCount[]
+  calls: TCachePanelCall[]
+}
+
+export type TLoggingPanel = TPanel
+
+export type TProfilingPanel = TPanel
 
 export type PanelType =
   | TVersionsPanel
@@ -95,25 +95,25 @@ export type PanelType =
   | TSQLPanel
   | TCachePanel
   | TLoggingPanel
-  | TProfilingPanel;
+  | TProfilingPanel
 
 export interface TInitialState {
-  toolbarVisible: boolean;
-  VersionsPanel: TVersionsPanel;
-  HistoryPanel: THistoryPanel;
-  RequestPanel: TRequestPanel;
-  SQLPanel: TSQLPanel;
-  CachePanel: TCachePanel;
-  LoggingPanel: TLoggingPanel;
-  ProfilingPanel: TProfilingPanel;
+  toolbarVisible: boolean
+  VersionsPanel: TVersionsPanel
+  HistoryPanel: THistoryPanel
+  RequestPanel: TRequestPanel
+  SQLPanel: TSQLPanel
+  CachePanel: TCachePanel
+  LoggingPanel: TLoggingPanel
+  ProfilingPanel: TProfilingPanel
 }
 
 export interface MGlobalStore extends TInitialState {
-  showToolbar: Function;
-  hideToolbar: Function;
-  showPanelContent: Function;
-  hidePanelContent: Function;
-  togglePanelContent: Function;
+  showToolbar: Function
+  hideToolbar: Function
+  showPanelContent: Function
+  hidePanelContent: Function
+  togglePanelContent: Function
 }
 
 export const INITIAL_STORE: TInitialState = {
