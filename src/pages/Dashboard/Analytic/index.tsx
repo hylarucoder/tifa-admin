@@ -1,9 +1,7 @@
 import { EllipsisOutlined } from '@ant-design/icons'
-import { Col, Dropdown, Menu, Row } from 'antd'
+import { Col, Dropdown, Menu, RadioChangeEvent, Row } from 'antd'
 import React, { Component, Dispatch, Suspense } from 'react'
 import { GridContent } from '@ant-design/pro-layout'
-import { RadioChangeEvent } from 'antd/es/radio'
-import { RangePickerProps } from 'antd/es/date-picker/generatePicker'
 import moment from 'moment'
 
 import PageLoading from './components/PageLoading'
@@ -11,6 +9,7 @@ import { getTimeDistance } from './utils/utils'
 import { AnalysisData } from './data'
 import styles from './style.module.less'
 import { getFakeChartData } from '@/pages/Dashboard/Analytic/_mock'
+import { RangePickerProps } from 'antd/es/date-picker'
 
 const IntroduceRow = React.lazy(() => import('./components/IntroduceRow'))
 const SalesCard = React.lazy(() => import('./components/SalesCard'))
@@ -18,7 +17,7 @@ const TopSearch = React.lazy(() => import('./components/TopSearch'))
 const ProportionSales = React.lazy(() => import('./components/ProportionSales'))
 const OfflineData = React.lazy(() => import('./components/OfflineData'))
 
-type RangePickerValue = RangePickerProps<moment.Moment>['value']
+type RangePickerValue = RangePickerProps['value']
 
 interface DashboardAnalysisProps {
   dashboardAnalysis: AnalysisData

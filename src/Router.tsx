@@ -13,13 +13,13 @@ const { SubMenu } = Menu
 import { BrowserRouter, Route, Redirect, Switch, Link } from 'react-router-dom'
 import { layoutRoutes } from '@/routes'
 import GlobalHeaderRight from '@/components/GlobalHeaderRight'
-import { Header } from 'antd/es/layout/layout'
 import { PageLoading } from '@ant-design/pro-layout'
 import Login from '@/pages/Common/Login'
 import Error403 from './pages/Common/Error403'
 import Error404 from './pages/Common/Error404'
 import Error500 from './pages/Common/Error500'
 import { useGlobalStore } from '@/hooks/useStore'
+import { Header } from 'antd/es/layout/layout'
 
 type PrivateRouteProps = {
   children: React.ReactNode
@@ -47,7 +47,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
         ) : (
           <Redirect
             to={{
-              pathname: '/login', // eslint-disable-next-line react/prop-types
+              pathname: '/login',
               state: { from: props.location },
             }}
           />
