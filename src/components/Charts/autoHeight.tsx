@@ -1,10 +1,5 @@
 import React from 'react'
 
-export type IReactComponent<P = any> =
-  | React.StatelessComponent<P>
-  | React.ComponentClass<P>
-  | React.ClassicComponentClass<P>
-
 function computeHeight(node: HTMLDivElement) {
   const { style } = node
   style.height = '100%'
@@ -37,7 +32,7 @@ interface AutoHeightProps {
 
 function autoHeight() {
   return <P extends AutoHeightProps>(
-    WrappedComponent: React.ComponentClass<P> | React.FC<P>
+    WrappedComponent: React.ComponentClass<P> | React.FC<P>,
   ): React.ComponentClass<P> => {
     class AutoHeightComponent extends React.Component<P & AutoHeightProps> {
       state = {
@@ -73,7 +68,9 @@ function autoHeight() {
         )
       }
     }
+
     return AutoHeightComponent
   }
 }
+
 export default autoHeight

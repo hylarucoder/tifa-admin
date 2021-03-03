@@ -1,5 +1,5 @@
 import React from 'react'
-import _ from 'lodash'
+import { assign } from 'lodash'
 import {
   Chart,
   Geom,
@@ -15,8 +15,8 @@ import DataSet from '@antv/data-set'
 
 // 给point注册一个词云的shape
 
-function getTextAttrs(cfg) {
-  return _.assign({}, cfg.style, {
+function getTextAttrs(cfg: any) {
+  return assign({}, cfg.style, {
     fontSize: cfg.data.size,
     text: cfg.data.text,
     textAlign: 'center',
@@ -25,16 +25,19 @@ function getTextAttrs(cfg) {
     textBaseline: 'Alphabetic',
   })
 }
+
 registerShape('point', 'cloud', {
   draw(cfg, container) {
     const attrs = getTextAttrs(cfg)
     const textShape = container.addShape('text', {
-      attrs: _.assign(attrs, {
+      attrs: assign(attrs, {
         x: cfg.x,
         y: cfg.y,
       }),
     })
-    if (cfg.data.rotate) {
+    // @ts-ignore
+    if (cfg?.data?.rotate) {
+      // @ts-ignore
       G2.Util.rotate(textShape, (cfg.data.rotate * Math.PI) / 180)
     }
     return textShape
@@ -576,14 +579,15 @@ class Wordcloud extends React.Component {
     return (
       <Chart width={600} height={500} data={dv.rows} scale={scale} padding={0} autoFit={false}>
         <Tooltip showTitle={false} />
-        <Coordinate reflect="y" />
-        <Axis name="x" visible={false} />
-        <Axis name="y" visible={false} />
+        <Coordinate reflect='y' />
+        <Axis name='x' visible={false} />
+        <Axis name='y' visible={false} />
         <Legend visible={false} />
-        <Geom type="point" position="x*y" color="category" shape="cloud" tooltip="value*category" />
-        <Interaction type="element-active" />
+        <Geom type='point' position='x*y' color='category' shape='cloud' tooltip='value*category' />
+        <Interaction type='element-active' />
       </Chart>
     )
   }
 }
+
 export default Wordcloud

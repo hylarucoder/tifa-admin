@@ -1,8 +1,7 @@
 import React from 'react'
 import { GaugeChart } from 'bizcharts'
 
-
-const Gauge: React.FC = (props) => {
+export default () => {
   return (
     <GaugeChart
       title={{
@@ -28,5 +27,3 @@ const Gauge: React.FC = (props) => {
     />
   )
 }
-
-export default Gauge

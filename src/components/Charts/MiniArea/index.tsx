@@ -1,5 +1,6 @@
 import React from 'react'
 import { TinyAreaChart } from 'bizcharts'
+import autoHeight from '@/components/Charts/autoHeight'
 
 // 数据源
 const data = [
@@ -14,8 +15,7 @@ const data = [
   { year: '1999', value: 13 },
 ]
 
-function Demo() {
-  return <TinyAreaChart data={data} width={400} height={300} xField="year" yField="value" />
-}
 
-export default Demo
+export default autoHeight()(() => {
+  return <TinyAreaChart data={data} width={300} height={46} xField='year' yField='value' />
+})
