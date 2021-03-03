@@ -37,10 +37,8 @@ function shortenSQLSelect(line: string) {
 export const SQLCodeBlock = ({ sql }: { sql: string }) => {
   const formattedSQL = format(sql, { indent: '\xa0\xa0\xa0\xa0' })
   return (
-    <Highlight {...defaultProps} theme={theme} code={formattedSQL} language='sql'>
-      {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <div></div>
-      )}
+    <Highlight {...defaultProps} theme={theme} code={formattedSQL} language="sql">
+      {({ className, style, tokens, getLineProps, getTokenProps }) => <div></div>}
     </Highlight>
   )
 }
@@ -48,10 +46,8 @@ export const SQLCodeBlock = ({ sql }: { sql: string }) => {
 export const SQLCodeBlockOneLiner = ({ sql }: { sql: string }) => {
   const oneLiner = shortenSQLSelect(sql.replaceAll('\n', ''))
   return (
-    <Highlight {...defaultProps} theme={theme} code={oneLiner} language='sql'>
-      {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <div></div>
-      )}
+    <Highlight {...defaultProps} theme={theme} code={oneLiner} language="sql">
+      {({ className, style, tokens, getLineProps, getTokenProps }) => <div></div>}
     </Highlight>
   )
 }
@@ -59,9 +55,7 @@ export const SQLCodeBlockOneLiner = ({ sql }: { sql: string }) => {
 export const CodeBlock = ({ snippet, language }: { snippet: string; language: Language }) => {
   return (
     <Highlight {...defaultProps} theme={theme} code={snippet} language={language}>
-      {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <div></div>
-      )}
+      {({ className, style, tokens, getLineProps, getTokenProps }) => <div></div>}
     </Highlight>
   )
 }

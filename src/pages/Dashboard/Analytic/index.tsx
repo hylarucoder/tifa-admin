@@ -37,11 +37,9 @@ export default () => {
     // })
   }
 
-  const handleRangePickerChange = (rangePickerValue: RangePickerValue) => {
-  }
+  const handleRangePickerChange = (rangePickerValue: RangePickerValue) => {}
 
-  const selectDate = (type: 'today' | 'week' | 'month' | 'year') => {
-  }
+  const selectDate = (type: 'today' | 'week' | 'month' | 'year') => {}
 
   const isActive = (type: 'today' | 'week' | 'month' | 'year') => {
     const { rangePickerValue } = state
@@ -92,7 +90,7 @@ export default () => {
 
   const dropdownGroup = (
     <span className={styles.iconGroup}>
-      <Dropdown overlay={menu} placement='bottomRight'>
+      <Dropdown overlay={menu} placement="bottomRight">
         <EllipsisOutlined />
       </Dropdown>
     </span>
@@ -103,11 +101,7 @@ export default () => {
     <GridContent>
       <React.Fragment>
         <IntroduceRow loading={loading} visitData={visitData} />
-        <ErrorBoundary
-          FallbackComponent={ErrorFallback}
-          onReset={() => {
-          }}
-        >
+        <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => {}}>
           <SalesCard
             rangePickerValue={rangePickerValue}
             salesData={salesData}
@@ -124,11 +118,7 @@ export default () => {
           }}
         >
           <Col xl={12} lg={24} md={24} sm={24} xs={24}>
-            <ErrorBoundary
-              FallbackComponent={ErrorFallback}
-              onReset={() => {
-              }}
-            >
+            <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => {}}>
               <TopSearch
                 loading={loading}
                 visitData2={visitData2}
@@ -138,11 +128,7 @@ export default () => {
             </ErrorBoundary>
           </Col>
           <Col xl={12} lg={24} md={24} sm={24} xs={24}>
-            <ErrorBoundary
-              FallbackComponent={ErrorFallback}
-              onReset={() => {
-              }}
-            >
+            <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => {}}>
               <ProportionSales
                 dropdownGroup={dropdownGroup}
                 // @ts-ignore
@@ -154,11 +140,7 @@ export default () => {
             </ErrorBoundary>
           </Col>
         </Row>
-        <ErrorBoundary
-          FallbackComponent={ErrorFallback}
-          onReset={() => {
-          }}
-        >
+        <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => {}}>
           <OfflineData
             activeKey={activeKey}
             loading={loading}

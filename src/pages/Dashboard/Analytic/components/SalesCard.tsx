@@ -4,7 +4,7 @@ import moment from 'moment'
 import React from 'react'
 import numeral from 'numeral'
 import { VisitDataType } from '../data'
-import { Bar } from './Charts'
+import { Bar } from '../../../../components/Charts'
 import styles from '../style.module.less'
 const { RangePicker } = DatePicker
 const { TabPane } = Tabs
