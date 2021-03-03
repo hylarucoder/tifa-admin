@@ -1,4 +1,4 @@
-import { Chart, Geom, Tooltip } from 'bizcharts'
+import { Chart, Geom, Tooltip } from 'bizcharts/es'
 
 import React from 'react'
 import autoHeight from '../autoHeight'

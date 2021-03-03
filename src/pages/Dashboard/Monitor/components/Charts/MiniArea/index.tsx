@@ -1,4 +1,4 @@
-import { Axis, AxisProps, Chart, Geom, Tooltip } from 'bizcharts'
+import { Axis, AxisProps, Chart, Geom, Tooltip } from 'bizcharts/es'
 
 import React from 'react'
 import autoHeight from '../autoHeight'

@@ -1,4 +1,4 @@
-import { Axis, Chart, Geom, Tooltip } from 'bizcharts'
+import { Axis, Chart, Geom, Tooltip } from 'bizcharts/es'
 import React, { Component } from 'react'
 
 import { debounce } from 'lodash'

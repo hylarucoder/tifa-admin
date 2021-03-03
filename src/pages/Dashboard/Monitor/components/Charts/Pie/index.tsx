@@ -1,4 +1,4 @@
-import { Chart, Coord, Geom, Tooltip } from 'bizcharts'
+import { Chart, Coord, Geom, Tooltip } from 'bizcharts/es'
 import React, { Component } from 'react'
 
 // @ts-ignore

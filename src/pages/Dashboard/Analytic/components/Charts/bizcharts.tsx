@@ -1,3 +1,3 @@
-import * as BizChart from 'bizcharts'
+import * as BizChart from 'bizcharts/es'
 
 export default BizChart

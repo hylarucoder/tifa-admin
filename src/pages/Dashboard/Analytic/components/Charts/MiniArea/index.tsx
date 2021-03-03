@@ -1,5 +1,5 @@
 // @ts-ignore
-import { Axis, Chart, Geom, Tooltip, AxisProps } from 'bizcharts'
+import { Axis, Chart, Geom, Tooltip, AxisProps } from 'bizcharts/es'
 
 import React from 'react'
 import autoHeight from '../autoHeight'

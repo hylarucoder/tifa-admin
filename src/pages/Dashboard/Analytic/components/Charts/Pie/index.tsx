@@ -1,4 +1,4 @@
-import { Chart, Coord, G2, Geom, Tooltip } from 'bizcharts'
+import { Chart, Coord, G2, Geom, Tooltip } from 'bizcharts/es'
 import React, { Component } from 'react'
 
 import DataSet from '@antv/data-set'
