@@ -102,7 +102,7 @@ const TimelineChart: React.FC<TimelineChartProps> = (props) => {
     <div className={styles.timelineChart} style={{ height: height + 30 }}>
       <div>
         {title && <h4>{title}</h4>}
-        <Chart height={height} padding={padding} data={dv} scale={cols} forceFit>
+        <Chart height={height} padding={padding} data={dv} scale={cols} autoFit>
           <Axis name="x" />
           <Tooltip />
           <Legend name="key" position="top" />

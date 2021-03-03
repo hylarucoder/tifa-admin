@@ -1,4 +1,4 @@
-import { Chart, Coord, G2, Geom, Tooltip } from 'bizcharts/es'
+import { Chart, Coordinate, G2, Geom, Tooltip } from 'bizcharts/es'
 import React, { Component } from 'react'
 
 import DataSet from '@antv/data-set'
@@ -26,7 +26,7 @@ export interface PieProps {
   }[]
   inner?: number
   lineWidth?: number
-  forceFit?: boolean
+  autoFit?: boolean
   style?: React.CSSProperties
   className?: string
   total?: React.ReactNode | number | (() => React.ReactNode | number)
@@ -174,7 +174,7 @@ class Pie extends Component<PieProps, PieState> {
       className,
       style,
       height = 0,
-      forceFit = true,
+      autoFit = true,
       percent,
       color,
       inner = 0.75,
@@ -262,14 +262,14 @@ class Pie extends Component<PieProps, PieState> {
             <Chart
               scale={scale}
               height={height}
-              forceFit={forceFit}
+              autoFit={autoFit}
               data={dv}
               padding={padding}
               animate={animate}
               onGetG2Instance={this.getG2Instance}
             >
               {!!tooltip && <Tooltip showTitle={false} />}
-              <Coord type="theta" innerRadius={inner} />
+              <Coordinate type="theta" innerRadius={inner} />
               <Geom
                 style={{ lineWidth, stroke: '#fff' }}
                 tooltip={tooltip ? tooltipFormat : undefined}

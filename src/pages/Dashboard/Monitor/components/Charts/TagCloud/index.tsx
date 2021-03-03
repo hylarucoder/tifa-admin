@@ -1,4 +1,4 @@
-import { Chart, Coord, Geom, Shape, Tooltip } from 'bizcharts/es'
+import { Chart, Coordinate, Geom, Shape, Tooltip } from 'bizcharts/es'
 import React, { Component } from 'react'
 
 import DataSet from '@antv/data-set'
@@ -189,7 +189,7 @@ class TagCloud extends Component<TagCloudProps, TagCloudState> {
             }}
           >
             <Tooltip showTitle={false} />
-            <Coord reflect="y" />
+            <Coordinate reflect="y" />
             <Geom
               type="point"
               position="x*y"

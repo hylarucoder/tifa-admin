@@ -39,6 +39,7 @@
     "@antv/l7": "^2.3.9",
     "@antv/l7-maps": "^2.3.9",
     "@antv/l7-react": "^2.3.0",
+    "@antv/matrix-util": "^3.0.4",
     "antd": "^4.13.0",
     "axios": "^0.21.1",
     "bizcharts": "^4.1.7",

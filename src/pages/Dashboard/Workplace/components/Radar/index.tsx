@@ -1,4 +1,4 @@
-import { Axis, Chart, Coord, Geom, Tooltip } from 'bizcharts/es'
+import { Axis, Chart, Coordinate, Geom, Tooltip } from 'bizcharts/es'
 import { Col, Row } from 'antd'
 import React, { Component } from 'react'
 
@@ -17,7 +17,7 @@ export interface RadarProps {
   }[]
   colors?: string[]
   animate?: boolean
-  forceFit?: boolean
+  autoFit?: boolean
   tickCount?: number
   style?: React.CSSProperties
 }
@@ -127,7 +127,7 @@ class Radar extends Component<RadarProps, RadarState> {
       height = 0,
       title,
       hasLegend = false,
-      forceFit = true,
+      autoFit = true,
       tickCount = 5,
       padding = [35, 30, 16, 30] as [number, number, number, number],
       animate = true,
@@ -151,14 +151,14 @@ class Radar extends Component<RadarProps, RadarState> {
         <Chart
           scale={scale}
           height={chartHeight}
-          forceFit={forceFit}
+          autoFit={autoFit}
           data={data}
           padding={padding}
           animate={animate}
           onGetG2Instance={this.getG2Instance}
         >
           <Tooltip />
-          <Coord type="polar" />
+          <Coordinate type="polar" />
           <Axis
             name="label"
             line={undefined}

@@ -1,8 +1,5 @@
-import GaugeChart from 'bizcharts/es/plots/GaugeChart'
-
-
 import React from 'react'
-import autoHeight from '../autoHeight'
+import GaugeChart from 'bizcharts/es/plots/GaugeChart'
 
 
 export interface GaugeProps {
@@ -11,7 +8,7 @@ export interface GaugeProps {
   height?: number
   bgColor?: number
   percent: number
-  forceFit?: boolean
+  autoFit?: boolean
   style?: React.CSSProperties
   formatter: (value: string) => string
 }
@@ -39,4 +36,4 @@ const Gauge: React.FC<GaugeProps> = (props) => {
   )
 }
 
-export default autoHeight()(Gauge)
+export default Gauge
