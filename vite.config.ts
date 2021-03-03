@@ -29,16 +29,20 @@ export default defineConfig({
 
   optimizeDeps: {
     entries: [
+      '@ant-design/colors',
+      '@ant-design/icons-svg',
       '@ant-design/icons',
       '@ant-design/pro-card',
       '@ant-design/pro-descriptions',
+      '@ant-design/pro-field',
       '@ant-design/pro-form',
-      '@ant-design/pro-field/es',
       '@ant-design/pro-layout',
       '@ant-design/pro-list',
+      '@ant-design/pro-provider',
       '@ant-design/pro-skeleton',
       '@ant-design/pro-table',
       '@ant-design/pro-utils',
+      '@ant-design/react-slick',
       '@antv/data-set',
       '@antv/l7',
       '@antv/l7-maps',

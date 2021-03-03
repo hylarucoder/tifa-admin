@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import DataSet from '@antv/data-set'
 import { debounce } from 'lodash'
 import { Divider } from 'antd'
+// @ts-ignore
 import ReactFitText from 'react-fittext'
 import classNames from 'classnames'
 import autoHeight from '../autoHeight'

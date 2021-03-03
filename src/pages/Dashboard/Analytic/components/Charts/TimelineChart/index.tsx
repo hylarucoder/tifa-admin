@@ -2,7 +2,7 @@ import { Axis, Chart, Geom, Legend, Tooltip } from 'bizcharts'
 
 import DataSet from '@antv/data-set'
 import React from 'react'
-import Slider from 'bizcharts-plugin-slider'
+// import Slider from 'bizcharts-plugin-slider'
 import autoHeight from '../autoHeight'
 import styles from './index.module.less'
 
@@ -95,22 +95,7 @@ const TimelineChart: React.FC<TimelineChartProps> = (props) => {
   }
 
   const SliderGen = () => (
-    <Slider
-      padding={[0, padding[1] + 20, 0, padding[3]]}
-      width="auto"
-      height={26}
-      xAxis="x"
-      yAxis="y1"
-      scales={{ x: timeScale }}
-      data={data}
-      start={ds.state.start}
-      end={ds.state.end}
-      backgroundChart={{ type: 'line' }}
-      onChange={({ startValue, endValue }: { startValue: string; endValue: string }) => {
-        ds.setState('start', startValue)
-        ds.setState('end', endValue)
-      }}
-    />
+    <div/>
   )
 
   return (

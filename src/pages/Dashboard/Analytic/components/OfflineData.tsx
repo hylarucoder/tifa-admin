@@ -5,13 +5,14 @@ import { TimelineChart, Pie } from './Charts'
 import NumberInfo from './NumberInfo'
 import styles from '../style.module.less'
 
-const CustomTab = ({
-                     data,
-                     currentTabKey: currentKey,
-                   }: {
-  data: OfflineDataType
-  currentTabKey: string
-}) => (
+const CustomTab = (
+  {
+    data,
+    currentTabKey: currentKey,
+  }: {
+    data: OfflineDataType
+    currentTabKey: string
+  }) => (
   <Row
     gutter={8}
     style={{
@@ -19,12 +20,12 @@ const CustomTab = ({
       margin: '8px 0',
     }}
     // @ts-ignore
-    type="flex"
+    type='flex'
   >
     <Col span={12}>
       <NumberInfo
         title={data.name}
-        subTitle="转化率"
+        subTitle='转化率'
         gap={2}
         total={`${data.cvr * 100}%`}
         theme={currentKey !== data.name ? 'light' : undefined}
