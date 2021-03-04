@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import "./App.css"
+import './App.css'
 import { ProvideStore, useGlobalStore } from '@/hooks/useStore'
 import { useBoolean } from '@/hooks/useBoolean'
 import Router from '@/Router'

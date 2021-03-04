@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 
 import { PageContainer } from '@ant-design/pro-layout'
 import moment from 'moment'
-import Radar from './components/Radar'
+import Radar from '../../../components/Charts/RadarChart'
 import EditableLinkGroup from './components/EditableLinkGroup'
 import styles from './style.module.less'
 import { ActivitiesType, CurrentUser } from './data'

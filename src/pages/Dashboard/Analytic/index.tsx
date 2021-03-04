@@ -1,35 +1,23 @@
+import React from 'react'
 import { EllipsisOutlined } from '@ant-design/icons'
-import { Col, Dropdown, Menu, Row } from 'antd'
-import React, { Component, Dispatch, Suspense } from 'react'
+import { Col, Dropdown, Menu, RadioChangeEvent, Row } from 'antd'
 import { GridContent } from '@ant-design/pro-layout'
-import { RadioChangeEvent } from 'antd/es/radio'
-import { RangePickerProps } from 'antd/es/date-picker/generatePicker'
 import moment from 'moment'
 
-import PageLoading from './components/PageLoading'
-import { getTimeDistance } from './utils/utils'
-import { AnalysisData } from './data'
+import { getTimeDistance } from '../../../components/Dashboard/utils/utils'
 import styles from './style.module.less'
 import { getFakeChartData } from '@/pages/Dashboard/Analytic/_mock'
+import { RangePickerProps } from 'antd/es/date-picker'
+import { ErrorFallback } from '@/components/ErrorFallback'
+import { ErrorBoundary } from '@/components/ErrorBoundary'
 
-const IntroduceRow = React.lazy(() => import('./components/IntroduceRow'))
-const SalesCard = React.lazy(() => import('./components/SalesCard'))
-const TopSearch = React.lazy(() => import('./components/TopSearch'))
-const ProportionSales = React.lazy(() => import('./components/ProportionSales'))
-const OfflineData = React.lazy(() => import('./components/OfflineData'))
+const IntroduceRow = React.lazy(() => import('../../../components/Dashboard/IntroduceRow'))
+const SalesCard = React.lazy(() => import('../../../components/Dashboard/SalesCard'))
+const TopSearch = React.lazy(() => import('../../../components/Dashboard/TopSearch'))
+const ProportionSales = React.lazy(() => import('../../../components/Dashboard/ProportionSales'))
+const OfflineData = React.lazy(() => import('../../../components/Dashboard/OfflineData'))
 
-type RangePickerValue = RangePickerProps<moment.Moment>['value']
-
-interface DashboardAnalysisProps {
-  dashboardAnalysis: AnalysisData
-  loading: boolean
-}
-
-interface DashboardAnalysisState {
-  salesType: 'all' | 'online' | 'stores'
-  currentTabKey: string
-  rangePickerValue: RangePickerValue
-}
+type RangePickerValue = RangePickerProps['value']
 
 export default () => {
   const state = {
@@ -112,10 +100,8 @@ export default () => {
   return (
     <GridContent>
       <React.Fragment>
-        <Suspense fallback={<PageLoading />}>
-          <IntroduceRow loading={loading} visitData={visitData} />
-        </Suspense>
-        <Suspense fallback={null}>
+        <IntroduceRow loading={loading} visitData={visitData} />
+        <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => {}}>
           <SalesCard
             rangePickerValue={rangePickerValue}
             salesData={salesData}
@@ -124,7 +110,7 @@ export default () => {
             loading={loading}
             selectDate={selectDate}
           />
-        </Suspense>
+        </ErrorBoundary>
         <Row
           gutter={24}
           style={{
@@ -132,17 +118,17 @@ export default () => {
           }}
         >
           <Col xl={12} lg={24} md={24} sm={24} xs={24}>
-            <Suspense fallback={null}>
+            <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => {}}>
               <TopSearch
                 loading={loading}
                 visitData2={visitData2}
                 searchData={searchData}
                 dropdownGroup={dropdownGroup}
               />
-            </Suspense>
+            </ErrorBoundary>
           </Col>
           <Col xl={12} lg={24} md={24} sm={24} xs={24}>
-            <Suspense fallback={null}>
+            <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => {}}>
               <ProportionSales
                 dropdownGroup={dropdownGroup}
                 // @ts-ignore
@@ -151,10 +137,10 @@ export default () => {
                 salesPieData={salesPieData}
                 handleChangeSalesType={handleChangeSalesType}
               />
-            </Suspense>
+            </ErrorBoundary>
           </Col>
         </Row>
-        <Suspense fallback={null}>
+        <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => {}}>
           <OfflineData
             activeKey={activeKey}
             loading={loading}
@@ -162,7 +148,7 @@ export default () => {
             offlineChartData={offlineChartData}
             handleTabChange={handleTabChange}
           />
-        </Suspense>
+        </ErrorBoundary>
       </React.Fragment>
     </GridContent>
   )
