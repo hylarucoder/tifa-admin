@@ -6,8 +6,7 @@ type RouteNode = {
   name: string
   icon?: string
   component: React.ComponentType | React.FC | LazyExoticComponent<any> | JSX.Element
-  permission?: string
-  isMultiPanel?: boolean
+  baseComponent?: React.ComponentType | React.FC | LazyExoticComponent<any> | JSX.Element
   keepAlive?: boolean
   routes?: RouteNode[]
 }
@@ -316,3 +315,15 @@ export const layoutRoutes: RouteNode[] = [
     ],
   },
 ]
+
+export const layoutRoutesByPath = new Map<string, RouteNode>()
+
+for (const route of layoutRoutes) {
+  const path = route.path
+  layoutRoutesByPath.set(path, route)
+  for (const subRoute of route?.routes || []) {
+    const subPath = subRoute.path
+    subRoute.baseComponent = route.component
+    layoutRoutesByPath.set(subPath, subRoute)
+  }
+}

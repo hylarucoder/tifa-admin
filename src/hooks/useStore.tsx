@@ -2,18 +2,37 @@ import React, { useEffect } from 'react'
 import { useLocalObservable } from 'mobx-react'
 import { action } from 'mobx'
 
+interface MTabs {
+  path: string
+  title: string
+}
+
 export interface TInitialState {
   loggedIn: boolean
+  tabs: MTabs[]
+  activeTab: string
+  currentPath: string
 }
 
 export interface MGlobalStore extends TInitialState {
   initialize: Function
   login: Function
   logout: Function
+  addOrNewTab: Function
+  editCurrentPath: Function
 }
 
 export const INITIAL_STORE: TInitialState = {
   loggedIn: false,
+  activeTab: '/welcome',
+  currentPath: '/welcome',
+  // 需要初始化
+  tabs: [
+    {
+      title: 'Welcome',
+      path: '/welcome',
+    },
+  ],
 }
 
 export const StoreContext = React.createContext(INITIAL_STORE)
@@ -37,10 +56,21 @@ export function useGlobalProviderStore() {
           store.loggedIn = true
         }
       }),
+      editCurrentPath: action((path: string) => {
+        store.currentPath = path
+      }),
+      addOrNewTab: action((path: string) => {
+        if (store.tabs.filter((tab) => tab.path == path).length) {
+        } else {
+          store.tabs.push({
+            title: path,
+            path: path,
+          })
+        }
+        store.activeTab = path
+      }),
     }
   })
-
-  useEffect(() => {}, [])
 
   // Return the user object and auth methods
   return store

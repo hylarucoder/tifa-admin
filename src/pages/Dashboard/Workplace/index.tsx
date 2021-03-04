@@ -173,8 +173,9 @@ export default () => {
     <PageContainer
       content={<PageHeaderContent currentUser={currentUser} />}
       extraContent={<ExtraContent />}
+      className="p-0"
     >
-      <Row gutter={24}>
+      <Row gutter={12}>
         <Col xl={16} lg={24} md={24} sm={24} xs={24}>
           <Card
             className={styles.projectList}

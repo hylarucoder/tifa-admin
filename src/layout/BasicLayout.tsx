@@ -1,14 +1,6 @@
-import React from 'react'
-import './BasicLayout.less'
+import React, { useState } from 'react'
 
 export const BasicLayout: React.FC = ({ children }: { children?: any }) => {
-  return (
-    <>
-      <div className="multi-tab">
-        <h1>this is ulti tab</h1>
-      </div>
-      <div className="basic-layout">{children}</div>
-    </>
-  )
+  return <div className="p-2">{children}</div>
 }
 export default BasicLayout
