@@ -3,9 +3,9 @@ import { RangePickerProps } from 'antd/es/date-picker/generatePicker'
 import moment from 'moment'
 import React from 'react'
 import numeral from 'numeral'
-import { VisitDataType } from '../data'
-import { Bar } from '../../../../components/Charts'
-import styles from '../style.module.less'
+import { VisitDataType } from '../../pages/Dashboard/Analytic/data'
+import { Bar } from '../Charts'
+import styles from '../../pages/Dashboard/Analytic/style.module.less'
 const { RangePicker } = DatePicker
 const { TabPane } = Tabs
 const rankingListData: {

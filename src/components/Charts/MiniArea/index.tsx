@@ -15,7 +15,6 @@ const data = [
   { year: '1999', value: 13 },
 ]
 
-
 export default autoHeight()(() => {
-  return <TinyAreaChart data={data} width={300} height={46} xField='year' yField='value' />
+  return <TinyAreaChart data={data} width={300} height={46} xField="year" yField="value" />
 })

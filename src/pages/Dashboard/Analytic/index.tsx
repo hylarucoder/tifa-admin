@@ -4,18 +4,18 @@ import { Col, Dropdown, Menu, RadioChangeEvent, Row } from 'antd'
 import { GridContent } from '@ant-design/pro-layout'
 import moment from 'moment'
 
-import { getTimeDistance } from './utils/utils'
+import { getTimeDistance } from '../../../components/Dashboard/utils/utils'
 import styles from './style.module.less'
 import { getFakeChartData } from '@/pages/Dashboard/Analytic/_mock'
 import { RangePickerProps } from 'antd/es/date-picker'
 import { ErrorFallback } from '@/components/ErrorFallback'
-import { ErrorBoundary } from '@/components/FunctionalErrorBoundary'
+import { ErrorBoundary } from '@/components/ErrorBoundary'
 
-const IntroduceRow = React.lazy(() => import('./components/IntroduceRow'))
-const SalesCard = React.lazy(() => import('./components/SalesCard'))
-const TopSearch = React.lazy(() => import('./components/TopSearch'))
-const ProportionSales = React.lazy(() => import('./components/ProportionSales'))
-const OfflineData = React.lazy(() => import('./components/OfflineData'))
+const IntroduceRow = React.lazy(() => import('../../../components/Dashboard/IntroduceRow'))
+const SalesCard = React.lazy(() => import('../../../components/Dashboard/SalesCard'))
+const TopSearch = React.lazy(() => import('../../../components/Dashboard/TopSearch'))
+const ProportionSales = React.lazy(() => import('../../../components/Dashboard/ProportionSales'))
+const OfflineData = React.lazy(() => import('../../../components/Dashboard/OfflineData'))
 
 type RangePickerValue = RangePickerProps['value']
 

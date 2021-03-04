@@ -32,7 +32,7 @@ interface AutoHeightProps {
 
 function autoHeight() {
   return <P extends AutoHeightProps>(
-    WrappedComponent: React.ComponentClass<P> | React.FC<P>,
+    WrappedComponent: React.ComponentClass<P> | React.FC<P>
   ): React.ComponentClass<P> => {
     class AutoHeightComponent extends React.Component<P & AutoHeightProps> {
       state = {

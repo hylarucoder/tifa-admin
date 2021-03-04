@@ -80,7 +80,7 @@ const LayoutRoutes = () => {
               )
             }
             return (
-              <SubMenu key={node.name} icon={<UserOutlined />} title={node.name} >
+              <SubMenu key={node.name} icon={<UserOutlined />} title={node.name}>
                 {node.routes.map((node) => {
                   return (
                     <Menu.Item key={node.path}>

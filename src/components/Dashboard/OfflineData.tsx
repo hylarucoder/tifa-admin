@@ -1,9 +1,9 @@
 import { Card, Col, Row, Tabs } from 'antd'
 import React from 'react'
-import { OfflineChartData, OfflineDataType } from '../data'
-import { TimelineChart, Pie } from '../../../../components/Charts'
+import { OfflineChartData, OfflineDataType } from '../../pages/Dashboard/Analytic/data'
+import { TimelineChart, Pie } from '../Charts'
 import NumberInfo from './NumberInfo'
-import styles from '../style.module.less'
+import styles from '../../pages/Dashboard/Analytic/style.module.less'
 
 const CustomTab = ({
   data,

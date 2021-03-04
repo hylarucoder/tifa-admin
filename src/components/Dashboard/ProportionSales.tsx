@@ -1,10 +1,10 @@
 import { Card, Radio } from 'antd'
 import { RadioChangeEvent } from 'antd/es/radio'
 import React from 'react'
-import { VisitDataType } from '../data'
-import { Pie } from '../../../../components/Charts'
-import Yuan from '../utils/Yuan'
-import styles from '../style.module.less'
+import { VisitDataType } from '../../pages/Dashboard/Analytic/data'
+import { Pie } from '@/components/Charts'
+import Yuan from './utils/Yuan'
+import styles from '../../pages/Dashboard/Analytic/style.module.less'
 
 const ProportionSales = ({
   dropdownGroup,

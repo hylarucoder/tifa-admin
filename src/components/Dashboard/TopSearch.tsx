@@ -2,11 +2,11 @@ import { InfoCircleOutlined } from '@ant-design/icons'
 import { Card, Col, Row, Table, Tooltip } from 'antd'
 import React from 'react'
 import numeral from 'numeral'
-import { SearchDataType, VisitDataType } from '../data'
+import { SearchDataType, VisitDataType } from '../../pages/Dashboard/Analytic/data'
 import { MiniArea } from '@/components/Charts'
 import NumberInfo from './NumberInfo'
 import Trend from './Trend'
-import styles from '../style.module.less'
+import styles from '../../pages/Dashboard/Analytic/style.module.less'
 const columns = [
   {
     title: '排名',

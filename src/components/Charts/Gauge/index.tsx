@@ -13,12 +13,10 @@ export default () => {
       value={64}
       min={0}
       max={100}
-      range={
-        {
-          ticks: [0, 25, 50, 75, 100],
-          color: ['#39B8FF', '#52619B', '#43E089', '#C0EDF3'],
-        }
-      }
+      range={{
+        ticks: [0, 25, 50, 75, 100],
+        color: ['#39B8FF', '#52619B', '#43E089', '#C0EDF3'],
+      }}
       statistic={{
         visible: true,
         text: '优',

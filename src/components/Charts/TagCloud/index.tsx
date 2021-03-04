@@ -579,12 +579,12 @@ class Wordcloud extends React.Component {
     return (
       <Chart width={600} height={500} data={dv.rows} scale={scale} padding={0} autoFit={false}>
         <Tooltip showTitle={false} />
-        <Coordinate reflect='y' />
-        <Axis name='x' visible={false} />
-        <Axis name='y' visible={false} />
+        <Coordinate reflect="y" />
+        <Axis name="x" visible={false} />
+        <Axis name="y" visible={false} />
         <Legend visible={false} />
-        <Geom type='point' position='x*y' color='category' shape='cloud' tooltip='value*category' />
-        <Interaction type='element-active' />
+        <Geom type="point" position="x*y" color="category" shape="cloud" tooltip="value*category" />
+        <Interaction type="element-active" />
       </Chart>
     )
   }

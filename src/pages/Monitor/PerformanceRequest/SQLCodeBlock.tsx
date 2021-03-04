@@ -1,8 +1,23 @@
 import React from 'react'
-// import styled from 'styled-components'
 import Highlight, { defaultProps, Language } from 'prism-react-renderer'
 import theme from 'prism-react-renderer/themes/github'
 import { format } from 'sql-formatter'
+
+const Pre = ({ children }: { children: any }) => {
+  return <div className="text-align-left">{children}</div>
+}
+
+const Line = ({ children }: { children: any }) => {
+  return <div className="table-row">{children}</div>
+}
+
+const LineNo = ({ children }: { children: any }) => {
+  return <span className="table-cell text-right pr-1">{children}</span>
+}
+
+const LineContent = ({ children }: { children: any }) => {
+  return <span className="table-cell">{children}</span>
+}
 
 // const Pre = styled.pre`
 //   text-align: left;

@@ -3,7 +3,7 @@ import React from 'react'
 import { GridContent } from '@ant-design/pro-layout'
 import numeral from 'numeral'
 import { Pie, WaterWave, Gauge, TagCloud, Map } from '@/components/Charts'
-import ActiveChart from '../../../components/ActiveChart'
+import ActiveChart from '../../../components/Charts/ActiveChart'
 import styles from './style.module.less'
 
 const { Countdown } = Statistic

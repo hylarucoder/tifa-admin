@@ -1,5 +1,6 @@
 import React from 'react'
 
+// @ts-ignore
 export function ErrorFallback({ error, resetErrorBoundary }) {
   return (
     <div role="alert">

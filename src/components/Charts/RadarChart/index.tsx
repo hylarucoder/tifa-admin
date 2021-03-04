@@ -1,4 +1,4 @@
-import { Axis, Chart, Coordinate, Geom, Tooltip } from 'bizcharts/es'
+import { Axis, Chart, Coordinate, Geom, Tooltip } from 'bizcharts'
 import { Col, Row } from 'antd'
 import React, { Component } from 'react'
 

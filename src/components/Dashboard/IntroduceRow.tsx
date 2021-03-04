@@ -2,11 +2,11 @@ import { InfoCircleOutlined } from '@ant-design/icons'
 import { Col, Row, Tooltip } from 'antd'
 import React from 'react'
 import numeral from 'numeral'
-import { ChartCard, MiniArea, MiniBar, MiniProgress, Field } from '../../../../components/Charts'
-import { VisitDataType } from '../data'
+import { ChartCard, MiniArea, MiniBar, MiniProgress, Field } from '../Charts'
+import { VisitDataType } from '../../pages/Dashboard/Analytic/data'
 import Trend from './Trend'
-import Yuan from '../utils/Yuan'
-import styles from '../style.module.less'
+import Yuan from './utils/Yuan'
+import styles from '../../pages/Dashboard/Analytic/style.module.less'
 const topColResponsiveProps = {
   xs: 24,
   sm: 12,
