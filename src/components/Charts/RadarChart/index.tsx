@@ -3,7 +3,7 @@ import { Col, Row } from 'antd'
 import React, { Component } from 'react'
 
 import autoHeight from './autoHeight'
-import styles from './index.less'
+import styles from './index.module.less'
 
 export interface RadarProps {
   title?: React.ReactNode
@@ -65,14 +65,12 @@ class Radar extends Component<RadarProps, RadarState> {
     const legendData = items.map((item: { color: any; _origin: any }[]) => {
       // eslint-disable-next-line no-underscore-dangle
       const origins = item.map((t) => t._origin)
-      const result = {
+      return {
         name: origins[0].name,
         color: item[0].color,
         checked: true,
         value: origins.reduce((p, n) => p + n.value, 0),
       }
-
-      return result
     })
 
     this.setState({

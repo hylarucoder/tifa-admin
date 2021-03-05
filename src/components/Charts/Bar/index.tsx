@@ -18,7 +18,7 @@ function Bar() {
         visible: true,
         text: '基础条形图',
       }}
-      autoFit="auto"
+      autoFit
       xField="销售额"
       yField="地区"
       xAxis={{

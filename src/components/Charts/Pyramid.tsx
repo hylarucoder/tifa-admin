@@ -9,14 +9,13 @@ import {
   Legend,
   View,
   Guide,
-  Shape,
   Facet,
   Util,
   Interaction,
 } from 'bizcharts'
 
 const { Text } = Guide
-let data = [
+const data = [
   {
     action: '浏览网站',
     pv: 50000,

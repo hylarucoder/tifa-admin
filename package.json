@@ -5,7 +5,7 @@
   "description": "CyberCity Admin",
   "scripts": {
     "postinstall": "husky install",
-    "lint": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
+    "lint": "tsc --noEmit && eslint './src/**/*.{js,ts,tsx}' --quiet --fix",
     "start": "vite",
     "build": "vite build",
     "dev": "vite"
