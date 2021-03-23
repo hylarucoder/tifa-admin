@@ -6,7 +6,7 @@ type MTabRoute = {
   title: string
   key: string
   url: string
-};
+}
 
 export interface TInitialState {
   loggedIn: boolean
@@ -25,11 +25,13 @@ export interface MGlobalStore extends TInitialState {
 
 export const INITIAL_STORE: TInitialState = {
   loggedIn: false,
-  tabRoutes: [{
-    title: '欢迎页面',
-    key: '/welcome',
-    url: '/welcome',
-  }],
+  tabRoutes: [
+    {
+      title: '欢迎页面',
+      key: '/welcome',
+      url: '/welcome',
+    },
+  ],
   tabRouteActiveKey: '/welcome',
 }
 
@@ -56,7 +58,7 @@ export function useGlobalProviderStore() {
       }),
       addOrActiveTabRoute(tabRoute: MTabRoute) {
         console.log('tab', tabRoute)
-        const hasKey = store.tabRoutes.filter((_) => (_.key == tabRoute.key)).length
+        const hasKey = store.tabRoutes.filter((_) => _.key == tabRoute.key).length
         if (!hasKey) {
           store.tabRoutes.push(tabRoute)
         }
@@ -64,10 +66,10 @@ export function useGlobalProviderStore() {
       },
       removeTabRoute(routeKey: string) {
         if (store.tabRouteActiveKey != routeKey) {
-          store.tabRoutes = store.tabRoutes.filter(_ => _.key != routeKey)
+          store.tabRoutes = store.tabRoutes.filter((_) => _.key != routeKey)
         } else {
-          const tabIndex = store.tabRoutes.findIndex(_ => _.key == routeKey)
-          store.tabRoutes = store.tabRoutes.filter(_ => _.key != routeKey)
+          const tabIndex = store.tabRoutes.findIndex((_) => _.key == routeKey)
+          store.tabRoutes = store.tabRoutes.filter((_) => _.key != routeKey)
           if (tabIndex - 1 >= 0) {
             store.tabRouteActiveKey = store.tabRoutes[tabIndex - 1].key
           }
@@ -75,13 +77,11 @@ export function useGlobalProviderStore() {
       },
       activeTabRoute(routeKey: string) {
         store.tabRouteActiveKey = routeKey
-
       },
     }
   })
 
-  useEffect(() => {
-  }, [])
+  useEffect(() => {}, [])
 
   // Return the user object and auth methods
   return store

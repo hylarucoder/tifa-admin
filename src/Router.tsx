@@ -1,5 +1,5 @@
 import React, { Suspense, useState } from 'react'
-import { Layout, Menu, Tabs, } from 'antd'
+import { Layout, Menu, Tabs } from 'antd'
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -21,27 +21,27 @@ import { useGlobalStore } from '@/hooks/useStore'
 import { Header } from 'antd/es/layout/layout'
 import { observer } from 'mobx-react'
 
-const TabPage = ({pane}: {pane: any}) => {
+const TabPage = ({ pane }: { pane: any }) => {
   const route = flattenLayoutRoutes.get(pane.url)
   // @ts-ignore
   const Component = route.component as any
-  return <Component/>
+  return <Component />
 }
 
-const MultiTabLayout = observer(()=>{
+const MultiTabLayout = observer(() => {
   const store = useGlobalStore()
-  const history = useHistory();
+  const history = useHistory()
   return (
-    <Suspense fallback={<PageLoading/>}>
+    <Suspense fallback={<PageLoading />}>
       <Tabs
         size="small"
         type="editable-card"
         onChange={(key) => {
           history.replace(key)
-          store.activeTabRoute(key);
+          store.activeTabRoute(key)
         }}
-        onEdit={(key, action)=>{
-          if(action=="remove") {
+        onEdit={(key, action) => {
+          if (action == 'remove') {
             console.log(key, action)
             store.removeTabRoute(key)
           }
@@ -54,7 +54,7 @@ const MultiTabLayout = observer(()=>{
             tab={pane.title}
             key={pane.key}
             style={{
-              height: "100vh",
+              height: '100vh',
             }}
           >
             <TabPage pane={pane} />
@@ -65,20 +65,17 @@ const MultiTabLayout = observer(()=>{
   )
 })
 
-const Sidebar = ( {collapsed}: {collapsed : boolean})=> {
+const Sidebar = ({ collapsed }: { collapsed: boolean }) => {
   const store = useGlobalStore()
-  const history = useHistory();
-  const onGoTo = (node: RouteNode)=>{
-      history.replace(node.path)
+  const history = useHistory()
+  const onGoTo = (node: RouteNode) => {
+    history.replace(node.path)
 
-      store.addOrActiveTabRoute(
-        {
-          title: node.name,
-          key: node.path,
-          url: node.path,
-        }
-      )
-
+    store.addOrActiveTabRoute({
+      title: node.name,
+      key: node.path,
+      url: node.path,
+    })
   }
   return (
     <Layout.Sider
@@ -93,15 +90,15 @@ const Sidebar = ( {collapsed}: {collapsed : boolean})=> {
       <Menu theme="light" defaultSelectedKeys={['1']} mode="inline">
         {layoutRoutes.map((node) => {
           if (!node.routes) {
-
             return (
               <Menu.Item key={node.path} icon={<PieChartOutlined />}>
-                <a onClick={
-                  ()=>{
+                <a
+                  onClick={() => {
                     onGoTo(node)
-                  }
-
-                }>{node.name}</a>
+                  }}
+                >
+                  {node.name}
+                </a>
               </Menu.Item>
             )
           }
@@ -110,11 +107,13 @@ const Sidebar = ( {collapsed}: {collapsed : boolean})=> {
               {node.routes.map((node) => {
                 return (
                   <Menu.Item key={node.path}>
-                    <a onClick={
-                      ()=>{
+                    <a
+                      onClick={() => {
                         onGoTo(node)
-                      }
-                    }>{node.name}</a>
+                      }}
+                    >
+                      {node.name}
+                    </a>
                   </Menu.Item>
                 )
               })}
@@ -126,13 +125,11 @@ const Sidebar = ( {collapsed}: {collapsed : boolean})=> {
   )
 }
 
-
-
 const LayoutRoutes = () => {
   const [collapsed, setCollapsed] = useState(false)
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Sidebar collapsed={collapsed}/>
+      <Sidebar collapsed={collapsed} />
       <Layout className="site-layout">
         <Header className="site-layout-background" style={{ padding: 0 }}>
           {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
@@ -143,7 +140,7 @@ const LayoutRoutes = () => {
           })}
           <GlobalHeaderRight />
         </Header>
-        <MultiTabLayout/>
+        <MultiTabLayout />
       </Layout>
     </Layout>
   )

@@ -307,9 +307,7 @@ export const layoutRoutes: RouteNode[] = [
   },
 ]
 
-
 export const flattenLayoutRoutes = new Map<string, RouteNode>()
-
 
 for (const layoutRoute of layoutRoutes) {
   if (layoutRoute.component) {
