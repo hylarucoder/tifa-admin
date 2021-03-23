@@ -1,7 +1,6 @@
-import React, { lazy, LazyExoticComponent, Suspense, useState } from 'react'
-import { Button, Layout, Menu, Tabs, Tooltip } from 'antd'
+import React, { Suspense, useState } from 'react'
+import { Layout, Menu, Tabs, } from 'antd'
 import {
-  DeleteOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   PieChartOutlined,
@@ -25,18 +24,27 @@ import { observer } from 'mobx-react'
 const TabPage = ({pane}: {pane: any}) => {
   const route = flattenLayoutRoutes.get(pane.url)
   // @ts-ignore
-  const Component = route.component
+  const Component = route.component as any
   return <Component/>
 }
 
 const MultiTabLayout = observer(()=>{
   const store = useGlobalStore()
+  const history = useHistory();
   return (
-    <Suspense fallback={<div>loading</div>}>
+    <Suspense fallback={<PageLoading/>}>
       <Tabs
+        size="small"
         type="editable-card"
         onChange={(key) => {
+          history.replace(key)
           store.activeTabRoute(key);
+        }}
+        onEdit={(key, action)=>{
+          if(action=="remove") {
+            console.log(key, action)
+            store.removeTabRoute(key)
+          }
         }}
         activeKey={store.tabRouteActiveKey}
         hideAdd
@@ -59,6 +67,19 @@ const MultiTabLayout = observer(()=>{
 
 const Sidebar = ( {collapsed}: {collapsed : boolean})=> {
   const store = useGlobalStore()
+  const history = useHistory();
+  const onGoTo = (node: RouteNode)=>{
+      history.replace(node.path)
+
+      store.addOrActiveTabRoute(
+        {
+          title: node.name,
+          key: node.path,
+          url: node.path,
+        }
+      )
+
+  }
   return (
     <Layout.Sider
       collapsed={collapsed}
@@ -75,32 +96,25 @@ const Sidebar = ( {collapsed}: {collapsed : boolean})=> {
 
             return (
               <Menu.Item key={node.path} icon={<PieChartOutlined />}>
-                <a onClick={()=>{
-                  store.addTabRoute(
-                    {
-                      title: node.name,
-                      key: node.path,
-                      url: node.path,
-                    }
-                  )}}>{node.name}</a>
+                <a onClick={
+                  ()=>{
+                    onGoTo(node)
+                  }
+
+                }>{node.name}</a>
               </Menu.Item>
             )
           }
           return (
             <SubMenu key={node.name} icon={<UserOutlined />} title={node.name}>
               {node.routes.map((node) => {
-                const history = useHistory();
                 return (
                   <Menu.Item key={node.path}>
-                    <a onClick={()=>{
-                      history.push(node.path);
-                      store.addTabRoute(
-                        {
-                          title: node.name,
-                          key: node.path,
-                          url: node.path,
-                        }
-                      )}}>{node.name}</a>
+                    <a onClick={
+                      ()=>{
+                        onGoTo(node)
+                      }
+                    }>{node.name}</a>
                   </Menu.Item>
                 )
               })}
