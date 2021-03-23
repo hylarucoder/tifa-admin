@@ -1,11 +1,10 @@
 ﻿import React, { lazy, LazyExoticComponent } from 'react'
-import BasicLayout from '@/layout/BasicLayout'
 
-type RouteNode = {
+export type RouteNode = {
   path: string
   name: string
   icon?: string
-  component: React.ComponentType | React.FC | LazyExoticComponent<any> | JSX.Element
+  component?: React.ComponentType | React.FC | LazyExoticComponent<any> | JSX.Element
   permission?: string
   isMultiPanel?: boolean
   keepAlive?: boolean
@@ -25,7 +24,6 @@ export const layoutRoutes: RouteNode[] = [
     path: '/dashboard',
     name: '仪表盘',
     icon: 'crown',
-    component: BasicLayout,
     routes: [
       {
         name: 'Analytic',
@@ -51,7 +49,6 @@ export const layoutRoutes: RouteNode[] = [
     path: '/biz_process',
     name: '个人办公',
     icon: 'crown',
-    component: BasicLayout,
     routes: [
       {
         name: '我的任务',
@@ -77,7 +74,6 @@ export const layoutRoutes: RouteNode[] = [
     path: '/process',
     name: '流程设计',
     icon: 'crown',
-    component: BasicLayout,
     routes: [
       {
         name: '流程设计',
@@ -103,7 +99,6 @@ export const layoutRoutes: RouteNode[] = [
     path: '/dynamic_form',
     name: '表单设计',
     icon: 'crown',
-    component: BasicLayout,
     routes: [
       {
         name: '表单设计器',
@@ -123,7 +118,6 @@ export const layoutRoutes: RouteNode[] = [
     path: '/online_dev',
     name: '在线开发',
     icon: 'crown',
-    component: BasicLayout,
     routes: [
       {
         name: '表单开发',
@@ -167,7 +161,6 @@ export const layoutRoutes: RouteNode[] = [
     path: '/dashboard',
     name: '仪表盘设计',
     icon: 'crown',
-    component: BasicLayout,
     routes: [
       {
         name: '表单设计器',
@@ -187,7 +180,6 @@ export const layoutRoutes: RouteNode[] = [
     path: '/system',
     name: '系统管理',
     icon: 'crown',
-    component: BasicLayout,
     routes: [
       {
         name: '用户管理',
@@ -255,7 +247,6 @@ export const layoutRoutes: RouteNode[] = [
     path: '/monitor',
     name: '系统监控',
     icon: 'crown',
-    component: BasicLayout,
     routes: [
       {
         name: '性能监控 - 请求',
@@ -305,7 +296,6 @@ export const layoutRoutes: RouteNode[] = [
     path: '/account',
     name: '我的账户',
     icon: 'crown',
-    component: BasicLayout,
     routes: [
       {
         name: '账户设置',
@@ -316,3 +306,16 @@ export const layoutRoutes: RouteNode[] = [
     ],
   },
 ]
+
+export const flattenLayoutRoutes = new Map<string, RouteNode>()
+
+for (const layoutRoute of layoutRoutes) {
+  if (layoutRoute.component) {
+    flattenLayoutRoutes.set(layoutRoute.path, layoutRoute)
+  }
+  if (layoutRoute.routes) {
+    for (const route of layoutRoute.routes) {
+      flattenLayoutRoutes.set(route.path, route)
+    }
+  }
+}

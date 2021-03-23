@@ -14,7 +14,12 @@ const CodePreview: React.FC = ({ children }) => (
 const Welcome = () => {
   return (
     <PageContainer>
-      <Card>
+      <Card
+        style={{
+          padding: 0,
+          margin: 0,
+        }}
+      >
         <Alert
           message={'更快更强的重型组件，已经发布。'}
           type="success"
