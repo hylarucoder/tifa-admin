@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Tag, message } from 'antd'
-import { groupBy } from 'lodash'
-import moment from 'moment'
+import groupBy from 'lodash/groupBy'
 
 import NoticeIcon from './NoticeIcon'
 import styles from './index.less'
+import { fromNow } from '@/utils/date'
 
 export type GlobalHeaderRightProps = {
   fetchingNotices?: boolean
@@ -21,7 +21,7 @@ const getNoticeData = (notices: any[]): Record<string, any[]> => {
     const newNotice = { ...notice }
 
     if (newNotice.datetime) {
-      newNotice.datetime = moment(notice.datetime as string).fromNow()
+      newNotice.datetime = fromNow(notice.datetime as string)
     }
 
     if (newNotice.id) {

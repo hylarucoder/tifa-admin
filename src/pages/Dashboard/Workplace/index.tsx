@@ -2,13 +2,13 @@ import { Avatar, Card, Col, List, Skeleton, Row, Statistic } from 'antd'
 import React, { Component } from 'react'
 
 import { PageContainer } from '@ant-design/pro-layout'
-import moment from 'moment'
-import Radar from '../../../components/Charts/RadarChart'
+import Radar from '@/components/Charts/RadarChart'
 import EditableLinkGroup from './components/EditableLinkGroup'
 import styles from './style.module.less'
 import { ActivitiesType, CurrentUser } from './data'
 import { Link } from 'react-router-dom'
 import { getActivities, getNotice, radarData } from '@/pages/Dashboard/Workplace/_mock'
+import { fromNow } from '@/utils/date'
 
 const links = [
   {
@@ -103,7 +103,7 @@ export default () => {
           }
           description={
             <span className={styles.datetime} title={item.updatedAt}>
-              {moment(item.updatedAt).fromNow()}
+              {fromNow(item.updatedAt)}
             </span>
           }
         />
@@ -202,7 +202,7 @@ export default () => {
                     {item.updatedAt && (
                       // @ts-ignore
                       <span className={styles.datetime} title={item.updatedAt}>
-                        {moment(item.updatedAt).fromNow()}
+                        {fromNow(item.updatedAt)}
                       </span>
                     )}
                   </div>

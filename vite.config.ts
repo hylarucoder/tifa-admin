@@ -1,18 +1,42 @@
 import path from 'path'
 import { defineConfig } from 'vite'
 import reactRefresh from '@vitejs/plugin-react-refresh'
+import visualizer from 'rollup-plugin-visualizer'
+
+
+function pathAlias(source, target) {
+  return {
+    find: source,
+    replacement: path.resolve(__dirname, 'node_modules/' + target),
+  }
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [reactRefresh()],
+  plugins: [
+    reactRefresh(), {
+      ...visualizer({
+        filename: './dist/stats.html',
+        template: 'treemap',
+        sourcemap: true,
+      }),
+      apply: 'build',
+      enforce: 'post',
+    }],
   resolve: {
     alias: [
       { find: '@', replacement: path.resolve(__dirname, 'src') },
       { find: '~antd', replacement: path.resolve(__dirname, 'node_modules/antd') },
       {
         find: '~antd/lib/style/themes/default',
-        replacement: path.resolve(__dirname, 'node_modules/antd/lib/style/themes/default.less'),
+        replacement: path.resolve(__dirname, 'node_modules/antd/es/style/themes/default.less'),
       },
+      pathAlias('@antv/g2/lib', '@antv/g2/esm'),
+      pathAlias('@antv/g2plot/lib', '@antv/g2plot/esm'),
+      pathAlias('@antv/g-canvas/lib', '@antv/g-canvas/esm'),
+      pathAlias('@antv/g-math/lib', '@antv/g-math/esm'),
+      pathAlias('@antv/g-svg/lib', '@antv/g-svg/esm'),
+      pathAlias('@antv/util/lib', '@antv/util/esm'),
     ],
   },
   css: {
@@ -20,7 +44,7 @@ export default defineConfig({
       less: {
         javascriptEnabled: true,
         modifyVars: {
-          hack: `true;@import "${require.resolve('antd/lib/style/color/colorPalette.less')}";`,
+          hack: `true;@import "${require.resolve('antd/es/style/color/colorPalette.less')}";`,
           '@primary-color': '#41adff',
         },
       },
@@ -28,51 +52,19 @@ export default defineConfig({
   },
 
   optimizeDeps: {
-    // entries: [
-    //   '@ant-design/colors',
-    //   '@ant-design/icons-svg',
-    //   '@ant-design/icons',
-    //   '@ant-design/pro-card',
-    //   '@ant-design/pro-descriptions',
-    //   '@ant-design/pro-field',
-    //   '@ant-design/pro-form',
-    //   '@ant-design/pro-layout',
-    //   '@ant-design/pro-list',
-    //   '@ant-design/pro-provider',
-    //   '@ant-design/pro-skeleton',
-    //   '@ant-design/pro-table',
-    //   '@ant-design/pro-utils',
-    //   '@ant-design/react-slick',
-    //   '@antv/data-set',
-    //   '@antv/l7',
-    //   '@antv/l7-maps',
-    //   '@antv/l7-react',
-    //   'antd',
-    //   'omit.js',
-    //   'axios',
-    //   'bizcharts',
-    //   'bizcharts-plugin-slider',
-    //   'mobx',
-    //   'mobx-react',
-    //   'moment',
-    //   'numeral',
-    //   'nzh',
-    //   'omit.js',
-    //   'prism-react-renderer',
-    //   'qs',
-    //   'react',
-    //   'react-canvas-nest',
-    //   'react-dom',
-    //   'react-fittext',
-    //   'react-helmet-async',
-    //   'react-router',
-    //   'react-router-dom',
-    //   'react-sortable-hoc',
-    //   'lodash',
-    //   'classnames',
-    //   'fast-deep-equal',
-    //   '@umijs/use-params',
-    //   'path-to-regexp',
-    // ],
+    entries: [
+      'antd',
+      'axios',
+      'mobx',
+      'mobx-react',
+      'moment',
+      'react',
+      'react-dom',
+      'classnames',
+    ],
+    include: [
+      'lodash-es',
+    ],
   },
+  build: { sourcemap: true },
 })

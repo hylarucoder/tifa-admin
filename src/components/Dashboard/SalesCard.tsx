@@ -2,10 +2,10 @@ import { Card, Col, DatePicker, Row, Tabs } from 'antd'
 import { RangePickerProps } from 'antd/es/date-picker/generatePicker'
 import moment from 'moment'
 import React from 'react'
-import numeral from 'numeral'
-import { VisitDataType } from '../../pages/Dashboard/Analytic/data'
+import { VisitDataType } from '@/pages/Dashboard/Analytic/data'
 import { Bar } from '../Charts'
 import styles from '../../pages/Dashboard/Analytic/style.module.less'
+import { formatNumber } from '@/utils/num'
 const { RangePicker } = DatePicker
 const { TabPane } = Tabs
 const rankingListData: {
@@ -96,7 +96,7 @@ const SalesCard = ({
                         {item.title}
                       </span>
                       <span className={styles.rankingItemValue}>
-                        {numeral(item.total).format('0,0')}
+                        {formatNumber(item.total,'0,0')}
                       </span>
                     </li>
                   ))}
@@ -124,7 +124,7 @@ const SalesCard = ({
                       <span className={styles.rankingItemTitle} title={item.title}>
                         {item.title}
                       </span>
-                      <span>{numeral(item.total).format('0,0')}</span>
+                      <span>{formatNumber(item.total,'0,0')}</span>
                     </li>
                   ))}
                 </ul>

@@ -1,12 +1,12 @@
 import { InfoCircleOutlined } from '@ant-design/icons'
 import { Card, Col, Row, Table, Tooltip } from 'antd'
 import React from 'react'
-import numeral from 'numeral'
-import { SearchDataType, VisitDataType } from '../../pages/Dashboard/Analytic/data'
+import { SearchDataType, VisitDataType } from '@/pages/Dashboard/Analytic/data'
 import { MiniArea } from '@/components/Charts'
 import NumberInfo from './NumberInfo'
 import Trend from './Trend'
 import styles from '../../pages/Dashboard/Analytic/style.module.less'
+import { formatNumber } from '@/utils/num'
 const columns = [
   {
     title: '排名',
@@ -107,7 +107,7 @@ const TopSearch = ({
             </span>
           }
           gap={8}
-          total={numeral(12321).format('0,0')}
+          total={formatNumber(12321,'0,0')}
           status="up"
           subTotal={17.1}
         />
