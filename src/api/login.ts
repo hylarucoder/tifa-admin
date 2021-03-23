@@ -1,8 +1,9 @@
 import { httpGet, httpPost } from '@/api/client'
+import { mockProfile } from '@/mock/user'
 
 export async function fetchInitialData() {
-  const resp = await httpGet(`/admin/initial`)
-  return resp.data as any
+  // const resp = await httpGet(`/admin/initial`)
+  return mockProfile
 }
 
 export type LoginParamsType = {

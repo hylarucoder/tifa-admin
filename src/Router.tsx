@@ -1,17 +1,17 @@
 import React, { lazy, LazyExoticComponent, Suspense, useState } from 'react'
-import { Layout, Menu } from 'antd'
+import { Button, Layout, Menu, Tabs, Tooltip } from 'antd'
 import {
+  DeleteOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   PieChartOutlined,
   UserOutlined,
 } from '@ant-design/icons'
 
-const { Sider } = Layout
 const { SubMenu } = Menu
 
-import { BrowserRouter, Route, Redirect, Switch, Link } from 'react-router-dom'
-import { layoutRoutes } from '@/routes'
+import { BrowserRouter, Route, Redirect, Switch, Link, useHistory } from 'react-router-dom'
+import { flattenLayoutRoutes, layoutRoutes, RouteNode } from '@/routes'
 import GlobalHeaderRight from '@/components/GlobalHeaderRight'
 import { PageLoading } from '@ant-design/pro-layout'
 import Login from '@/pages/Common/Login'
@@ -20,79 +20,105 @@ import Error404 from './pages/Common/Error404'
 import Error500 from './pages/Common/Error500'
 import { useGlobalStore } from '@/hooks/useStore'
 import { Header } from 'antd/es/layout/layout'
+import { observer } from 'mobx-react'
 
-type PrivateRouteProps = {
-  children: React.ReactNode
-  path: string
-  exact?: boolean
-  rest?: never
+const TabPage = ({pane}: {pane: any}) => {
+  const route = flattenLayoutRoutes.get(pane.url)
+  // @ts-ignore
+  const Component = route.component
+  return <Component/>
 }
-const PrivateRoute: React.FC<PrivateRouteProps> = ({
-  children,
-  path,
-  exact,
-  ...rest
-}: PrivateRouteProps) => {
+
+const MultiTabLayout = observer(()=>{
   const store = useGlobalStore()
-  const loggedIn = store.loggedIn
-  console.log(store.loggedIn, '??')
   return (
-    <Route
-      path={path}
-      exact={exact}
-      {...rest}
-      render={(props) =>
-        loggedIn ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: '/login',
-              state: { from: props.location },
+    <Suspense fallback={<div>loading</div>}>
+      <Tabs
+        type="editable-card"
+        onChange={(key) => {
+          store.activeTabRoute(key);
+        }}
+        activeKey={store.tabRouteActiveKey}
+        hideAdd
+      >
+        {store.tabRoutes.map((pane) => (
+          <Tabs.TabPane
+            tab={pane.title}
+            key={pane.key}
+            style={{
+              height: "100vh",
             }}
-          />
-        )
-      }
-    />
+          >
+            <TabPage pane={pane} />
+          </Tabs.TabPane>
+        ))}
+      </Tabs>
+    </Suspense>
+  )
+})
+
+const Sidebar = ( {collapsed}: {collapsed : boolean})=> {
+  const store = useGlobalStore()
+  return (
+    <Layout.Sider
+      collapsed={collapsed}
+      onCollapse={() => {}}
+      style={{
+        width: 208,
+        background: '#FFF',
+      }}
+    >
+      <div className="logo">CyberCity Admin</div>
+      <Menu theme="light" defaultSelectedKeys={['1']} mode="inline">
+        {layoutRoutes.map((node) => {
+          if (!node.routes) {
+
+            return (
+              <Menu.Item key={node.path} icon={<PieChartOutlined />}>
+                <a onClick={()=>{
+                  store.addTabRoute(
+                    {
+                      title: node.name,
+                      key: node.path,
+                      url: node.path,
+                    }
+                  )}}>{node.name}</a>
+              </Menu.Item>
+            )
+          }
+          return (
+            <SubMenu key={node.name} icon={<UserOutlined />} title={node.name}>
+              {node.routes.map((node) => {
+                const history = useHistory();
+                return (
+                  <Menu.Item key={node.path}>
+                    <a onClick={()=>{
+                      history.push(node.path);
+                      store.addTabRoute(
+                        {
+                          title: node.name,
+                          key: node.path,
+                          url: node.path,
+                        }
+                      )}}>{node.name}</a>
+                  </Menu.Item>
+                )
+              })}
+            </SubMenu>
+          )
+        })}
+      </Menu>
+    </Layout.Sider>
   )
 }
+
+
 
 const LayoutRoutes = () => {
   const [collapsed, setCollapsed] = useState(false)
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Sider
-        collapsed={collapsed}
-        onCollapse={() => {}}
-        style={{
-          width: 208,
-          background: '#FFF',
-        }}
-      >
-        <div className="logo">CyberCity Admin</div>
-        <Menu theme="light" defaultSelectedKeys={['1']} mode="inline">
-          {layoutRoutes.map((node) => {
-            if (!node.routes) {
-              return (
-                <Menu.Item key={node.path} icon={<PieChartOutlined />}>
-                  <Link to={node.path}>{node.name}</Link>
-                </Menu.Item>
-              )
-            }
-            return (
-              <SubMenu key={node.name} icon={<UserOutlined />} title={node.name}>
-                {node.routes.map((node) => {
-                  return (
-                    <Menu.Item key={node.path}>
-                      <Link to={node.path}>{node.name}</Link>
-                    </Menu.Item>
-                  )
-                })}
-              </SubMenu>
-            )
-          })}
-        </Menu>
-      </Sider>
+      <Sidebar collapsed={collapsed}/>
       <Layout className="site-layout">
         <Header className="site-layout-background" style={{ padding: 0 }}>
           {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
@@ -103,32 +129,7 @@ const LayoutRoutes = () => {
           })}
           <GlobalHeaderRight />
         </Header>
-        <Suspense fallback={<PageLoading />}>
-          {layoutRoutes.map((node) => {
-            const BaseComponent = node.component as React.ComponentType
-            if (!node.routes) {
-              return (
-                <Route path={node.path} key={node.name}>
-                  <BaseComponent />
-                </Route>
-              )
-            }
-            return (
-              <>
-                {node.routes.map((subNode) => {
-                  const Component = subNode.component as LazyExoticComponent<any>
-                  return (
-                    <Route path={subNode.path} key={subNode.name}>
-                      <BaseComponent>
-                        <Component />
-                      </BaseComponent>
-                    </Route>
-                  )
-                })}
-              </>
-            )
-          })}
-        </Suspense>
+        <MultiTabLayout/>
       </Layout>
     </Layout>
   )

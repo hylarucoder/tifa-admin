@@ -2,18 +2,35 @@ import React, { useEffect } from 'react'
 import { useLocalObservable } from 'mobx-react'
 import { action } from 'mobx'
 
+type MTabRoute = {
+  title: string
+  key: string
+  url: string
+};
+
 export interface TInitialState {
   loggedIn: boolean
+  tabRoutes: MTabRoute[]
+  tabRouteActiveKey: string
 }
 
 export interface MGlobalStore extends TInitialState {
   initialize: Function
   login: Function
   logout: Function
+  addTabRoute: Function
+  removeTabRoute: Function
+  activeTabRoute: Function
 }
 
 export const INITIAL_STORE: TInitialState = {
   loggedIn: false,
+  tabRoutes: [{
+    title: "welcome",
+    key: "welcome",
+    url: "/welcome",
+  }],
+  tabRouteActiveKey: "welcome",
 }
 
 export const StoreContext = React.createContext(INITIAL_STORE)
@@ -37,10 +54,23 @@ export function useGlobalProviderStore() {
           store.loggedIn = true
         }
       }),
+      addTabRoute(tabRoute: MTabRoute) {
+        console.log("tab", tabRoute)
+        store.tabRoutes.push(tabRoute)
+        store.tabRouteActiveKey = tabRoute.key
+      },
+      removeTabRoute() {
+
+      },
+      activeTabRoute(routeKey: string) {
+        store.tabRouteActiveKey = routeKey
+
+      },
     }
   })
 
-  useEffect(() => {}, [])
+  useEffect(() => {
+  }, [])
 
   // Return the user object and auth methods
   return store

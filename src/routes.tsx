@@ -1,7 +1,7 @@
 ﻿import React, { lazy, LazyExoticComponent } from 'react'
 import BasicLayout from '@/layout/BasicLayout'
 
-type RouteNode = {
+export type RouteNode = {
   path: string
   name: string
   icon?: string
@@ -316,3 +316,16 @@ export const layoutRoutes: RouteNode[] = [
     ],
   },
 ]
+
+
+export const flattenLayoutRoutes = new Map<string, RouteNode>()
+
+
+for (const layoutRoute of layoutRoutes) {
+  flattenLayoutRoutes.set(layoutRoute.path, layoutRoute)
+  if (layoutRoute.routes) {
+    for (const route of layoutRoute.routes) {
+      flattenLayoutRoutes.set(route.path, route)
+    }
+  }
+}
