@@ -51,20 +51,6 @@ export default defineConfig({
     },
   },
 
-  optimizeDeps: {
-    entries: [
-      'antd',
-      'axios',
-      'mobx',
-      'mobx-react',
-      'moment',
-      'react',
-      'react-dom',
-      'classnames',
-    ],
-    include: [
-      'lodash-es',
-    ],
-  },
+  optimizeDeps: {},
   build: { sourcemap: true },
 })
