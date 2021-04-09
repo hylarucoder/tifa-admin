@@ -1,0 +1,82 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+    subscription: Subscription
+}
+
+type Mutation {
+    addRecipe(data: AddRecipeInput!): TRecipe!
+    addRecipe2(data: AddRecipeInput!): TRecipe!
+    login(data: InputLogin!): TProfile!
+    sendNotification(data: InputSendNotification!): Boolean!
+}
+
+type Query {
+    healthCheck: THealthCheck!
+    profile: TProfile!
+    recipe(title: String!): TRecipe
+    recipe2(title: String!): TRecipe
+}
+
+type Subscription {
+    newNotification: TNotification!
+}
+
+type THealthCheck {
+    ok: Boolean!
+}
+
+type TNotification {
+    content: String!
+    createdAt: DateTime!
+    id: String!
+}
+
+type TProfile {
+    birthday: Date!
+    createdAt: DateTime!
+    id: String!
+    name: String!
+    token: String!
+}
+
+"Object representing cooking recipe"
+type TRecipe {
+    creationDate: Date!
+    "The recipe description with preparation info"
+    description: String
+    ratings: [Int!]!
+    specification: String @deprecated(reason : "Use `description` field instead")
+    title: String!
+}
+
+enum EnumLoginType_LUFC {
+    CODE
+    PASSWORD
+}
+
+input AddRecipeInput {
+    description: String
+    title: String!
+}
+
+input InputLogin {
+    code: String
+    login: String!
+    password: String
+    type: EnumLoginType_LUFC!
+}
+
+input InputSendNotification {
+    content: String!
+    createdAt: DateTime!
+}
+
+
+"date"
+scalar Date
+
+"datetime"
+scalar DateTime

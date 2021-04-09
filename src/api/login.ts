@@ -1,4 +1,4 @@
-import { httpGet, httpPost } from '@/api/client'
+import { httpGet, httpPost } from '@/graphql/client'
 import { mockProfile } from '@/mock/user'
 
 export async function fetchInitialData() {
