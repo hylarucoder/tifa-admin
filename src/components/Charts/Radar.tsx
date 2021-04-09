@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react'
-import { Chart, Point, Line, Area, Tooltip, Axis, Coordinate } from 'bizcharts'
-import DataSet from '@antv/data-set'
+import React, { useState, useEffect } from "react"
+import { Chart, Point, Line, Area, Tooltip, Axis, Coordinate } from "bizcharts"
+import DataSet from "@antv/data-set"
 
 const data = [
-  { item: 'Design', a: 70, b: 30 },
-  { item: 'Development', a: 60, b: 70 },
-  { item: 'Marketing', a: 50, b: 60 },
-  { item: 'Users', a: 40, b: 50 },
-  { item: 'Test', a: 60, b: 70 },
-  { item: 'Language', a: 70, b: 50 },
-  { item: 'Technology', a: 50, b: 40 },
-  { item: 'Support', a: 30, b: 40 },
-  { item: 'Sales', a: 60, b: 40 },
-  { item: 'UX', a: 50, b: 60 },
+  { item: "Design", a: 70, b: 30 },
+  { item: "Development", a: 60, b: 70 },
+  { item: "Marketing", a: 50, b: 60 },
+  { item: "Users", a: 40, b: 50 },
+  { item: "Test", a: 60, b: 70 },
+  { item: "Language", a: 70, b: 50 },
+  { item: "Technology", a: 50, b: 40 },
+  { item: "Support", a: 30, b: 40 },
+  { item: "Sales", a: 60, b: 40 },
+  { item: "UX", a: 50, b: 60 },
 ]
 
 const tooltipConfig = {
@@ -21,11 +21,11 @@ const tooltipConfig = {
   showCrosshairs: true, // 展示 crosshairs
   crosshairs: {
     // 配置 crosshairs 样式
-    type: 'xy', // crosshairs 类型
+    type: "xy", // crosshairs 类型
     line: {
       // crosshairs 线样式
       style: {
-        stroke: '#565656',
+        stroke: "#565656",
         lineDash: [4],
       },
     },
@@ -36,14 +36,14 @@ export function RadarChart() {
   const { DataView } = DataSet
   const dv = new DataView().source(data)
   dv.transform({
-    type: 'fold',
-    fields: ['a', 'b'], // 展开字段集
-    key: 'user', // key字段
-    value: 'score', // value字段
+    type: "fold",
+    fields: ["a", "b"], // 展开字段集
+    key: "user", // key字段
+    value: "score", // value字段
   })
 
   const newData = dv.rows
-  console.log('data', data)
+  console.log("data", data)
   const axisConfig = {
     label: {
       offset: 25,
@@ -64,7 +64,7 @@ export function RadarChart() {
           max: 90,
         },
       }}
-      interactions={['legend-highlight']}
+      interactions={["legend-highlight"]}
     >
       <Coordinate type="polar" radius={0.8} />
       <Tooltip {...tooltipConfig} />

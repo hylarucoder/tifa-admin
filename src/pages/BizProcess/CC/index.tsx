@@ -1,14 +1,14 @@
-import React from 'react'
-import { Button, Tooltip, Dropdown, Menu, Input } from 'antd'
-import { EllipsisOutlined, QuestionCircleOutlined, SearchOutlined } from '@ant-design/icons'
-import type { ProColumns } from '@ant-design/pro-table'
-import ProTable, { TableDropdown } from '@ant-design/pro-table'
+import React from "react"
+import { Button, Tooltip, Dropdown, Menu, Input } from "antd"
+import { EllipsisOutlined, QuestionCircleOutlined, SearchOutlined } from "@ant-design/icons"
+import type { ProColumns } from "@ant-design/pro-table"
+import ProTable, { TableDropdown } from "@ant-design/pro-table"
 
 const valueEnum = {
-  0: 'close',
-  1: 'running',
-  2: 'online',
-  3: 'error',
+  0: "close",
+  1: "running",
+  2: "online",
+  3: "error",
 }
 export type TableListItem = {
   key: number
@@ -22,11 +22,11 @@ export type TableListItem = {
   memo: string
 }
 const tableListDataSource: TableListItem[] = []
-const creators = ['付小小', '曲丽丽', '林东东', '陈帅帅', '兼某某']
+const creators = ["付小小", "曲丽丽", "林东东", "陈帅帅", "兼某某"]
 for (let i = 0; i < 5; i += 1) {
   tableListDataSource.push({
     key: i,
-    name: 'AppName',
+    name: "AppName",
     containers: Math.floor(Math.random() * 20),
     creator: creators[Math.floor(Math.random() * creators.length)],
     // @ts-ignore
@@ -34,54 +34,52 @@ for (let i = 0; i < 5; i += 1) {
     createdAt: Date.now() - Math.floor(Math.random() * 2000),
     money: Math.floor(Math.random() * 2000) * i,
     progress: Math.ceil(Math.random() * 100) + 1,
-    memo: i % 2 === 1 ? '很长很长很长很长很长很长很长的文字要展示但是要留下尾巴' : '简短备注文案',
+    memo: i % 2 === 1 ? "很长很长很长很长很长很长很长的文字要展示但是要留下尾巴" : "简短备注文案",
   })
 }
 const columns: ProColumns<TableListItem>[] = [
   {
-    title: '排序',
-    dataIndex: 'index',
-    valueType: 'indexBorder',
+    title: "排序",
+    dataIndex: "index",
+    valueType: "indexBorder",
     width: 48,
   },
   {
-    title: '应用名称',
-    dataIndex: 'name',
+    title: "应用名称",
+    dataIndex: "name",
     render: (_) => <a>{_}</a>,
     // 自定义筛选项功能具体实现请参考 https://ant.design/components/table-cn/#components-table-demo-custom-filter-panel
     filterDropdown: () => (
       <div style={{ padding: 8 }}>
-        <Input style={{ width: 188, marginBottom: 8, display: 'block' }} />
+        <Input style={{ width: 188, marginBottom: 8, display: "block" }} />
       </div>
     ),
-    filterIcon: (filtered) => (
-      <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />
-    ),
+    filterIcon: (filtered) => <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />,
   },
   {
-    title: '创建者',
-    dataIndex: 'creator',
+    title: "创建者",
+    dataIndex: "creator",
     valueEnum: {
-      all: { text: '全部' },
-      付小小: { text: '付小小' },
-      曲丽丽: { text: '曲丽丽' },
-      林东东: { text: '林东东' },
-      陈帅帅: { text: '陈帅帅' },
-      兼某某: { text: '兼某某' },
+      all: { text: "全部" },
+      付小小: { text: "付小小" },
+      曲丽丽: { text: "曲丽丽" },
+      林东东: { text: "林东东" },
+      陈帅帅: { text: "陈帅帅" },
+      兼某某: { text: "兼某某" },
     },
   },
   {
-    title: '状态',
-    dataIndex: 'status',
-    initialValue: 'all',
+    title: "状态",
+    dataIndex: "status",
+    initialValue: "all",
     filters: true,
     onFilter: true,
     valueEnum: {
-      all: { text: '全部', status: 'Default' },
-      close: { text: '关闭', status: 'Default' },
-      running: { text: '运行中', status: 'Processing' },
-      online: { text: '已上线', status: 'Success' },
-      error: { text: '异常', status: 'Error' },
+      all: { text: "全部", status: "Default" },
+      close: { text: "关闭", status: "Default" },
+      running: { text: "运行中", status: "Processing" },
+      online: { text: "已上线", status: "Success" },
+      error: { text: "异常", status: "Error" },
     },
   },
   {
@@ -94,22 +92,22 @@ const columns: ProColumns<TableListItem>[] = [
       </>
     ),
     width: 140,
-    key: 'since',
-    dataIndex: 'createdAt',
-    valueType: 'date',
+    key: "since",
+    dataIndex: "createdAt",
+    valueType: "date",
     sorter: (a, b) => a.createdAt - b.createdAt,
   },
   {
-    title: '备注',
-    dataIndex: 'memo',
+    title: "备注",
+    dataIndex: "memo",
     ellipsis: true,
     copyable: true,
   },
   {
-    title: '操作',
+    title: "操作",
     width: 180,
-    key: 'option',
-    valueType: 'option',
+    key: "option",
+    valueType: "option",
     render: () => [
       <a key="link">链路</a>,
       <a key="link2">报警</a>,
@@ -117,8 +115,8 @@ const columns: ProColumns<TableListItem>[] = [
       <TableDropdown
         key="actionGroup"
         menus={[
-          { key: 'copy', name: '复制' },
-          { key: 'delete', name: '删除' },
+          { key: "copy", name: "复制" },
+          { key: "delete", name: "删除" },
         ]}
       />,
     ],
@@ -148,13 +146,13 @@ export default () => {
         showQuickJumper: true,
       }}
       search={{
-        layout: 'vertical',
+        layout: "vertical",
         defaultCollapsed: false,
       }}
       dateFormatter="string"
       toolbar={{
-        title: '高级表格',
-        tooltip: '这是一个标题提示',
+        title: "高级表格",
+        tooltip: "这是一个标题提示",
       }}
       toolBarRender={() => [
         <Button key="danger" danger>

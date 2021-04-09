@@ -1,10 +1,10 @@
-import { Space, Menu } from 'antd'
-import { QuestionCircleOutlined } from '@ant-design/icons'
-import React from 'react'
-import Avatar from './AvatarDropdown'
-import HeaderDropdown from '../HeaderDropdown'
-import HeaderSearch from '../HeaderSearch'
-import styles from './index.module.less'
+import { Space, Menu } from "antd"
+import { QuestionCircleOutlined } from "@ant-design/icons"
+import React from "react"
+import Avatar from "./AvatarDropdown"
+import HeaderDropdown from "../HeaderDropdown"
+import HeaderSearch from "../HeaderSearch"
+import styles from "./index.module.less"
 
 export const GlobalHeaderRight: React.FC = () => {
   return (
@@ -17,23 +17,23 @@ export const GlobalHeaderRight: React.FC = () => {
         options={[
           {
             label: <a href="https://umijs.org/zh/guide/umi-ui.html">umi ui</a>,
-            value: 'umi ui',
+            value: "umi ui",
           },
           {
             label: <a href="next.ant.design">Ant Design</a>,
-            value: 'Ant Design',
+            value: "Ant Design",
           },
           {
             label: <a href="https://protable.ant.design/">Pro Table</a>,
-            value: 'Pro Table',
+            value: "Pro Table",
           },
           {
             label: <a href="https://prolayout.ant.design/">Pro Layout</a>,
-            value: 'Pro Layout',
+            value: "Pro Layout",
           },
         ]}
         onSearch={(value) => {
-          console.log('input', value)
+          console.log("input", value)
         }}
       />
       <HeaderDropdown
@@ -41,14 +41,14 @@ export const GlobalHeaderRight: React.FC = () => {
           <Menu>
             <Menu.Item
               onClick={() => {
-                window.open('/~docs')
+                window.open("/~docs")
               }}
             >
               组件文档
             </Menu.Item>
             <Menu.Item
               onClick={() => {
-                window.open('https://pro.ant.design/docs/getting-started')
+                window.open("https://pro.ant.design/docs/getting-started")
               }}
             >
               Ant Design Pro 文档

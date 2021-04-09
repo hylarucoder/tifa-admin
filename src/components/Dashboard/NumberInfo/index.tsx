@@ -1,13 +1,13 @@
-import { CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons'
-import React from 'react'
-import classNames from 'classnames'
-import styles from './index.module.less'
+import { CaretUpOutlined, CaretDownOutlined } from "@ant-design/icons"
+import React from "react"
+import classNames from "classnames"
+import styles from "./index.module.less"
 
 export interface NumberInfoProps {
   title?: React.ReactNode | string
   subTitle?: React.ReactNode | string
   total?: React.ReactNode | string
-  status?: 'up' | 'down'
+  status?: "up" | "down"
   theme?: string
   gap?: number
   subTotal?: number
@@ -32,15 +32,12 @@ const NumberInfo: React.FC<NumberInfoProps> = ({
     {...rest}
   >
     {title && (
-      <div className={styles.numberInfoTitle} title={typeof title === 'string' ? title : ''}>
+      <div className={styles.numberInfoTitle} title={typeof title === "string" ? title : ""}>
         {title}
       </div>
     )}
     {subTitle && (
-      <div
-        className={styles.numberInfoSubTitle}
-        title={typeof subTitle === 'string' ? subTitle : ''}
-      >
+      <div className={styles.numberInfoSubTitle} title={typeof subTitle === "string" ? subTitle : ""}>
         {subTitle}
       </div>
     )}
@@ -52,7 +49,7 @@ const NumberInfo: React.FC<NumberInfoProps> = ({
       {(status || subTotal) && (
         <span className={styles.subTotal}>
           {subTotal}
-          {status && status === 'up' ? <CaretUpOutlined /> : <CaretDownOutlined />}
+          {status && status === "up" ? <CaretUpOutlined /> : <CaretDownOutlined />}
         </span>
       )}
     </div>

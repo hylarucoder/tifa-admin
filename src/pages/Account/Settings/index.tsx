@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from 'react'
-import { GridContent } from '@ant-design/pro-layout'
-import { Menu } from 'antd'
-import BaseView from './components/base'
-import BindingView from './components/binding'
-import NotificationView from './components/notification'
-import SecurityView from './components/security'
-import styles from './style.module.less'
+import React, { useEffect, useState } from "react"
+import { GridContent } from "@ant-design/pro-layout"
+import { Menu } from "antd"
+import BaseView from "./components/base"
+import BindingView from "./components/binding"
+import NotificationView from "./components/notification"
+import SecurityView from "./components/security"
+import styles from "./style.module.less"
 
 const { Item } = Menu
-type AccountSettingsStateKeys = 'base' | 'security' | 'binding' | 'notification'
+type AccountSettingsStateKeys = "base" | "security" | "binding" | "notification"
 
 const Page = () => {
   const menuMap = {
-    base: '基本设置',
-    security: '安全设置',
-    binding: '账号绑定',
-    notification: '新消息通知',
+    base: "基本设置",
+    security: "安全设置",
+    binding: "账号绑定",
+    notification: "新消息通知",
   }
 
-  const [selectKey, setSelectKey] = useState('base')
+  const [selectKey, setSelectKey] = useState("base")
 
   const state = {
-    mode: 'inline',
+    mode: "inline",
     menuMap,
   }
   const { mode } = state
@@ -53,9 +53,9 @@ const Page = () => {
   }
   useEffect(() => {
     resize()
-    window.addEventListener('resize', resize)
+    window.addEventListener("resize", resize)
     return () => {
-      window.removeEventListener('resize', resize)
+      window.removeEventListener("resize", resize)
     }
   }, [])
 
@@ -76,16 +76,16 @@ const Page = () => {
 
   const renderChildren = () => {
     switch (selectKey) {
-      case 'base':
+      case "base":
         return <BaseView />
 
-      case 'security':
+      case "security":
         return <SecurityView />
 
-      case 'binding':
+      case "binding":
         return <BindingView />
 
-      case 'notification':
+      case "notification":
         return <NotificationView />
 
       default:

@@ -1,13 +1,13 @@
-import { Button, message, notification } from 'antd'
-import React from 'react'
+import { Button, message, notification } from "antd"
+import React from "react"
 
 // Notify user if offline now
-window.addEventListener('sw.offline', () => {
+window.addEventListener("sw.offline", () => {
   message.warning({
-    id: 'app.pwa.offline',
+    id: "app.pwa.offline",
   })
 })
-window.addEventListener('sw.updated', (event: Event) => {
+window.addEventListener("sw.updated", (event: Event) => {
   const e = event as CustomEvent
 
   const reloadSW = async () => {
@@ -32,7 +32,7 @@ window.addEventListener('sw.updated', (event: Event) => {
 
       worker.postMessage(
         {
-          type: 'skip-waiting',
+          type: "skip-waiting",
         },
         [channel.port2]
       )
@@ -52,16 +52,16 @@ window.addEventListener('sw.updated', (event: Event) => {
       }}
     >
       {{
-        id: 'app.pwa.serviceworker.updated.ok',
+        id: "app.pwa.serviceworker.updated.ok",
       }}
     </Button>
   )
   notification.open({
     message: {
-      id: 'app.pwa.serviceworker.updated',
+      id: "app.pwa.serviceworker.updated",
     },
     description: {
-      id: 'app.pwa.serviceworker.updated.hint',
+      id: "app.pwa.serviceworker.updated.hint",
     },
     btn,
     key,

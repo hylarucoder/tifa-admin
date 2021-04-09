@@ -1,9 +1,9 @@
-import React from 'react'
-import { TSQLPanel, TSQLPanelQuery } from '../store'
-import { CodeBlock, SQLCodeBlock, SQLCodeBlockOneLiner } from '../SQLCodeBlock'
-import { Button, Tooltip, Dropdown, Menu, Input, Progress } from 'antd'
-import type { ProColumns } from '@ant-design/pro-table'
-import ProTable, { TableDropdown } from '@ant-design/pro-table'
+import React from "react"
+import { TSQLPanel, TSQLPanelQuery } from "../store"
+import { CodeBlock, SQLCodeBlock, SQLCodeBlockOneLiner } from "../SQLCodeBlock"
+import { Button, Tooltip, Dropdown, Menu, Input, Progress } from "antd"
+import type { ProColumns } from "@ant-design/pro-table"
+import ProTable, { TableDropdown } from "@ant-design/pro-table"
 
 const expandedRowRender = (props: any) => {
   return (
@@ -16,25 +16,25 @@ const expandedRowRender = (props: any) => {
 
 const columns: ProColumns<TSQLPanelQuery>[] = [
   {
-    title: 'No',
-    dataIndex: 'index',
+    title: "No",
+    dataIndex: "index",
     width: 48,
   },
   {
-    title: 'Query',
-    dataIndex: 'query',
+    title: "Query",
+    dataIndex: "query",
     render: (_) => <SQLCodeBlockOneLiner sql={_ as string} />,
   },
   {
-    title: 'Timeline',
-    dataIndex: 'startOffset',
+    title: "Timeline",
+    dataIndex: "startOffset",
     render: (_) => <Progress percent={30} size="small" />,
   },
   {
-    title: 'Action',
+    title: "Action",
     width: 180,
-    key: 'option',
-    valueType: 'option',
+    key: "option",
+    valueType: "option",
     render: () => [<a key="link">Sel</a>, <a key="link">Expl</a>],
   },
 ]
@@ -52,20 +52,20 @@ export const SQLPanel = ({ panel }: { panel: TSQLPanel }) => {
           success: true,
         })
       }}
-      size={'small'}
+      size={"small"}
       expandable={{ expandedRowRender }}
       rowKey="key"
       pagination={{
         showQuickJumper: true,
       }}
       search={{
-        layout: 'vertical',
+        layout: "vertical",
         defaultCollapsed: false,
       }}
       dateFormatter="string"
       toolbar={{
-        title: '高级表格',
-        tooltip: '这是一个标题提示',
+        title: "高级表格",
+        tooltip: "这是一个标题提示",
       }}
       toolBarRender={() => [
         <Button key="danger" danger>

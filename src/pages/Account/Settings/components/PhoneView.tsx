@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react"
 
-import { Input } from 'antd'
-import styles from './PhoneView.module.less'
+import { Input } from "antd"
+import styles from "./PhoneView.module.less"
 
 interface PhoneViewProps {
   value?: string
@@ -10,9 +10,9 @@ interface PhoneViewProps {
 
 const PhoneView: React.FC<PhoneViewProps> = (props) => {
   const { value, onChange } = props
-  let values = ['', '']
+  let values = ["", ""]
   if (value) {
-    values = value.split('-')
+    values = value.split("-")
   }
 
   return (

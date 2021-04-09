@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { Tag, message } from 'antd'
-import { groupBy } from 'lodash'
-import moment from 'moment'
+import React, { useEffect, useState } from "react"
+import { Tag, message } from "antd"
+import groupBy from "lodash/groupBy"
 
-import NoticeIcon from './NoticeIcon'
-import styles from './index.less'
+import NoticeIcon from "./NoticeIcon"
+import styles from "./index.less"
+import { fromNow } from "@/utils/date"
 
 export type GlobalHeaderRightProps = {
   fetchingNotices?: boolean
@@ -21,7 +21,7 @@ const getNoticeData = (notices: any[]): Record<string, any[]> => {
     const newNotice = { ...notice }
 
     if (newNotice.datetime) {
-      newNotice.datetime = moment(notice.datetime as string).fromNow()
+      newNotice.datetime = fromNow(notice.datetime as string)
     }
 
     if (newNotice.id) {
@@ -31,10 +31,10 @@ const getNoticeData = (notices: any[]): Record<string, any[]> => {
     if (newNotice.extra && newNotice.status) {
       // @ts-ignore
       const color = {
-        todo: '',
-        processing: 'blue',
-        urgent: 'red',
-        doing: 'gold',
+        todo: "",
+        processing: "blue",
+        urgent: "red",
+        doing: "gold",
       }[newNotice.status]
       newNotice.extra = (
         <Tag
@@ -50,7 +50,7 @@ const getNoticeData = (notices: any[]): Record<string, any[]> => {
 
     return newNotice
   })
-  return groupBy(newNotices, 'type')
+  return groupBy(newNotices, "type")
 }
 
 const getUnreadData = (noticeData: Record<string, any[]>) => {
@@ -106,7 +106,7 @@ const NoticeIconView = () => {
         return notice
       })
     )
-    message.success(`${'清空了'} ${title}`)
+    message.success(`${"清空了"} ${title}`)
   }
 
   return (
@@ -120,7 +120,7 @@ const NoticeIconView = () => {
       loading={false}
       clearText="清空"
       viewMoreText="查看更多"
-      onViewMore={() => message.info('Click on view more')}
+      onViewMore={() => message.info("Click on view more")}
       clearClose
     >
       <NoticeIcon.Tab

@@ -1,8 +1,8 @@
-import React, { createElement } from 'react'
-import { PlusOutlined } from '@ant-design/icons'
-import { Button } from 'antd'
+import React, { createElement } from "react"
+import { PlusOutlined } from "@ant-design/icons"
+import { Button } from "antd"
 
-import styles from './index.less'
+import styles from "./index.less"
 
 export interface EditableLink {
   title: string
@@ -41,7 +41,7 @@ const EditableLinkGroup: React.FC<EditableLinkGroupProps> = (props) => {
 EditableLinkGroup.defaultProps = {
   links: [],
   onAdd: () => {},
-  linkElement: 'a',
+  linkElement: "a",
 }
 
 export default EditableLinkGroup

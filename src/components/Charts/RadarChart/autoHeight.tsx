@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 
 export type IReactComponent<P = any> =
   | React.StatelessComponent<P>
@@ -7,11 +7,10 @@ export type IReactComponent<P = any> =
 
 function computeHeight(node: HTMLDivElement) {
   const { style } = node
-  style.height = '100%'
+  style.height = "100%"
   const totalHeight = parseInt(`${getComputedStyle(node).height}`, 10)
   const padding =
-    parseInt(`${getComputedStyle(node).paddingTop}`, 10) +
-    parseInt(`${getComputedStyle(node).paddingBottom}`, 10)
+    parseInt(`${getComputedStyle(node).paddingTop}`, 10) + parseInt(`${getComputedStyle(node).paddingBottom}`, 10)
   return totalHeight - padding
 }
 
@@ -66,11 +65,7 @@ function autoHeight() {
         const { height } = this.props
         const { computedHeight } = this.state
         const h = height || computedHeight
-        return (
-          <div ref={this.handleRoot}>
-            {h > 0 && <WrappedComponent {...this.props} height={h} />}
-          </div>
-        )
+        return <div ref={this.handleRoot}>{h > 0 && <WrappedComponent {...this.props} height={h} />}</div>
       }
     }
     return AutoHeightComponent

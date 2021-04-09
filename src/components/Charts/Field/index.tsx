@@ -1,5 +1,5 @@
-import React from 'react'
-import styles from './index.module.less'
+import React from "react"
+import styles from "./index.module.less"
 
 export interface FieldProps {
   label: React.ReactNode

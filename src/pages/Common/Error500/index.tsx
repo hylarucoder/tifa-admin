@@ -1,5 +1,5 @@
-import React from 'react'
-import { Button, Result } from 'antd'
+import React from "react"
+import { Button, Result } from "antd"
 
 export default () => (
   <Result
@@ -7,7 +7,7 @@ export default () => (
     title="500"
     subTitle="Sorry, the page you visited does not exist."
     extra={
-      <Button type="primary" onClick={() => '/'}>
+      <Button type="primary" onClick={() => "/"}>
         Back Home 500
       </Button>
     }

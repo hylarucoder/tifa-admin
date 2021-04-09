@@ -1,12 +1,12 @@
-import { BellOutlined } from '@ant-design/icons'
-import { Badge, Spin, Tabs } from 'antd'
-import useMergedState from 'rc-util/es/hooks/useMergedState'
-import React from 'react'
-import classNames from 'classnames'
-import type { NoticeIconTabProps } from './NoticeList'
-import NoticeList from './NoticeList'
-import HeaderDropdown from '../HeaderDropdown'
-import styles from './index.less'
+import { BellOutlined } from "@ant-design/icons"
+import { Badge, Spin, Tabs } from "antd"
+import useMergedState from "rc-util/es/hooks/useMergedState"
+import React from "react"
+import classNames from "classnames"
+import type { NoticeIconTabProps } from "./NoticeList"
+import NoticeList from "./NoticeList"
+import HeaderDropdown from "../HeaderDropdown"
+import styles from "./index.less"
 
 const { TabPane } = Tabs
 
@@ -33,16 +33,7 @@ const NoticeIcon: React.FC<NoticeIconProps> & {
   Tab: typeof NoticeList
 } = (props) => {
   const getNotificationBox = (): React.ReactNode => {
-    const {
-      children,
-      loading,
-      onClear,
-      onTabChange,
-      onItemClick,
-      onViewMore,
-      clearText,
-      viewMoreText,
-    } = props
+    const { children, loading, onClear, onTabChange, onItemClick, onViewMore, clearText, viewMoreText } = props
     if (!children) {
       return null
     }
@@ -94,7 +85,7 @@ const NoticeIcon: React.FC<NoticeIconProps> & {
   const NoticeBellIcon = bell || <BellOutlined className={styles.icon} />
   const trigger = (
     <span className={classNames(noticeButtonClass, { opened: visible })}>
-      <Badge count={count} style={{ boxShadow: 'none' }} className={styles.badge}>
+      <Badge count={count} style={{ boxShadow: "none" }} className={styles.badge}>
         {NoticeBellIcon}
       </Badge>
     </span>
@@ -108,7 +99,7 @@ const NoticeIcon: React.FC<NoticeIconProps> & {
       placement="bottomRight"
       overlay={notificationBox}
       overlayClassName={styles.popover}
-      trigger={['click']}
+      trigger={["click"]}
       visible={visible}
       onVisibleChange={setVisible}
     >
@@ -118,7 +109,7 @@ const NoticeIcon: React.FC<NoticeIconProps> & {
 }
 
 NoticeIcon.defaultProps = {
-  emptyImage: 'https://gw.alipayobjects.com/zos/rmsportal/wAhyIChODzsoKIOBHcBk.svg',
+  emptyImage: "https://gw.alipayobjects.com/zos/rmsportal/wAhyIChODzsoKIOBHcBk.svg",
 }
 
 NoticeIcon.Tab = NoticeList

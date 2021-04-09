@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
-import { useLocalObservable } from 'mobx-react'
-import { action, toJS } from 'mobx'
+import React, { useEffect } from "react"
+import { useLocalObservable } from "mobx-react"
+import { action, toJS } from "mobx"
 
 type MTabRoute = {
   title: string
@@ -27,12 +27,12 @@ export const INITIAL_STORE: TInitialState = {
   loggedIn: false,
   tabRoutes: [
     {
-      title: '欢迎页面',
-      key: '/welcome',
-      url: '/welcome',
+      title: "欢迎页面",
+      key: "/welcome",
+      url: "/welcome",
     },
   ],
-  tabRouteActiveKey: '/welcome',
+  tabRouteActiveKey: "/welcome",
 }
 
 export const StoreContext = React.createContext(INITIAL_STORE)
@@ -57,7 +57,7 @@ export function useGlobalProviderStore() {
         }
       }),
       addOrActiveTabRoute(tabRoute: MTabRoute) {
-        console.log('tab', tabRoute)
+        console.log("tab", tabRoute)
         const hasKey = store.tabRoutes.filter((_) => _.key == tabRoute.key).length
         if (!hasKey) {
           store.tabRoutes.push(tabRoute)

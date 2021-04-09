@@ -1,4 +1,4 @@
-import { httpGet, httpPost } from '@/api/client'
+import { httpGet, httpPost } from "@/graphql/client"
 
 export async function fetchRedisInfo() {
   const resp = await httpGet(`/admin/actuator/redis/info`)

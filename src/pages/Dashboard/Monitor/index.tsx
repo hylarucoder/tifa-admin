@@ -1,17 +1,17 @@
-import { Card, Col, Row, Statistic } from 'antd'
-import React from 'react'
-import { GridContent } from '@ant-design/pro-layout'
-import numeral from 'numeral'
-import { Pie, WaterWave, Gauge, TagCloud, Map } from '@/components/Charts'
-import ActiveChart from '../../../components/Charts/ActiveChart'
-import styles from './style.module.less'
+import { Card, Col, Row, Statistic } from "antd"
+import React from "react"
+import { GridContent } from "@ant-design/pro-layout"
+import { Pie, WaterWave, Gauge, TagCloud, Map } from "@/components/Charts"
+import ActiveChart from "@/components/Charts/ActiveChart"
+import styles from "./style.module.less"
+import { formatNumber } from "@/utils/num"
 
 const { Countdown } = Statistic
 const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30 // Moment is also OK
 
 export default () => {
   const loading = false
-  const tags = [{ name: '@city', 'value|1-100': 150, 'type|0-2': 1 }]
+  const tags = [{ name: "@city", "value|1-100": 150, "type|0-2": 1 }]
   // @ts-ignore
   return (
     <GridContent>
@@ -30,11 +30,7 @@ export default () => {
             <Card title="活动实时交易情况" bordered={false}>
               <Row>
                 <Col md={6} sm={12} xs={24}>
-                  <Statistic
-                    title="今日交易总额"
-                    suffix="元"
-                    value={numeral(124543233).format('0,0')}
-                  />
+                  <Statistic title="今日交易总额" suffix="元" value={formatNumber(124543233, "0,0")} />
                 </Col>
                 <Col md={6} sm={12} xs={24}>
                   <Statistic title="销售目标完成率" value="92%" />
@@ -43,7 +39,7 @@ export default () => {
                   <Countdown title="活动剩余时间" value={deadline} format="HH:mm:ss:SSS" />
                 </Col>
                 <Col md={6} sm={12} xs={24}>
-                  <Statistic title="每秒交易总额" suffix="元" value={numeral(234).format('0,0')} />
+                  <Statistic title="每秒交易总额" suffix="元" value={formatNumber(234, "0,0")} />
                 </Col>
               </Row>
               <div className={styles.mapChart}>
@@ -67,7 +63,7 @@ export default () => {
                 marginBottom: 24,
               }}
               bodyStyle={{
-                textAlign: 'center',
+                textAlign: "center",
               }}
               bordered={false}
             >
@@ -88,18 +84,11 @@ export default () => {
             <Card title="各品类占比" bordered={false} className={styles.pieCard}>
               <Row
                 style={{
-                  padding: '16px 0',
+                  padding: "16px 0",
                 }}
               >
                 <Col span={8}>
-                  <Pie
-                    animate={false}
-                    percent={28}
-                    title="中式快餐"
-                    total="28%"
-                    height={128}
-                    lineWidth={2}
-                  />
+                  <Pie animate={false} percent={28} title="中式快餐" total="28%" height={128} lineWidth={2} />
                 </Col>
                 <Col span={8}>
                   <Pie
@@ -140,7 +129,7 @@ export default () => {
               loading={loading}
               bordered={false}
               bodyStyle={{
-                overflow: 'hidden',
+                overflow: "hidden",
               }}
             >
               {/*// @ts-ignore*/}
@@ -159,7 +148,7 @@ export default () => {
             <Card
               title="资源剩余"
               bodyStyle={{
-                textAlign: 'center',
+                textAlign: "center",
                 fontSize: 0,
               }}
               bordered={false}

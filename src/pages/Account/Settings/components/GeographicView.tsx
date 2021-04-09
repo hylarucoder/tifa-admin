@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
-import { Select, Spin } from 'antd'
-import { GeographicItemType } from '../data'
-import styles from './GeographicView.module.less'
-import { LabeledValue } from 'antd/es/select'
+import React, { Component } from "react"
+import { Select, Spin } from "antd"
+import { GeographicItemType } from "../data"
+import styles from "./GeographicView.module.less"
+import { LabeledValue } from "antd/es/select"
 
 const { Option } = Select
 
 const nullSelectItem: LabeledValue = {
-  label: '',
-  value: '',
-  key: '',
+  label: "",
+  value: "",
+  key: "",
 }
 
 class GeographicView extends Component {
@@ -65,22 +65,10 @@ class GeographicView extends Component {
 
     return (
       <Spin spinning={loading} wrapperClassName={styles.row}>
-        <Select
-          className={styles.item}
-          value={province}
-          labelInValue
-          showSearch
-          onSelect={this.selectProvinceItem}
-        >
+        <Select className={styles.item} value={province} labelInValue showSearch onSelect={this.selectProvinceItem}>
           {this.getProvinceOption()}
         </Select>
-        <Select
-          className={styles.item}
-          value={city}
-          labelInValue
-          showSearch
-          onSelect={this.selectCityItem}
-        >
+        <Select className={styles.item} value={city} labelInValue showSearch onSelect={this.selectCityItem}>
           {this.getCityOption()}
         </Select>
       </Spin>

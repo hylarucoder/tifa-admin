@@ -1,29 +1,27 @@
-import React, { useState, useEffect } from 'react'
-import DataSet from '@antv/data-set'
+import React, { useState, useEffect } from "react"
+import DataSet from "@antv/data-set"
 
-import { Chart, View, Tooltip, Axis, Legend, Facet, Polygon, Interaction } from 'bizcharts'
+import { Chart, View, Tooltip, Axis, Legend, Facet, Polygon, Interaction } from "bizcharts"
 
 const MONTHS = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ]
 
 export function Calendarhorizontal() {
   const [data, setData] = useState([])
   useEffect(() => {
-    fetch(
-      'https://alifd.alibabausercontent.com/materials/@bizcharts/heatmap-calendar/0.3.1/mock.json'
-    )
+    fetch("https://alifd.alibabausercontent.com/materials/@bizcharts/heatmap-calendar/0.3.1/mock.json")
       .then((res) => res.json())
       .then((data) => {
         const { DataView } = DataSet
@@ -40,7 +38,7 @@ export function Calendarhorizontal() {
         // 增加涨幅、跌幅
         // 添加所属月、周几、每个月的第几周
         data.forEach(function (obj) {
-          const date = new Date(obj['日期'])
+          const date = new Date(obj["日期"])
           const month = date.getMonth()
           obj.month = MONTHS[month]
           obj.day = date.getDay()
@@ -50,9 +48,9 @@ export function Calendarhorizontal() {
         // 对数据进行排序
         const dv = new DataView()
         dv.source(data).transform({
-          type: 'sort-by',
-          fields: ['day'],
-          order: 'DESC',
+          type: "sort-by",
+          fields: ["day"],
+          order: "DESC",
         })
         setData(dv)
       })
@@ -65,51 +63,51 @@ export function Calendarhorizontal() {
       autoFit
       scale={{
         day: {
-          type: 'cat',
+          type: "cat",
         },
         week: {
-          type: 'cat',
-          values: ['5', '4', '3', '2', '1', '0'],
+          type: "cat",
+          values: ["5", "4", "3", "2", "1", "0"],
         },
         涨跌幅: {
-          type: 'linear',
+          type: "linear",
           min: -10,
           max: 10,
           sync: true,
         },
         time: {
-          type: 'time',
+          type: "time",
         },
         日期: {
-          type: 'time',
+          type: "time",
         },
       }}
     >
-      <Tooltip title={'日期'} showMarkers={false} />
+      <Tooltip title={"日期"} showMarkers={false} />
       <Axis visible={false} />
       <Legend name="涨跌幅" offsetY={-10} />
 
       <Facet
         type="list"
-        fields={['month']}
+        fields={["month"]}
         cols={3}
         padding={[0, 15, 30, 15]}
         title={{
           offsetY: 0,
           style: {
             fontSize: 12,
-            textAlign: 'center',
-            fill: '#666',
+            textAlign: "center",
+            fill: "#666",
           },
         }}
         eachView={(view) => {
           view
             .polygon()
-            .position('day*week')
-            .color('涨跌幅', '#F51D27-#FA541C-#FFBE15-#FFF2D1-#E3F6FF-#85C6FF-#0086FA-#0A61D7')
+            .position("day*week")
+            .color("涨跌幅", "#F51D27-#FA541C-#FFBE15-#FFF2D1-#E3F6FF-#85C6FF-#0086FA-#0A61D7")
             .style({
               lineWidth: 1,
-              stroke: '#fff',
+              stroke: "#fff",
             })
         }}
       />

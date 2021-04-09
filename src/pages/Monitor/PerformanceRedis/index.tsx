@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { fetchRedisInfo } from '@/api/actor'
-import { PageContainer } from '@ant-design/pro-layout'
-import ProDescriptions from '@ant-design/pro-descriptions'
-import { Card } from 'antd'
+import React, { useEffect, useState } from "react"
+import { fetchRedisInfo } from "@/api/actor"
+import { PageContainer } from "@ant-design/pro-layout"
+import ProDescriptions from "@ant-design/pro-descriptions"
+import { Card } from "antd"
 
 const Page = () => {
   const [data, setData] = useState([])
@@ -18,7 +18,7 @@ const Page = () => {
   return (
     <PageContainer>
       <Card>
-        <ProDescriptions title={'Redis'} column={1}>
+        <ProDescriptions title={"Redis"} column={1}>
           {data.map((item: any) => {
             const v = JSON.stringify(item.value)
             return (
