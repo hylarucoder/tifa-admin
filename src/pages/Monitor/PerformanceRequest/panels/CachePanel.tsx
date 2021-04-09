@@ -1,9 +1,9 @@
-import React from 'react'
-import { TCachePanel, TCachePanelCall, TCachePanelCount } from '../store'
-import ProTable, { ProColumns, TableDropdown } from '@ant-design/pro-table'
+import React from "react"
+import { TCachePanel, TCachePanelCall, TCachePanelCount } from "../store"
+import ProTable, { ProColumns, TableDropdown } from "@ant-design/pro-table"
 
 const commonProps = {
-  size: 'small',
+  size: "small",
   bordered: false,
   toolbarRender: false,
   search: false,
@@ -16,54 +16,54 @@ const commonProps = {
 export const CachePanel = ({ panel }: { panel: TCachePanel }) => {
   const columns: ProColumns<TCachePanel>[] = [
     {
-      dataIndex: 'totalCalls',
-      title: 'Total Calls',
+      dataIndex: "totalCalls",
+      title: "Total Calls",
     },
     {
-      dataIndex: 'totalTime',
-      title: 'Total Time',
+      dataIndex: "totalTime",
+      title: "Total Time",
     },
     {
-      dataIndex: 'hits',
-      title: 'Cache Hits',
+      dataIndex: "hits",
+      title: "Cache Hits",
     },
     {
-      dataIndex: 'misses',
-      title: 'Cache Misses',
+      dataIndex: "misses",
+      title: "Cache Misses",
     },
   ]
 
   const columnsCommands: ProColumns<TCachePanelCount>[] = [
     {
-      dataIndex: 'name',
-      title: 'Command',
+      dataIndex: "name",
+      title: "Command",
     },
     {
-      dataIndex: 'value',
-      title: 'Count',
+      dataIndex: "value",
+      title: "Count",
     },
   ]
 
   const columnsCalls: ProColumns<TCachePanelCall>[] = [
     {
-      dataIndex: 'time',
-      title: 'time',
+      dataIndex: "time",
+      title: "time",
     },
     {
-      dataIndex: 'name',
-      title: 'name',
+      dataIndex: "name",
+      title: "name",
     },
     {
-      dataIndex: 'args',
-      title: 'args',
+      dataIndex: "args",
+      title: "args",
     },
     {
-      dataIndex: 'kwargs',
-      title: 'kwargs',
+      dataIndex: "kwargs",
+      title: "kwargs",
     },
     {
-      dataIndex: 'backend',
-      title: 'trace',
+      dataIndex: "backend",
+      title: "trace",
     },
   ]
 
@@ -71,7 +71,7 @@ export const CachePanel = ({ panel }: { panel: TCachePanel }) => {
     <>
       <ProTable<TCachePanel>
         title={() => <h3>Summary</h3>}
-        size={'small'}
+        size={"small"}
         bordered={false}
         columns={columns}
         request={(params, sorter, filter) => {
@@ -91,7 +91,7 @@ export const CachePanel = ({ panel }: { panel: TCachePanel }) => {
       <br />
       <ProTable<TCachePanelCount>
         title={() => <h3>Commands</h3>}
-        size={'small'}
+        size={"small"}
         bordered={false}
         columns={columnsCommands}
         request={(params, sorter, filter) => {
@@ -112,7 +112,7 @@ export const CachePanel = ({ panel }: { panel: TCachePanel }) => {
 
       <ProTable<TCachePanelCall>
         title={() => <h3>Calls</h3>}
-        size={'small'}
+        size={"small"}
         bordered={false}
         columns={columnsCalls}
         request={(params, sorter, filter) => {

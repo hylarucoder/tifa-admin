@@ -1,11 +1,11 @@
-import { Card, Col, DatePicker, Row, Tabs } from 'antd'
-import { RangePickerProps } from 'antd/es/date-picker/generatePicker'
-import moment from 'moment'
-import React from 'react'
-import { VisitDataType } from '@/pages/Dashboard/Analytic/data'
-import { Bar } from '../Charts'
-import styles from '../../pages/Dashboard/Analytic/style.module.less'
-import { formatNumber } from '@/utils/num'
+import { Card, Col, DatePicker, Row, Tabs } from "antd"
+import { RangePickerProps } from "antd/es/date-picker/generatePicker"
+import moment from "moment"
+import React from "react"
+import { VisitDataType } from "@/pages/Dashboard/Analytic/data"
+import { Bar } from "../Charts"
+import styles from "../../pages/Dashboard/Analytic/style.module.less"
+import { formatNumber } from "@/utils/num"
 const { RangePicker } = DatePicker
 const { TabPane } = Tabs
 const rankingListData: {
@@ -20,7 +20,7 @@ for (let i = 0; i < 7; i += 1) {
   })
 }
 
-type RangePickerValue = RangePickerProps<moment.Moment>['value']
+type RangePickerValue = RangePickerProps<moment.Moment>["value"]
 
 const SalesCard = ({
   rangePickerValue,
@@ -31,11 +31,11 @@ const SalesCard = ({
   selectDate,
 }: {
   rangePickerValue: RangePickerValue
-  isActive: (key: 'today' | 'week' | 'month' | 'year') => string
+  isActive: (key: "today" | "week" | "month" | "year") => string
   salesData: VisitDataType[]
   loading: boolean
   handleRangePickerChange: (dates: RangePickerValue, dateStrings: [string, string]) => void
-  selectDate: (key: 'today' | 'week' | 'month' | 'year') => void
+  selectDate: (key: "today" | "week" | "month" | "year") => void
 }) => (
   <Card
     loading={loading}
@@ -49,16 +49,16 @@ const SalesCard = ({
         tabBarExtraContent={
           <div className={styles.salesExtraWrap}>
             <div className={styles.salesExtra}>
-              <a className={isActive('today')} onClick={() => selectDate('today')}>
+              <a className={isActive("today")} onClick={() => selectDate("today")}>
                 今日
               </a>
-              <a className={isActive('week')} onClick={() => selectDate('week')}>
+              <a className={isActive("week")} onClick={() => selectDate("week")}>
                 本周
               </a>
-              <a className={isActive('month')} onClick={() => selectDate('month')}>
+              <a className={isActive("month")} onClick={() => selectDate("month")}>
                 本月
               </a>
-              <a className={isActive('year')} onClick={() => selectDate('year')}>
+              <a className={isActive("year")} onClick={() => selectDate("year")}>
                 全年
               </a>
             </div>
@@ -89,15 +89,11 @@ const SalesCard = ({
                 <ul className={styles.rankingList}>
                   {rankingListData.map((item, i) => (
                     <li key={item.title}>
-                      <span className={`${styles.rankingItemNumber} ${i < 3 ? styles.active : ''}`}>
-                        {i + 1}
-                      </span>
+                      <span className={`${styles.rankingItemNumber} ${i < 3 ? styles.active : ""}`}>{i + 1}</span>
                       <span className={styles.rankingItemTitle} title={item.title}>
                         {item.title}
                       </span>
-                      <span className={styles.rankingItemValue}>
-                        {formatNumber(item.total,'0,0')}
-                      </span>
+                      <span className={styles.rankingItemValue}>{formatNumber(item.total, "0,0")}</span>
                     </li>
                   ))}
                 </ul>
@@ -118,13 +114,11 @@ const SalesCard = ({
                 <ul className={styles.rankingList}>
                   {rankingListData.map((item, i) => (
                     <li key={item.title}>
-                      <span className={`${styles.rankingItemNumber} ${i < 3 ? styles.active : ''}`}>
-                        {i + 1}
-                      </span>
+                      <span className={`${styles.rankingItemNumber} ${i < 3 ? styles.active : ""}`}>{i + 1}</span>
                       <span className={styles.rankingItemTitle} title={item.title}>
                         {item.title}
                       </span>
-                      <span>{formatNumber(item.total,'0,0')}</span>
+                      <span>{formatNumber(item.total, "0,0")}</span>
                     </li>
                   ))}
                 </ul>

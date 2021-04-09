@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 import {
   Chart,
   Interval,
@@ -13,28 +13,28 @@ import {
   Facet,
   Util,
   Interaction,
-} from 'bizcharts'
+} from "bizcharts"
 
 const { Text } = Guide
 let data = [
   {
-    action: '浏览网站',
+    action: "浏览网站",
     pv: 50000,
   },
   {
-    action: '放入购物车',
+    action: "放入购物车",
     pv: 35000,
   },
   {
-    action: '生成订单',
+    action: "生成订单",
     pv: 25000,
   },
   {
-    action: '支付订单',
+    action: "支付订单",
     pv: 15000,
   },
   {
-    action: '完成交易',
+    action: "完成交易",
     pv: 8000,
   },
 ]
@@ -55,18 +55,18 @@ export function Pyramid() {
         adjust="symmetric"
         position="action*pv"
         shape="pyramid"
-        color={['action', ['#0050B3', '#1890FF', '#40A9FF', '#69C0FF', '#BAE7FF']]}
+        color={["action", ["#0050B3", "#1890FF", "#40A9FF", "#69C0FF", "#BAE7FF"]]}
         label={[
-          'action*pv',
+          "action*pv",
           (action, pv) => {
-            return { content: action + ' ' + pv }
+            return { content: action + " " + pv }
           },
           {
             offset: 35,
             labelLine: {
               style: {
                 lineWidth: 1,
-                stroke: 'rgba(0, 0, 0, 0.15)',
+                stroke: "rgba(0, 0, 0, 0.15)",
               },
             },
           },

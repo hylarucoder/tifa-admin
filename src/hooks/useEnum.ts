@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from "react"
 
 export function useEnum<T>(initial: T) {
   const [value, setEnumValue] = useState(initial)

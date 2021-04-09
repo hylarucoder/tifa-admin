@@ -1,18 +1,18 @@
-import Bar from './Bar'
-import ChartCard from './ChartCard'
-import Field from './Field'
-import Gauge from './Gauge'
-import MiniArea from './MiniArea'
-import MiniBar from './MiniBar'
-import MiniProgress from './MiniProgress'
-import Pie from './Pie'
-import TagCloud from './TagCloud'
-import TimelineChart from './TimelineChart'
-import WaterWave from './WaterWave'
-import Map from './Map'
-import { formatNumber } from '@/utils/num'
+import Bar from "./Bar"
+import ChartCard from "./ChartCard"
+import Field from "./Field"
+import Gauge from "./Gauge"
+import MiniArea from "./MiniArea"
+import MiniBar from "./MiniBar"
+import MiniProgress from "./MiniProgress"
+import Pie from "./Pie"
+import TagCloud from "./TagCloud"
+import TimelineChart from "./TimelineChart"
+import WaterWave from "./WaterWave"
+import Map from "./Map"
+import { formatNumber } from "@/utils/num"
 
-const yuan = (val: number | string) => `¥ ${formatNumber(val, '0,0')}`
+const yuan = (val: number | string) => `¥ ${formatNumber(val, "0,0")}`
 
 const Charts = {
   yuan,

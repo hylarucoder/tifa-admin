@@ -1,7 +1,7 @@
-import { useLocation } from 'react-router'
-import React from 'react'
-import { PageContainer } from '@ant-design/pro-layout'
-import { Button } from 'antd'
+import { useLocation } from "react-router"
+import React from "react"
+import { PageContainer } from "@ant-design/pro-layout"
+import { Button } from "antd"
 
 const Tasks = () => {
   const location = useLocation()
@@ -10,12 +10,12 @@ const Tasks = () => {
       content="欢迎使用 ProLayout 组件"
       tabList={[
         {
-          tab: '基本信息',
-          key: 'base',
+          tab: "基本信息",
+          key: "base",
         },
         {
-          tab: '详细信息',
-          key: 'info',
+          tab: "详细信息",
+          key: "info",
         },
       ]}
       extra={[

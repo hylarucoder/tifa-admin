@@ -1,10 +1,10 @@
-import { SearchOutlined } from '@ant-design/icons'
-import { AutoComplete, Input } from 'antd'
-import useMergedState from 'rc-util/es/hooks/useMergedState'
-import React, { useRef } from 'react'
+import { SearchOutlined } from "@ant-design/icons"
+import { AutoComplete, Input } from "antd"
+import useMergedState from "rc-util/es/hooks/useMergedState"
+import React, { useRef } from "react"
 
-import classNames from 'classnames'
-import styles from './index.less'
+import classNames from "classnames"
+import styles from "./index.less"
 
 export type HeaderSearchProps = {
   onSearch?: (value?: string) => void
@@ -20,14 +20,7 @@ export type HeaderSearchProps = {
 }
 
 const HeaderSearch: React.FC<HeaderSearchProps> = (props) => {
-  const {
-    className,
-    defaultValue,
-    onVisibleChange,
-    placeholder,
-    defaultVisible,
-    ...restProps
-  } = props
+  const { className, defaultValue, onVisibleChange, placeholder, defaultVisible, ...restProps } = props
 
   const inputRef = useRef<Input | null>(null)
 
@@ -54,7 +47,7 @@ const HeaderSearch: React.FC<HeaderSearchProps> = (props) => {
         }
       }}
       onTransitionEnd={({ propertyName }) => {
-        if (propertyName === 'width' && !searchMode) {
+        if (propertyName === "width" && !searchMode) {
           if (onVisibleChange) {
             onVisibleChange(searchMode)
           }
@@ -64,7 +57,7 @@ const HeaderSearch: React.FC<HeaderSearchProps> = (props) => {
       <SearchOutlined
         key="Icon"
         style={{
-          cursor: 'pointer',
+          cursor: "pointer",
         }}
       />
       <AutoComplete
@@ -81,7 +74,7 @@ const HeaderSearch: React.FC<HeaderSearchProps> = (props) => {
           aria-label={placeholder}
           placeholder={placeholder}
           onKeyDown={(e) => {
-            if (e.key === 'Enter') {
+            if (e.key === "Enter") {
               if (restProps.onSearch) {
                 restProps.onSearch(value)
               }

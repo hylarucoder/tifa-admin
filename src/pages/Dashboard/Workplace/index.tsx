@@ -1,39 +1,39 @@
-import { Avatar, Card, Col, List, Skeleton, Row, Statistic } from 'antd'
-import React, { Component } from 'react'
+import { Avatar, Card, Col, List, Skeleton, Row, Statistic } from "antd"
+import React, { Component } from "react"
 
-import { PageContainer } from '@ant-design/pro-layout'
-import Radar from '@/components/Charts/RadarChart'
-import EditableLinkGroup from './components/EditableLinkGroup'
-import styles from './style.module.less'
-import { ActivitiesType, CurrentUser } from './data'
-import { Link } from 'react-router-dom'
-import { getActivities, getNotice, radarData } from '@/pages/Dashboard/Workplace/_mock'
-import { fromNow } from '@/utils/date'
+import { PageContainer } from "@ant-design/pro-layout"
+import Radar from "@/components/Charts/RadarChart"
+import EditableLinkGroup from "./components/EditableLinkGroup"
+import styles from "./style.module.less"
+import { ActivitiesType, CurrentUser } from "./data"
+import { Link } from "react-router-dom"
+import { getActivities, getNotice, radarData } from "@/pages/Dashboard/Workplace/_mock"
+import { fromNow } from "@/utils/date"
 
 const links = [
   {
-    title: '操作一',
-    href: '',
+    title: "操作一",
+    href: "",
   },
   {
-    title: '操作二',
-    href: '',
+    title: "操作二",
+    href: "",
   },
   {
-    title: '操作三',
-    href: '',
+    title: "操作三",
+    href: "",
   },
   {
-    title: '操作四',
-    href: '',
+    title: "操作四",
+    href: "",
   },
   {
-    title: '操作五',
-    href: '',
+    title: "操作五",
+    href: "",
   },
   {
-    title: '操作六',
-    href: '',
+    title: "操作六",
+    href: "",
   },
 ]
 
@@ -111,55 +111,55 @@ export default () => {
     )
   }
   const currentUser = {
-    name: 'Serati Ma',
-    avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
-    userid: '00000001',
-    email: 'antdesign@alipay.com',
-    signature: '海纳百川，有容乃大',
-    title: '交互专家',
-    group: '蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED',
+    name: "Serati Ma",
+    avatar: "https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png",
+    userid: "00000001",
+    email: "antdesign@alipay.com",
+    signature: "海纳百川，有容乃大",
+    title: "交互专家",
+    group: "蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED",
     tags: [
       {
-        key: '0',
-        label: '很有想法的',
+        key: "0",
+        label: "很有想法的",
       },
       {
-        key: '1',
-        label: '专注设计',
+        key: "1",
+        label: "专注设计",
       },
       {
-        key: '2',
-        label: '辣~',
+        key: "2",
+        label: "辣~",
       },
       {
-        key: '3',
-        label: '大长腿',
+        key: "3",
+        label: "大长腿",
       },
       {
-        key: '4',
-        label: '川妹子',
+        key: "4",
+        label: "川妹子",
       },
       {
-        key: '5',
-        label: '海纳百川',
+        key: "5",
+        label: "海纳百川",
       },
     ],
     notice: [],
     notifyCount: 12,
     unreadCount: 11,
-    country: 'China',
+    country: "China",
     geographic: {
       province: {
-        label: '浙江省',
-        key: '330000',
+        label: "浙江省",
+        key: "330000",
       },
       city: {
-        label: '杭州市',
-        key: '330100',
+        label: "杭州市",
+        key: "330100",
       },
     },
-    address: '西湖区工专路 77 号',
-    phone: '0752-268888888',
+    address: "西湖区工专路 77 号",
+    phone: "0752-268888888",
   }
   const activities = getActivities
   const projectLoading = false
@@ -170,10 +170,7 @@ export default () => {
     return null
   }
   return (
-    <PageContainer
-      content={<PageHeaderContent currentUser={currentUser} />}
-      extraContent={<ExtraContent />}
-    >
+    <PageContainer content={<PageHeaderContent currentUser={currentUser} />} extraContent={<ExtraContent />}>
       <Row gutter={24}>
         <Col xl={16} lg={24} md={24} sm={24} xs={24}>
           <Card
@@ -198,7 +195,7 @@ export default () => {
                     description={item.description}
                   />
                   <div className={styles.projectItemContent}>
-                    <Link to={item.memberLink}>{item.member || ''}</Link>
+                    <Link to={item.memberLink}>{item.member || ""}</Link>
                     {item.updatedAt && (
                       // @ts-ignore
                       <span className={styles.datetime} title={item.updatedAt}>
@@ -228,20 +225,10 @@ export default () => {
           </Card>
         </Col>
         <Col xl={8} lg={24} md={24} sm={24} xs={24}>
-          <Card
-            style={{ marginBottom: 24 }}
-            title="快速开始 / 便捷导航"
-            bordered={false}
-            bodyStyle={{ padding: 0 }}
-          >
+          <Card style={{ marginBottom: 24 }} title="快速开始 / 便捷导航" bordered={false} bodyStyle={{ padding: 0 }}>
             <EditableLinkGroup onAdd={() => {}} links={links} linkElement={Link} />
           </Card>
-          <Card
-            style={{ marginBottom: 24 }}
-            bordered={false}
-            title="XX 指数"
-            loading={radarData.length === 0}
-          >
+          <Card style={{ marginBottom: 24 }} bordered={false} title="XX 指数" loading={radarData.length === 0}>
             <div className={styles.chart}>
               <Radar hasLegend height={343} data={radarData} />
             </div>

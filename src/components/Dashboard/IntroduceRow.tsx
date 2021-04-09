@@ -1,12 +1,12 @@
-import { InfoCircleOutlined } from '@ant-design/icons'
-import { Col, Row, Tooltip } from 'antd'
-import React from 'react'
-import { ChartCard, MiniArea, MiniBar, MiniProgress, Field } from '../Charts'
-import { VisitDataType } from '@/pages/Dashboard/Analytic/data'
-import Trend from './Trend'
-import Yuan from './utils/Yuan'
-import styles from '../../pages/Dashboard/Analytic/style.module.less'
-import { formatNumber } from '@/utils/num'
+import { InfoCircleOutlined } from "@ant-design/icons"
+import { Col, Row, Tooltip } from "antd"
+import React from "react"
+import { ChartCard, MiniArea, MiniBar, MiniProgress, Field } from "../Charts"
+import { VisitDataType } from "@/pages/Dashboard/Analytic/data"
+import Trend from "./Trend"
+import Yuan from "./utils/Yuan"
+import styles from "../../pages/Dashboard/Analytic/style.module.less"
+import { formatNumber } from "@/utils/num"
 const topColResponsiveProps = {
   xs: 24,
   sm: 12,
@@ -32,7 +32,7 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Vis
         }
         loading={loading}
         total={() => <Yuan>126560</Yuan>}
-        footer={<Field label="日销售额" value={`￥${formatNumber(12423,'0,0')}`} />}
+        footer={<Field label="日销售额" value={`￥${formatNumber(12423, "0,0")}`} />}
         contentHeight={46}
       >
         <Trend
@@ -61,8 +61,8 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Vis
             <InfoCircleOutlined />
           </Tooltip>
         }
-        total={formatNumber(8846,'0,0')}
-        footer={<Field label="日访问量" value={formatNumber(1234,'0,0')} />}
+        total={formatNumber(8846, "0,0")}
+        footer={<Field label="日访问量" value={formatNumber(1234, "0,0")} />}
         contentHeight={46}
       >
         <MiniArea color="#975FE4" data={visitData} />
@@ -78,7 +78,7 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Vis
             <InfoCircleOutlined />
           </Tooltip>
         }
-        total={formatNumber(6560,'0,0')}
+        total={formatNumber(6560, "0,0")}
         footer={<Field label="转化率" value="60%" />}
         contentHeight={46}
       >
@@ -99,8 +99,8 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Vis
         footer={
           <div
             style={{
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
+              whiteSpace: "nowrap",
+              overflow: "hidden",
             }}
           >
             <Trend

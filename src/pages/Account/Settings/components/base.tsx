@@ -1,10 +1,10 @@
-import { UploadOutlined } from '@ant-design/icons'
-import { Button, Form, Input, message, Select, Upload } from 'antd'
-import React, { Component } from 'react'
-import { CurrentUser } from '../data'
-import GeographicView from './GeographicView'
-import PhoneView from './PhoneView'
-import styles from './BaseView.module.less'
+import { UploadOutlined } from "@ant-design/icons"
+import { Button, Form, Input, message, Select, Upload } from "antd"
+import React, { Component } from "react"
+import { CurrentUser } from "../data"
+import GeographicView from "./GeographicView"
+import PhoneView from "./PhoneView"
+import styles from "./BaseView.module.less"
 
 const { Option } = Select // 头像组件 方便以后独立，增加裁剪之类的功能
 
@@ -41,25 +41,25 @@ const validatorGeographic = (
   const { province, city } = value
 
   if (!province.key) {
-    callback('Please input your province!')
+    callback("Please input your province!")
   }
 
   if (!city.key) {
-    callback('Please input your city!')
+    callback("Please input your city!")
   }
 
   callback()
 }
 
 const validatorPhone = (rule: any, value: string, callback: (message?: string) => void) => {
-  const values = value.split('-')
+  const values = value.split("-")
 
   if (!values[0]) {
-    callback('Please input your area code!')
+    callback("Please input your area code!")
   }
 
   if (!values[1]) {
-    callback('Please input your phone number!')
+    callback("Please input your phone number!")
   }
 
   callback()
@@ -80,17 +80,17 @@ class BaseView extends Component<BaseViewProps> {
         return currentUser.avatar
       }
 
-      return 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png'
+      return "https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png"
     }
 
-    return ''
+    return ""
   }
 
   getViewDom = (ref: HTMLDivElement) => {
     this.view = ref
   }
   handleFinish = () => {
-    message.success('更新基本信息成功')
+    message.success("更新基本信息成功")
   }
 
   render() {
@@ -98,19 +98,14 @@ class BaseView extends Component<BaseViewProps> {
     return (
       <div className={styles.baseView} ref={this.getViewDom}>
         <div className={styles.left}>
-          <Form
-            layout="vertical"
-            onFinish={this.handleFinish}
-            initialValues={currentUser}
-            hideRequiredMark
-          >
+          <Form layout="vertical" onFinish={this.handleFinish} initialValues={currentUser} hideRequiredMark>
             <Form.Item
               name="email"
               label="邮箱"
               rules={[
                 {
                   required: true,
-                  message: '请输入您的邮箱!',
+                  message: "请输入您的邮箱!",
                 },
               ]}
             >
@@ -122,7 +117,7 @@ class BaseView extends Component<BaseViewProps> {
               rules={[
                 {
                   required: true,
-                  message: '请输入您的昵称!',
+                  message: "请输入您的昵称!",
                 },
               ]}
             >
@@ -134,7 +129,7 @@ class BaseView extends Component<BaseViewProps> {
               rules={[
                 {
                   required: true,
-                  message: '请输入个人简介!',
+                  message: "请输入个人简介!",
                 },
               ]}
             >
@@ -146,7 +141,7 @@ class BaseView extends Component<BaseViewProps> {
               rules={[
                 {
                   required: true,
-                  message: '请输入您的国家或地区!',
+                  message: "请输入您的国家或地区!",
                 },
               ]}
             >
@@ -164,7 +159,7 @@ class BaseView extends Component<BaseViewProps> {
               rules={[
                 {
                   required: true,
-                  message: '请输入您的所在省市!',
+                  message: "请输入您的所在省市!",
                 },
                 {
                   validator: validatorGeographic,
@@ -179,7 +174,7 @@ class BaseView extends Component<BaseViewProps> {
               rules={[
                 {
                   required: true,
-                  message: '请输入您的街道地址!',
+                  message: "请输入您的街道地址!",
                 },
               ]}
             >
@@ -191,7 +186,7 @@ class BaseView extends Component<BaseViewProps> {
               rules={[
                 {
                   required: true,
-                  message: '请输入您的联系电话!',
+                  message: "请输入您的联系电话!",
                 },
                 {
                   validator: validatorPhone,

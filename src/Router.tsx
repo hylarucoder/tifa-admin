@@ -1,25 +1,20 @@
-import React, { Suspense, useState } from 'react'
-import { Layout, Menu, Tabs } from 'antd'
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  PieChartOutlined,
-  UserOutlined,
-} from '@ant-design/icons'
+import React, { Suspense, useState } from "react"
+import { Layout, Menu, Tabs } from "antd"
+import { MenuFoldOutlined, MenuUnfoldOutlined, PieChartOutlined, UserOutlined } from "@ant-design/icons"
 
 const { SubMenu } = Menu
 
-import { BrowserRouter, Route, Redirect, Switch, Link, useHistory } from 'react-router-dom'
-import { flattenLayoutRoutes, layoutRoutes, RouteNode } from '@/routes'
-import GlobalHeaderRight from '@/components/GlobalHeaderRight'
-import { PageLoading } from '@ant-design/pro-layout'
-import Login from '@/pages/Common/Login'
-import Error403 from './pages/Common/Error403'
-import Error404 from './pages/Common/Error404'
-import Error500 from './pages/Common/Error500'
-import { useGlobalStore } from '@/hooks/useStore'
-import { Header } from 'antd/es/layout/layout'
-import { observer } from 'mobx-react'
+import { BrowserRouter, Route, Redirect, Switch, Link, useHistory } from "react-router-dom"
+import { flattenLayoutRoutes, layoutRoutes, RouteNode } from "@/routes"
+import GlobalHeaderRight from "@/components/GlobalHeaderRight"
+import { PageLoading } from "@ant-design/pro-layout"
+import Login from "@/pages/Common/Login"
+import Error403 from "./pages/Common/Error403"
+import Error404 from "./pages/Common/Error404"
+import Error500 from "./pages/Common/Error500"
+import { useGlobalStore } from "@/hooks/useStore"
+import { Header } from "antd/es/layout/layout"
+import { observer } from "mobx-react"
 
 const TabPage = ({ pane }: { pane: any }) => {
   const route = flattenLayoutRoutes.get(pane.url)
@@ -41,7 +36,7 @@ const MultiTabLayout = observer(() => {
           store.activeTabRoute(key)
         }}
         onEdit={(key, action) => {
-          if (action == 'remove') {
+          if (action == "remove") {
             console.log(key, action)
             store.removeTabRoute(key)
           }
@@ -54,7 +49,7 @@ const MultiTabLayout = observer(() => {
             tab={pane.title}
             key={pane.key}
             style={{
-              height: '100vh',
+              height: "100vh",
             }}
           >
             <TabPage pane={pane} />
@@ -83,11 +78,11 @@ const Sidebar = ({ collapsed }: { collapsed: boolean }) => {
       onCollapse={() => {}}
       style={{
         width: 208,
-        background: '#FFF',
+        background: "#FFF",
       }}
     >
       <div className="logo">CyberCity Admin</div>
-      <Menu theme="light" defaultSelectedKeys={['1']} mode="inline">
+      <Menu theme="light" defaultSelectedKeys={["1"]} mode="inline">
         {layoutRoutes.map((node) => {
           if (!node.routes) {
             return (
@@ -128,12 +123,12 @@ const Sidebar = ({ collapsed }: { collapsed: boolean }) => {
 const LayoutRoutes = () => {
   const [collapsed, setCollapsed] = useState(false)
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    <Layout style={{ minHeight: "100vh" }}>
       <Sidebar collapsed={collapsed} />
       <Layout className="site-layout">
         <Header className="site-layout-background" style={{ padding: 0 }}>
           {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-            className: 'trigger',
+            className: "trigger",
             onClick: () => {
               setCollapsed(!collapsed)
             },
@@ -151,7 +146,7 @@ const Router: React.FC = () => (
     <Suspense fallback={<PageLoading />}>
       <Switch>
         <Route path="/" exact>
-          <Redirect to={'/welcome'} />
+          <Redirect to={"/welcome"} />
         </Route>
         <Route path="/login" exact>
           <Login />

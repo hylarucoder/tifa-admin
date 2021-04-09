@@ -1,10 +1,10 @@
-import { Card, Radio } from 'antd'
-import { RadioChangeEvent } from 'antd/es/radio'
-import React from 'react'
-import { VisitDataType } from '../../pages/Dashboard/Analytic/data'
-import { Pie } from '@/components/Charts'
-import Yuan from './utils/Yuan'
-import styles from '../../pages/Dashboard/Analytic/style.module.less'
+import { Card, Radio } from "antd"
+import { RadioChangeEvent } from "antd/es/radio"
+import React from "react"
+import { VisitDataType } from "../../pages/Dashboard/Analytic/data"
+import { Pie } from "@/components/Charts"
+import Yuan from "./utils/Yuan"
+import styles from "../../pages/Dashboard/Analytic/style.module.less"
 
 const ProportionSales = ({
   dropdownGroup,
@@ -15,7 +15,7 @@ const ProportionSales = ({
 }: {
   loading: boolean
   dropdownGroup: React.ReactNode
-  salesType: 'all' | 'online' | 'stores'
+  salesType: "all" | "online" | "stores"
   salesPieData: VisitDataType[]
   handleChangeSalesType?: (e: RadioChangeEvent) => void
 }) => (
@@ -25,7 +25,7 @@ const ProportionSales = ({
     bordered={false}
     title="销售额类别占比"
     style={{
-      height: '100%',
+      height: "100%",
     }}
     extra={
       <div className={styles.salesCardExtra}>

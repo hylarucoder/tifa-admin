@@ -1,8 +1,8 @@
-import { Avatar, List } from 'antd'
+import { Avatar, List } from "antd"
 
-import React from 'react'
-import classNames from 'classnames'
-import styles from './NoticeList.less'
+import React from "react"
+import classNames from "classnames"
+import styles from "./NoticeList.less"
 
 export type NoticeIconTabProps = {
   count?: number
@@ -34,10 +34,7 @@ const NoticeList: React.FC<NoticeIconTabProps> = ({
   if (!list || list.length === 0) {
     return (
       <div className={styles.notFound}>
-        <img
-          src="https://gw.alipayobjects.com/zos/rmsportal/sAuJeJzSKbUmHfBQRzmZ.svg"
-          alt="not found"
-        />
+        <img src="https://gw.alipayobjects.com/zos/rmsportal/sAuJeJzSKbUmHfBQRzmZ.svg" alt="not found" />
         <div>{emptyText}</div>
       </div>
     )
@@ -53,7 +50,7 @@ const NoticeList: React.FC<NoticeIconTabProps> = ({
           })
           // eslint-disable-next-line no-nested-ternary
           const leftIcon = item.avatar ? (
-            typeof item.avatar === 'string' ? (
+            typeof item.avatar === "string" ? (
               <Avatar className={styles.avatar} src={item.avatar} />
             ) : (
               <span className={styles.iconElement}>{item.avatar}</span>

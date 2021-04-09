@@ -1,10 +1,10 @@
-import React, { useCallback, useState } from 'react'
-import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons'
-import { Avatar, Menu, Spin } from 'antd'
+import React, { useCallback, useState } from "react"
+import { LogoutOutlined, SettingOutlined, UserOutlined } from "@ant-design/icons"
+import { Avatar, Menu, Spin } from "antd"
 // import { stringify } from 'querystring';
-import HeaderDropdown from '../HeaderDropdown'
-import styles from './index.module.less'
-import { accountLogout } from '@/api/login'
+import HeaderDropdown from "../HeaderDropdown"
+import styles from "./index.module.less"
+import { accountLogout } from "@/api/login"
 
 export type GlobalHeaderRightProps = {
   menu?: boolean
@@ -39,8 +39,8 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
       domEvent: React.MouseEvent<HTMLElement>
     }) => {
       const { key } = event
-      if (key === 'logout' && initialState) {
-        setInitialState({ '1': '2' })
+      if (key === "logout" && initialState) {
+        setInitialState({ "1": "2" })
         // setInitialState({ ...initialState, currentUser: undefined });
         loginOut()
         return
@@ -67,8 +67,8 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
   }
 
   const currentUser = {
-    name: 't',
-    avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
+    name: "t",
+    avatar: "https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png",
   }
 
   if (!currentUser || !currentUser.name) {

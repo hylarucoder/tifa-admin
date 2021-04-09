@@ -1,9 +1,9 @@
-import { Axis, Chart, Coordinate, Geom, Tooltip } from 'bizcharts'
-import { Col, Row } from 'antd'
-import React, { Component } from 'react'
+import { Axis, Chart, Coordinate, Geom, Tooltip } from "bizcharts"
+import { Col, Row } from "antd"
+import React, { Component } from "react"
 
-import autoHeight from './autoHeight'
-import styles from './index.less'
+import autoHeight from "./autoHeight"
+import styles from "./index.less"
 
 export interface RadarProps {
   title?: React.ReactNode
@@ -60,7 +60,7 @@ class Radar extends Component<RadarProps, RadarState> {
     if (!this.chart) return
     const geom = this.chart.getAllGeoms()[0] // 获取所有的图形
     if (!geom) return
-    const items = (geom as any).get('dataArray') || [] // 获取图形对应的
+    const items = (geom as any).get("dataArray") || [] // 获取图形对应的
 
     const legendData = items.map((item: { color: any; _origin: any }[]) => {
       // eslint-disable-next-line no-underscore-dangle
@@ -101,7 +101,7 @@ class Radar extends Component<RadarProps, RadarState> {
     const filteredLegendData = legendData.filter((l) => l.checked).map((l) => l.name)
 
     if (this.chart) {
-      this.chart.filter('name', (val) => filteredLegendData.indexOf(`${val}`) > -1)
+      this.chart.filter("name", (val) => filteredLegendData.indexOf(`${val}`) > -1)
       this.chart.repaint()
     }
 
@@ -111,16 +111,7 @@ class Radar extends Component<RadarProps, RadarState> {
   }
 
   render() {
-    const defaultColors = [
-      '#1890FF',
-      '#FACC14',
-      '#2FC25B',
-      '#8543E0',
-      '#F04864',
-      '#13C2C2',
-      '#fa8c16',
-      '#a0d911',
-    ]
+    const defaultColors = ["#1890FF", "#FACC14", "#2FC25B", "#8543E0", "#F04864", "#13C2C2", "#fa8c16", "#a0d911"]
 
     const {
       data = [],
@@ -173,35 +164,25 @@ class Radar extends Component<RadarProps, RadarState> {
           <Axis
             name="value"
             grid={{
-              type: 'polygon',
+              type: "polygon",
               lineStyle: {
                 lineDash: undefined,
               },
             }}
           />
-          <Geom type="line" position="label*value" color={['name', colors]} size={1} />
-          <Geom
-            type="point"
-            position="label*value"
-            color={['name', colors]}
-            shape="circle"
-            size={3}
-          />
+          <Geom type="line" position="label*value" color={["name", colors]} size={1} />
+          <Geom type="point" position="label*value" color={["name", colors]} shape="circle" size={3} />
         </Chart>
         {hasLegend && (
           <Row className={styles.legend}>
             {legendData.map((item, i) => (
-              <Col
-                span={24 / legendData.length}
-                key={item.name}
-                onClick={() => this.handleLegendClick(item, i)}
-              >
+              <Col span={24 / legendData.length} key={item.name} onClick={() => this.handleLegendClick(item, i)}>
                 <div className={styles.legendItem}>
                   <p>
                     <span
                       className={styles.dot}
                       style={{
-                        backgroundColor: !item.checked ? '#aaa' : item.color,
+                        backgroundColor: !item.checked ? "#aaa" : item.color,
                       }}
                     />
                     <span>{item.name}</span>

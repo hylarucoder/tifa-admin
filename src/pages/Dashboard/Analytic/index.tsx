@@ -1,28 +1,28 @@
-import React from 'react'
-import { EllipsisOutlined } from '@ant-design/icons'
-import { Col, Dropdown, Menu, RadioChangeEvent, Row } from 'antd'
-import { GridContent } from '@ant-design/pro-layout'
+import React from "react"
+import { EllipsisOutlined } from "@ant-design/icons"
+import { Col, Dropdown, Menu, RadioChangeEvent, Row } from "antd"
+import { GridContent } from "@ant-design/pro-layout"
 
-import { getTimeDistance } from '@/components/Dashboard/utils/utils'
-import styles from './style.module.less'
-import { getFakeChartData } from '@/pages/Dashboard/Analytic/_mock'
-import { RangePickerProps } from 'antd/es/date-picker'
-import { ErrorFallback } from '@/components/ErrorFallback'
-import { ErrorBoundary } from '@/components/ErrorBoundary'
+import { getTimeDistance } from "@/components/Dashboard/utils/utils"
+import styles from "./style.module.less"
+import { getFakeChartData } from "@/pages/Dashboard/Analytic/_mock"
+import { RangePickerProps } from "antd/es/date-picker"
+import { ErrorFallback } from "@/components/ErrorFallback"
+import { ErrorBoundary } from "@/components/ErrorBoundary"
 
-const IntroduceRow = React.lazy(() => import('@/components/Dashboard/IntroduceRow'))
-const SalesCard = React.lazy(() => import('@/components/Dashboard/SalesCard'))
-const TopSearch = React.lazy(() => import('@/components/Dashboard/TopSearch'))
-const ProportionSales = React.lazy(() => import('@/components/Dashboard/ProportionSales'))
-const OfflineData = React.lazy(() => import('@/components/Dashboard/OfflineData'))
+const IntroduceRow = React.lazy(() => import("@/components/Dashboard/IntroduceRow"))
+const SalesCard = React.lazy(() => import("@/components/Dashboard/SalesCard"))
+const TopSearch = React.lazy(() => import("@/components/Dashboard/TopSearch"))
+const ProportionSales = React.lazy(() => import("@/components/Dashboard/ProportionSales"))
+const OfflineData = React.lazy(() => import("@/components/Dashboard/OfflineData"))
 
-type RangePickerValue = RangePickerProps['value']
+type RangePickerValue = RangePickerProps["value"]
 
 export default () => {
   const state = {
-    salesType: 'all',
-    currentTabKey: '',
-    rangePickerValue: getTimeDistance('year'),
+    salesType: "all",
+    currentTabKey: "",
+    rangePickerValue: getTimeDistance("year"),
   }
   const handleChangeSalesType = (e: RadioChangeEvent) => {
     // this.setState({
@@ -38,27 +38,24 @@ export default () => {
 
   const handleRangePickerChange = (rangePickerValue: RangePickerValue) => {}
 
-  const selectDate = (type: 'today' | 'week' | 'month' | 'year') => {}
+  const selectDate = (type: "today" | "week" | "month" | "year") => {}
 
-  const isActive = (type: 'today' | 'week' | 'month' | 'year') => {
+  const isActive = (type: "today" | "week" | "month" | "year") => {
     const { rangePickerValue } = state
     if (!rangePickerValue) {
-      return ''
+      return ""
     }
     const value = getTimeDistance(type)
     if (!value) {
-      return ''
+      return ""
     }
     if (!rangePickerValue[0] || !rangePickerValue[1]) {
-      return ''
+      return ""
     }
-    if (
-      rangePickerValue[0].isSame(value[0], 'day') &&
-      rangePickerValue[1].isSame(value[1], 'day')
-    ) {
+    if (rangePickerValue[0].isSame(value[0], "day") && rangePickerValue[1].isSame(value[1], "day")) {
       return styles.currentDate
     }
-    return ''
+    return ""
   }
   const loading = false
   const { rangePickerValue, salesType, currentTabKey } = state
@@ -75,10 +72,10 @@ export default () => {
     salesTypeDataOffline,
   } = getFakeChartData
   let salesPieData
-  if (salesType === 'all') {
+  if (salesType === "all") {
     salesPieData = salesTypeData
   } else {
-    salesPieData = salesType === 'online' ? salesTypeDataOnline : salesTypeDataOffline
+    salesPieData = salesType === "online" ? salesTypeDataOnline : salesTypeDataOffline
   }
   const menu = (
     <Menu>

@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react'
-import './App.css'
-import { ProvideStore, useGlobalStore } from '@/hooks/useStore'
-import { useBoolean } from '@/hooks/useBoolean'
-import Router from '@/Router'
-import { PageLoading } from '@ant-design/pro-layout'
-import { fetchInitialData } from '@/api/login'
-import { ApolloProvider, useQuery } from '@apollo/client'
-import { client } from '@/graphql/client'
+import React, { useEffect } from "react"
+import "./App.css"
+import { ProvideStore, useGlobalStore } from "@/hooks/useStore"
+import { useBoolean } from "@/hooks/useBoolean"
+import Router from "@/Router"
+import { PageLoading } from "@ant-design/pro-layout"
+import { fetchInitialData } from "@/api/login"
+import { ApolloProvider, useQuery } from "@apollo/client"
+import { client } from "@/graphql/client"
 
-import {Query} from "@/graphql/types"
+import { Query } from "@/graphql/types"
 
 function Main() {
   const initializer = useBoolean(false)

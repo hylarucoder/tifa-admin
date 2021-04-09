@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 
 // https://github.com/bvaughn/react-error-boundary/blob/master/src/index.tsx
 
@@ -11,10 +11,7 @@ interface FallbackProps {
 }
 
 interface ErrorBoundaryPropsWithComponent {
-  onResetKeysChange?: (
-    prevResetKeys: Array<unknown> | undefined,
-    resetKeys: Array<unknown> | undefined
-  ) => void
+  onResetKeysChange?: (prevResetKeys: Array<unknown> | undefined, resetKeys: Array<unknown> | undefined) => void
   onReset?: (...args: Array<unknown>) => void
   onError?: (error: Error, info: { componentStack: string }) => void
   resetKeys?: Array<unknown>
@@ -26,10 +23,7 @@ declare function FallbackRender(
 ): React.ReactElement<unknown, string | React.FunctionComponent | typeof React.Component> | null
 
 interface ErrorBoundaryPropsWithRender {
-  onResetKeysChange?: (
-    prevResetKeys: Array<unknown> | undefined,
-    resetKeys: Array<unknown> | undefined
-  ) => void
+  onResetKeysChange?: (prevResetKeys: Array<unknown> | undefined, resetKeys: Array<unknown> | undefined) => void
   onReset?: (...args: Array<unknown>) => void
   onError?: (error: Error, info: { componentStack: string }) => void
   resetKeys?: Array<unknown>
@@ -37,17 +31,11 @@ interface ErrorBoundaryPropsWithRender {
 }
 
 interface ErrorBoundaryPropsWithFallback {
-  onResetKeysChange?: (
-    prevResetKeys: Array<unknown> | undefined,
-    resetKeys: Array<unknown> | undefined
-  ) => void
+  onResetKeysChange?: (prevResetKeys: Array<unknown> | undefined, resetKeys: Array<unknown> | undefined) => void
   onReset?: (...args: Array<unknown>) => void
   onError?: (error: Error, info: { componentStack: string }) => void
   resetKeys?: Array<unknown>
-  fallback: React.ReactElement<
-    unknown,
-    string | React.FunctionComponent | typeof React.Component
-  > | null
+  fallback: React.ReactElement<unknown, string | React.FunctionComponent | typeof React.Component> | null
 }
 
 type ErrorBoundaryProps =
@@ -124,14 +112,12 @@ class ErrorBoundary extends React.Component<
       }
       if (React.isValidElement(fallback)) {
         return fallback
-      } else if (typeof fallbackRender === 'function') {
+      } else if (typeof fallbackRender === "function") {
         return (fallbackRender as typeof FallbackRender)(props)
       } else if (FallbackComponent) {
         return <FallbackComponent {...props} />
       } else {
-        throw new Error(
-          'react-error-boundary requires either a fallback, fallbackRender, or FallbackComponent prop'
-        )
+        throw new Error("react-error-boundary requires either a fallback, fallbackRender, or FallbackComponent prop")
       }
     }
 
@@ -152,15 +138,13 @@ function withErrorBoundary<P>(
   }
 
   // Format for display in DevTools
-  const name = Component.displayName || Component.name || 'Unknown'
+  const name = Component.displayName || Component.name || "Unknown"
   Wrapped.displayName = `withErrorBoundary(${name})`
 
   return Wrapped
 }
 
-function useErrorHandler<P = Error>(
-  givenError?: P | null | undefined
-): React.Dispatch<React.SetStateAction<P | null>> {
+function useErrorHandler<P = Error>(givenError?: P | null | undefined): React.Dispatch<React.SetStateAction<P | null>> {
   const [error, setError] = React.useState<P | null>(null)
   if (givenError) throw givenError
   if (error) throw error

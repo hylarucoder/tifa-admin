@@ -1,5 +1,5 @@
-import { httpGet, httpPost } from '@/graphql/client'
-import { mockProfile } from '@/mock/user'
+import { httpGet, httpPost } from "@/graphql/client"
+import { mockProfile } from "@/mock/user"
 
 export async function fetchInitialData() {
   // const resp = await httpGet(`/admin/initial`)
@@ -15,7 +15,7 @@ export type LoginParamsType = {
 }
 
 export async function accountLogin(params: LoginParamsType) {
-  const resp = await httpPost('/admin/login', params)
+  const resp = await httpPost("/admin/login", params)
   return resp.data as any
 }
 

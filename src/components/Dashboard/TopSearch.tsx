@@ -1,28 +1,28 @@
-import { InfoCircleOutlined } from '@ant-design/icons'
-import { Card, Col, Row, Table, Tooltip } from 'antd'
-import React from 'react'
-import { SearchDataType, VisitDataType } from '@/pages/Dashboard/Analytic/data'
-import { MiniArea } from '@/components/Charts'
-import NumberInfo from './NumberInfo'
-import Trend from './Trend'
-import styles from '../../pages/Dashboard/Analytic/style.module.less'
-import { formatNumber } from '@/utils/num'
+import { InfoCircleOutlined } from "@ant-design/icons"
+import { Card, Col, Row, Table, Tooltip } from "antd"
+import React from "react"
+import { SearchDataType, VisitDataType } from "@/pages/Dashboard/Analytic/data"
+import { MiniArea } from "@/components/Charts"
+import NumberInfo from "./NumberInfo"
+import Trend from "./Trend"
+import styles from "../../pages/Dashboard/Analytic/style.module.less"
+import { formatNumber } from "@/utils/num"
 const columns = [
   {
-    title: '排名',
-    dataIndex: 'index',
-    key: 'index',
+    title: "排名",
+    dataIndex: "index",
+    key: "index",
   },
   {
-    title: '搜索关键词',
-    dataIndex: 'keyword',
-    key: 'keyword',
+    title: "搜索关键词",
+    dataIndex: "keyword",
+    key: "keyword",
     render: (text: React.ReactNode) => <a href="/">{text}</a>,
   },
   {
-    title: '用户数',
-    dataIndex: 'count',
-    key: 'count',
+    title: "用户数",
+    dataIndex: "count",
+    key: "count",
     sorter: (
       a: {
         count: number
@@ -34,9 +34,9 @@ const columns = [
     className: styles.alignRight,
   },
   {
-    title: '周涨幅',
-    dataIndex: 'range',
-    key: 'range',
+    title: "周涨幅",
+    dataIndex: "range",
+    key: "range",
     sorter: (
       a: {
         range: number
@@ -51,7 +51,7 @@ const columns = [
         status: number
       }
     ) => (
-      <Trend flag={record.status === 1 ? 'down' : 'up'}>
+      <Trend flag={record.status === 1 ? "down" : "up"}>
         <span
           style={{
             marginRight: 4,
@@ -81,7 +81,7 @@ const TopSearch = ({
     title="线上热门搜索"
     extra={dropdownGroup}
     style={{
-      height: '100%',
+      height: "100%",
     }}
   >
     {/*// @ts-ignore*/}
@@ -107,7 +107,7 @@ const TopSearch = ({
             </span>
           }
           gap={8}
-          total={formatNumber(12321,'0,0')}
+          total={formatNumber(12321, "0,0")}
           status="up"
           subTotal={17.1}
         />

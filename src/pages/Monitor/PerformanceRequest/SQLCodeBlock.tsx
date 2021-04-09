@@ -1,7 +1,7 @@
-import React from 'react'
-import Highlight, { defaultProps, Language } from 'prism-react-renderer'
-import theme from 'prism-react-renderer/themes/github'
-import { format } from 'sql-formatter'
+import React from "react"
+import Highlight, { defaultProps, Language } from "prism-react-renderer"
+import theme from "prism-react-renderer/themes/github"
+import { format } from "sql-formatter"
 
 const Pre = ({ children }: { children: any }) => {
   return <div className="text-align-left">{children}</div>
@@ -43,14 +43,14 @@ const LineContent = ({ children }: { children: any }) => {
 // `
 
 function shortenSQLSelect(line: string) {
-  if (line.startsWith('SELECT ')) {
-    line = line.replace(/SELECT (.+?) FROM/gm, 'SELECT * /* 略 */ FORM ')
+  if (line.startsWith("SELECT ")) {
+    line = line.replace(/SELECT (.+?) FROM/gm, "SELECT * /* 略 */ FORM ")
   }
   return line
 }
 
 export const SQLCodeBlock = ({ sql }: { sql: string }) => {
-  const formattedSQL = format(sql, { indent: '\xa0\xa0\xa0\xa0' })
+  const formattedSQL = format(sql, { indent: "\xa0\xa0\xa0\xa0" })
   return (
     <Highlight {...defaultProps} theme={theme} code={formattedSQL} language="sql">
       {({ className, style, tokens, getLineProps, getTokenProps }) => <div></div>}
@@ -59,7 +59,7 @@ export const SQLCodeBlock = ({ sql }: { sql: string }) => {
 }
 
 export const SQLCodeBlockOneLiner = ({ sql }: { sql: string }) => {
-  const oneLiner = shortenSQLSelect(sql.replaceAll('\n', ''))
+  const oneLiner = shortenSQLSelect(sql.replaceAll("\n", ""))
   return (
     <Highlight {...defaultProps} theme={theme} code={oneLiner} language="sql">
       {({ className, style, tokens, getLineProps, getTokenProps }) => <div></div>}

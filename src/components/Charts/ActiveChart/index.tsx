@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from "react"
 
-import { Statistic } from 'antd'
-import { MiniArea } from '@/components/Charts'
-import styles from './index.less'
+import { Statistic } from "antd"
+import { MiniArea } from "@/components/Charts"
+import styles from "./index.less"
 
 function fixedZero(val: number) {
   return val * 1 < 10 ? `0${val}` : val
