@@ -15,7 +15,7 @@ module.exports = {
       './src/**/*.gql',
     ],
     generates: {
-        './src/graphql/sdk.tsx': {
+        './src/graphql/schema.tsx': {
             plugins: [
                 'typescript',
                 'typescript-operations',

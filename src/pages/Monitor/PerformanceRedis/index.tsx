@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-import { fetchRedisInfo } from "@/api/actor"
 import { PageContainer } from "@ant-design/pro-layout"
 import ProDescriptions from "@ant-design/pro-descriptions"
 import { Card } from "antd"
@@ -8,8 +7,8 @@ const Page = () => {
   const [data, setData] = useState([])
 
   const initial = async () => {
-    const resp = await fetchRedisInfo()
-    setData(resp)
+    // const resp = await fetchRedisInfo()
+    // setData(resp)
   }
 
   useEffect(() => {

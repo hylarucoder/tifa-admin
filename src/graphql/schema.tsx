@@ -101,6 +101,9 @@ export type TProfile = {
   __typename?: "TProfile"
   id: Scalars["String"]
   name: Scalars["String"]
+  avatar?: Maybe<Scalars["String"]>
+  createdBy?: Maybe<Scalars["String"]>
+  email?: Maybe<Scalars["String"]>
   createdAt: Scalars["DateTime"]
   birthday: Scalars["Date"]
   token: Scalars["String"]
@@ -123,7 +126,13 @@ export type LoginMutationVariables = Exact<{
 }>
 
 export type LoginMutation = { __typename?: "Mutation" } & {
-  login: { __typename?: "TProfile" } & Pick<TProfile, "id" | "name" | "createdAt">
+  login: { __typename?: "TProfile" } & Pick<TProfile, "id" | "name" | "createdAt" | "token">
+}
+
+export type InitialCheckQueryVariables = Exact<{ [key: string]: never }>
+
+export type InitialCheckQuery = { __typename?: "Query" } & {
+  profile: { __typename?: "TProfile" } & Pick<TProfile, "id" | "name" | "createdAt">
 }
 
 export const LoginDocument = gql`
@@ -132,6 +141,7 @@ export const LoginDocument = gql`
       id
       name
       createdAt
+      token
     }
   }
 `
@@ -161,3 +171,43 @@ export function useLoginMutation(baseOptions?: Apollo.MutationHookOptions<LoginM
 export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>
 export type LoginMutationResult = Apollo.MutationResult<LoginMutation>
 export type LoginMutationOptions = Apollo.BaseMutationOptions<LoginMutation, LoginMutationVariables>
+export const InitialCheckDocument = gql`
+  query initialCheck {
+    profile {
+      id
+      name
+      createdAt
+    }
+  }
+`
+
+/**
+ * __useInitialCheckQuery__
+ *
+ * To run a query within a React component, call `useInitialCheckQuery` and pass it any options that fit your needs.
+ * When your component renders, `useInitialCheckQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useInitialCheckQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useInitialCheckQuery(
+  baseOptions?: Apollo.QueryHookOptions<InitialCheckQuery, InitialCheckQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<InitialCheckQuery, InitialCheckQueryVariables>(InitialCheckDocument, options)
+}
+export function useInitialCheckLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<InitialCheckQuery, InitialCheckQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<InitialCheckQuery, InitialCheckQueryVariables>(InitialCheckDocument, options)
+}
+export type InitialCheckQueryHookResult = ReturnType<typeof useInitialCheckQuery>
+export type InitialCheckLazyQueryHookResult = ReturnType<typeof useInitialCheckLazyQuery>
+export type InitialCheckQueryResult = Apollo.QueryResult<InitialCheckQuery, InitialCheckQueryVariables>

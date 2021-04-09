@@ -3,5 +3,14 @@ mutation login($data: InputLogin!) {
         id
         name
         createdAt
+        token
+    }
+}
+
+query initialCheck {
+    profile {
+        id
+        name
+        createdAt
     }
 }

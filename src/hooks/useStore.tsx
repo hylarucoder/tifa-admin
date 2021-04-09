@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { useLocalObservable } from "mobx-react"
 import { action, toJS } from "mobx"
+import { ACCESS_TOKEN } from "@/consts"
 
 type MTabRoute = {
   title: string
@@ -17,7 +18,7 @@ export interface TInitialState {
 export interface MGlobalStore extends TInitialState {
   initialize: Function
   login: Function
-  logout: Function
+  logout: () => {}
   addOrActiveTabRoute: Function
   removeTabRoute: Function
   activeTabRoute: Function
@@ -52,8 +53,12 @@ export function useGlobalProviderStore() {
         store.loggedIn = false
       }),
       initialize: action((data?: any) => {
+        console.log("initial", data)
         if (data) {
           store.loggedIn = true
+        }
+        if (data?.token) {
+          localStorage.setItem(ACCESS_TOKEN, data.token)
         }
       }),
       addOrActiveTabRoute(tabRoute: MTabRoute) {
