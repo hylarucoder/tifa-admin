@@ -26,6 +26,9 @@ const TabPage = ({ pane }: { pane: any }) => {
 const MultiTabLayout = observer(() => {
   const store = useGlobalStore()
   const history = useHistory()
+  if (!store.loggedIn) {
+    history.push("/login")
+  }
   return (
     <Suspense fallback={<PageLoading />}>
       <Tabs

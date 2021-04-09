@@ -9,6 +9,7 @@ import { useGlobalStore } from "@/hooks/useStore"
 import { useBoolean } from "@/hooks/useBoolean"
 import { accountGetCaptcha, accountLogin, fetchInitialData, LoginParamsType } from "@/api/login"
 import { useEnum } from "@/hooks/useEnum"
+import { useLoginMutation } from "@/graphql/schema"
 
 const LoginMessage: React.FC<{
   content: string
@@ -32,23 +33,16 @@ const Login: React.FC = () => {
   const params = useParams<any>()
   const history = useHistory()
 
-  const handleSubmit = async (values: LoginParamsType) => {
-    console.log("handle submit")
-    try {
-      usedSubmitting.setTrue()
-      const data = await accountLogin({ ...values, type: usedLoginType.value })
-      store.login()
-      if (data.token) {
-        const initialData = fetchInitialData()
-        store.initialize(initialData)
-        history.push(params.redirect || "/")
-        return
-      } // 如果失败去设置用户错误信息
-    } catch (error) {
-      message.error("登录失败，请重试！")
-    } finally {
-      usedSubmitting.setFalse()
-    }
+  const [doLogin, { data, error }] = useLoginMutation()
+  if (error) {
+    message.error("登录失败，请重试！")
+  }
+  if (data) {
+    store.login()
+    if (data.login.token) {
+      store.initialize(data.login)
+      history.push(params.redirect || "/")
+    } // 如果失败去设置用户错误信息
   }
 
   return (
@@ -83,7 +77,15 @@ const Login: React.FC = () => {
               },
             }}
             onFinish={async (values) => {
-              handleSubmit(values as LoginParamsType)
+              doLogin({
+                variables: {
+                  data: {
+                    login: values.username,
+                    type: "PASSWORD",
+                    password: values.password,
+                  },
+                },
+              })
             }}
           >
             {/*// @ts-ignore*/}
