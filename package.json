@@ -59,7 +59,7 @@
     "react-fittext": "^1.0.0",
     "react-helmet-async": "^1.0.9",
     "react-router": "^5.2.0",
-    "react-router-dom": "^5.2.0",
+    "react-router-dom": "^6.2.1",
     "react-sortable-hoc": "^2.0.0",
     "sql-formatter": "^4.0.2",
     "tailwindcss": "^2.2.7"
