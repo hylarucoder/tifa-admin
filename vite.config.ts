@@ -28,16 +28,16 @@ export default defineConfig({
     alias: [
       { find: "@", replacement: path.resolve(__dirname, "src") },
       { find: "~antd", replacement: path.resolve(__dirname, "node_modules/antd") },
-      {
-        find: "~antd/lib/style/themes/default",
-        replacement: path.resolve(__dirname, "node_modules/antd/es/style/themes/default.less"),
-      },
-      pathAlias("@antv/g2/lib", "@antv/g2/esm"),
-      pathAlias("@antv/g2plot/lib", "@antv/g2plot/esm"),
-      pathAlias("@antv/g-canvas/lib", "@antv/g-canvas/esm"),
-      pathAlias("@antv/g-math/lib", "@antv/g-math/esm"),
-      pathAlias("@antv/g-svg/lib", "@antv/g-svg/esm"),
-      pathAlias("@antv/util/lib", "@antv/util/esm"),
+      // {
+      //   find: "~antd/lib/style/themes/default",
+      //   replacement: path.resolve(__dirname, "node_modules/antd/es/style/themes/default.less"),
+      // },
+      // pathAlias("@antv/g2/lib", "@antv/g2/esm"),
+      // pathAlias("@antv/g2plot/lib", "@antv/g2plot/esm"),
+      // pathAlias("@antv/g-canvas/lib", "@antv/g-canvas/esm"),
+      // pathAlias("@antv/g-math/lib", "@antv/g-math/esm"),
+      // pathAlias("@antv/g-svg/lib", "@antv/g-svg/esm"),
+      // pathAlias("@antv/util/lib", "@antv/util/esm"),
     ],
   },
   css: {

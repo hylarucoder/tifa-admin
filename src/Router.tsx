@@ -1,20 +1,15 @@
 import React, { Suspense, useState } from "react"
 import { Layout, Menu, Tabs } from "antd"
 import { MenuFoldOutlined, MenuUnfoldOutlined, PieChartOutlined, UserOutlined } from "@ant-design/icons"
-
-const { SubMenu } = Menu
-
-import { BrowserRouter, Route, Redirect, Switch, Link, useHistory } from "react-router-dom"
+import { BrowserRouter, Navigate, useNavigate, useRoutes } from "react-router-dom"
 import { flattenLayoutRoutes, layoutRoutes, RouteNode } from "@/routes"
 import GlobalHeaderRight from "@/components/GlobalHeaderRight"
 import { PageLoading } from "@ant-design/pro-layout"
 import Login from "@/pages/Common/Login"
-import Error403 from "./pages/Common/Error403"
-import Error404 from "./pages/Common/Error404"
-import Error500 from "./pages/Common/Error500"
 import { useGlobalStore } from "@/hooks/useStore"
 import { Header } from "antd/es/layout/layout"
-import { observer } from "mobx-react"
+
+const { SubMenu } = Menu
 
 const TabPage = ({ pane }: { pane: any }) => {
   const route = flattenLayoutRoutes.get(pane.url)
@@ -23,19 +18,19 @@ const TabPage = ({ pane }: { pane: any }) => {
   return <Component />
 }
 
-const MultiTabLayout = observer(() => {
+const MultiTabLayout = () => {
   const store = useGlobalStore()
-  const history = useHistory()
-  if (!store.loggedIn) {
-    history.push("/login")
-  }
+  const navigate = useNavigate()
+  // if (!store.loggedIn) {
+  //   navigate("/login")
+  // }
   return (
     <Suspense fallback={<PageLoading />}>
       <Tabs
         size="small"
         type="editable-card"
         onChange={(key) => {
-          history.replace(key)
+          navigate(key)
           store.activeTabRoute(key)
         }}
         onEdit={(key, action) => {
@@ -61,14 +56,13 @@ const MultiTabLayout = observer(() => {
       </Tabs>
     </Suspense>
   )
-})
+}
 
 const Sidebar = ({ collapsed }: { collapsed: boolean }) => {
   const store = useGlobalStore()
-  const history = useHistory()
+  const navigate = useNavigate()
   const onGoTo = (node: RouteNode) => {
-    history.replace(node.path)
-
+    navigate(node.path)
     store.addOrActiveTabRoute({
       title: node.name,
       key: node.path,
@@ -144,31 +138,35 @@ const LayoutRoutes = () => {
   )
 }
 
-const Router: React.FC = () => (
-  <BrowserRouter>
-    <Suspense fallback={<PageLoading />}>
-      <Switch>
-        <Route path="/" exact>
-          <Redirect to={"/welcome"} />
-        </Route>
-        <Route path="/login" exact>
-          <Login />
-        </Route>
-        <Route path="/403" exact>
-          <Error403 />
-        </Route>
-        <Route path="/404" exact>
-          <Error404 />
-        </Route>
-        <Route path="/500" exact>
-          <Error500 />
-        </Route>
-        <Route path="*">
-          <LayoutRoutes />
-        </Route>
-      </Switch>
-    </Suspense>
-  </BrowserRouter>
-)
+const RouterWrap: React.FC = () => {
+  return useRoutes([
+    // These are the same as the props you provide to <Route>
+    { path: "/", element: <Navigate to={"/welcome"} /> },
+    { path: "/login", element: <Login /> },
+    // {
+    //     path: "invoices",
+    //     element: <Invoices/>,
+    //     // Nested routes use a children property, which is also
+    //     // the same as <Route>
+    //     children: [
+    //         {path: ":id", element: <Invoice/>},
+    //         {path: "sent", element: <SentInvoices/>},
+    //     ],
+    // },
+    // Not found routes work as you'd expect
+    {
+      path: "*",
+      element: <LayoutRoutes />,
+    },
+  ])
+}
+
+const Router: React.FC = () => {
+  return (
+    <BrowserRouter>
+      <RouterWrap />
+    </BrowserRouter>
+  )
+}
 
 export default Router

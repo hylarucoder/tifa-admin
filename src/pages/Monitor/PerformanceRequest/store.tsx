@@ -1,6 +1,4 @@
 import React, { useEffect } from "react"
-import { useLocalObservable } from "mobx-react"
-import { action } from "mobx"
 
 type PanelIdType =
   | "VersionsPanel"
