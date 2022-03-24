@@ -39,20 +39,7 @@ export const GlobalHeaderRight: React.FC = () => {
       <HeaderDropdown
         overlay={
           <Menu>
-            <Menu.Item
-              onClick={() => {
-                window.open("/~docs")
-              }}
-            >
-              组件文档
-            </Menu.Item>
-            <Menu.Item
-              onClick={() => {
-                window.open("https://pro.ant.design/docs/getting-started")
-              }}
-            >
-              Ant Design Pro 文档
-            </Menu.Item>
+            <Menu.Item>Ant Design Pro 文档</Menu.Item>
           </Menu>
         }
       >

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { useLocalObservable } from "mobx-react"
-import { action, toJS } from "mobx"
+import { action } from "mobx"
 import { ACCESS_TOKEN } from "@/consts"
 
 type MTabRoute = {

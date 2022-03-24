@@ -7,7 +7,7 @@ import styles from "./index.module.less"
 import { Link, useParams } from "react-router-dom"
 import { useGlobalStore } from "@/hooks/useStore"
 import { useBoolean } from "@/hooks/useBoolean"
-import { accountGetCaptcha, accountLogin, fetchInitialData, LoginParamsType } from "@/api/login"
+import { accountGetCaptcha } from "@/api/login"
 import { useEnum } from "@/hooks/useEnum"
 
 const LoginMessage: React.FC<{
@@ -47,7 +47,7 @@ const Login: React.FC = () => {
           <div className={styles.header}>
             <Link to="/">
               <img alt="logo" className={styles.logo} src="/logo.svg" />
-              <span className={styles.title}>CyberCity</span>
+              <span className={styles.title}>Tifa</span>
             </Link>
           </div>
           <div className={styles.desc}>One Full Stack Admin For Flask</div>
@@ -90,7 +90,7 @@ const Login: React.FC = () => {
             </Tabs>
 
             {status === "error" && usedLoginType.value === "username" && (
-              <LoginMessage content={"账户或密码错误（admin/cybercity)"} />
+              <LoginMessage content={"账户或密码错误（admin)"} />
             )}
             {usedLoginType.value === "username" && (
               <>
@@ -114,7 +114,7 @@ const Login: React.FC = () => {
                     size: "large",
                     prefix: <LockTwoTone className={styles.prefixIcon} />,
                   }}
-                  placeholder={"密码: cybercity"}
+                  placeholder={"密码: admin123"}
                   rules={[
                     {
                       required: true,

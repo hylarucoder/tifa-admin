@@ -3,7 +3,7 @@ import { Tag, message } from "antd"
 import groupBy from "lodash/groupBy"
 
 import NoticeIcon from "./NoticeIcon"
-import styles from "./index.less"
+import styles from "./index.module.less"
 import { fromNow } from "@/utils/date"
 
 export type GlobalHeaderRightProps = {
