@@ -4,12 +4,11 @@ import React from "react"
 import ProForm, { ProFormCaptcha, ProFormCheckbox, ProFormText } from "@ant-design/pro-form"
 import Footer from "@/components/Footer"
 import styles from "./index.module.less"
-import { Link, useHistory, useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { useGlobalStore } from "@/hooks/useStore"
 import { useBoolean } from "@/hooks/useBoolean"
 import { accountGetCaptcha, accountLogin, fetchInitialData, LoginParamsType } from "@/api/login"
 import { useEnum } from "@/hooks/useEnum"
-import { useLoginMutation } from "@/graphql/schema"
 
 const LoginMessage: React.FC<{
   content: string
@@ -31,19 +30,15 @@ const Login: React.FC = () => {
   const usedLoginType = useEnum<LoginType>("username")
   const store = useGlobalStore()
   const params = useParams<any>()
-  const history = useHistory()
+  // const history = useHistory()
 
-  const [doLogin, { data, error }] = useLoginMutation()
-  if (error) {
-    message.error("登录失败，请重试！")
-  }
-  if (data) {
-    store.login()
-    if (data.login.token) {
-      store.initialize(data.login)
-      history.push(params.redirect || "/")
-    } // 如果失败去设置用户错误信息
-  }
+  // if (data) {
+  //   store.login()
+  //   if (data.login.token) {
+  //     store.initialize(data.login)
+  //     history.push(params.redirect || "/")
+  //   } // 如果失败去设置用户错误信息
+  // }
 
   return (
     <div className={styles.container}>
