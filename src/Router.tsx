@@ -78,7 +78,7 @@ const Sidebar = ({ collapsed }: { collapsed: boolean }) => {
         background: "#FFF",
       }}
     >
-      <div className="logo">CyberCity Admin</div>
+      <div className="logo">Tifa</div>
       <Menu theme="light" defaultSelectedKeys={["1"]} mode="inline">
         {layoutRoutes.map((node) => {
           if (!node.routes) {

@@ -6,7 +6,7 @@ import classNames from "classnames"
 import type { NoticeIconTabProps } from "./NoticeList"
 import NoticeList from "./NoticeList"
 import HeaderDropdown from "../HeaderDropdown"
-import styles from "./index.less"
+import styles from "./index.module.less"
 
 const { TabPane } = Tabs
 
