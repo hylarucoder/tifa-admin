@@ -1,10 +1,10 @@
-# CyberCity Admin
+# Tifa Admin
 
-> CyberCity Must Have
+An Admin for tifa https://github.com/twocucao/tifa
 
 TODO: react dev inspector
 
-## credits
+## Credits
 
 - ant design
 - ant design pro
