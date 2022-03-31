@@ -5,10 +5,10 @@ import ProForm, { ProFormCaptcha, ProFormCheckbox, ProFormText } from "@ant-desi
 import Footer from "@/components/Footer"
 import styles from "./index.module.less"
 import { Link, useParams } from "react-router-dom"
-import { useGlobalStore } from "@/hooks/useStore"
 import { useBoolean } from "@/hooks/useBoolean"
 import { accountGetCaptcha } from "@/api/login"
 import { useEnum } from "@/hooks/useEnum"
+import { useZStore } from "@/hooks/useZStore"
 
 const LoginMessage: React.FC<{
   content: string
@@ -28,7 +28,7 @@ type LoginType = "username" | "mobile"
 const Login: React.FC = () => {
   const usedSubmitting = useBoolean(false)
   const usedLoginType = useEnum<LoginType>("username")
-  const store = useGlobalStore()
+  const store = useZStore()
   const params = useParams<any>()
   // const history = useHistory()
 
