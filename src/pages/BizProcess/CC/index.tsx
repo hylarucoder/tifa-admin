@@ -3,6 +3,7 @@ import { Button, Tooltip, Dropdown, Menu, Input } from "antd"
 import { EllipsisOutlined, QuestionCircleOutlined, SearchOutlined } from "@ant-design/icons"
 import type { ProColumns } from "@ant-design/pro-table"
 import ProTable, { TableDropdown } from "@ant-design/pro-table"
+import { PageContainer } from "@ant-design/pro-layout"
 
 const valueEnum = {
   0: "close",
@@ -131,43 +132,46 @@ const menu = (
 )
 export default () => {
   return (
-    <ProTable<TableListItem>
-      columns={columns}
-      request={(params, sorter, filter) => {
-        // 表单搜索项会从 params 传入，传递给后端接口。
-        console.log(params, sorter, filter)
-        return Promise.resolve({
-          data: tableListDataSource,
-          success: true,
-        })
-      }}
-      rowKey="key"
-      pagination={{
-        showQuickJumper: true,
-      }}
-      search={{
-        layout: "vertical",
-        defaultCollapsed: false,
-      }}
-      dateFormatter="string"
-      toolbar={{
-        title: "高级表格",
-        tooltip: "这是一个标题提示",
-      }}
-      toolBarRender={() => [
-        <Button key="danger" danger>
-          危险按钮
-        </Button>,
-        <Button key="show">查看日志</Button>,
-        <Button type="primary" key="primary">
-          创建应用
-        </Button>,
-        <Dropdown key="menu" overlay={menu}>
-          <Button>
-            <EllipsisOutlined />
-          </Button>
-        </Dropdown>,
-      ]}
-    />
+    <PageContainer>
+
+      <ProTable<TableListItem>
+        columns={columns}
+        request={(params, sorter, filter) => {
+          // 表单搜索项会从 params 传入，传递给后端接口。
+          console.log(params, sorter, filter)
+          return Promise.resolve({
+            data: tableListDataSource,
+            success: true,
+          })
+        }}
+        rowKey="key"
+        pagination={{
+          showQuickJumper: true,
+        }}
+        search={{
+          layout: "vertical",
+          defaultCollapsed: false,
+        }}
+        dateFormatter="string"
+        toolbar={{
+          title: "高级表格",
+          tooltip: "这是一个标题提示",
+        }}
+        toolBarRender={() => [
+          <Button key="danger" danger>
+            危险按钮
+          </Button>,
+          <Button key="show">查看日志</Button>,
+          <Button type="primary" key="primary">
+            创建应用
+          </Button>,
+          <Dropdown key="menu" overlay={menu}>
+            <Button>
+              <EllipsisOutlined />
+            </Button>
+          </Dropdown>,
+        ]}
+      />
+    </PageContainer>
   )
 }

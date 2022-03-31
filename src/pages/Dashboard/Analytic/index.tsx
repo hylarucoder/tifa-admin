@@ -1,7 +1,7 @@
 import React from "react"
 import { EllipsisOutlined } from "@ant-design/icons"
 import { Col, Dropdown, Menu, RadioChangeEvent, Row } from "antd"
-import { GridContent } from "@ant-design/pro-layout"
+import { GridContent, PageContainer } from "@ant-design/pro-layout"
 
 import { getTimeDistance } from "@/components/Dashboard/utils/utils"
 import styles from "./style.module.less"
@@ -36,9 +36,11 @@ export default () => {
     // })
   }
 
-  const handleRangePickerChange = (rangePickerValue: RangePickerValue) => {}
+  const handleRangePickerChange = (rangePickerValue: RangePickerValue) => {
+  }
 
-  const selectDate = (type: "today" | "week" | "month" | "year") => {}
+  const selectDate = (type: "today" | "week" | "month" | "year") => {
+  }
 
   const isActive = (type: "today" | "week" | "month" | "year") => {
     const { rangePickerValue } = state
@@ -94,58 +96,65 @@ export default () => {
 
   const activeKey = currentTabKey || (offlineData[0] && offlineData[0].name)
   return (
-    <GridContent>
-      <React.Fragment>
-        <IntroduceRow loading={loading} visitData={visitData} />
-        <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => {}}>
-          <SalesCard
-            rangePickerValue={rangePickerValue}
-            salesData={salesData}
-            isActive={isActive}
-            handleRangePickerChange={handleRangePickerChange}
-            loading={loading}
-            selectDate={selectDate}
-          />
-        </ErrorBoundary>
-        <Row
-          gutter={24}
-          style={{
-            marginTop: 24,
-          }}
-        >
-          <Col xl={12} lg={24} md={24} sm={24} xs={24}>
-            <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => {}}>
-              <TopSearch
-                loading={loading}
-                visitData2={visitData2}
-                searchData={searchData}
-                dropdownGroup={dropdownGroup}
-              />
-            </ErrorBoundary>
-          </Col>
-          <Col xl={12} lg={24} md={24} sm={24} xs={24}>
-            <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => {}}>
-              <ProportionSales
-                dropdownGroup={dropdownGroup}
-                // @ts-ignore
-                salesType={salesType}
-                loading={loading}
-                salesPieData={salesPieData}
-                handleChangeSalesType={handleChangeSalesType}
-              />
-            </ErrorBoundary>
-          </Col>
-        </Row>
-        <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => {}}>
-          <OfflineData
-            activeKey={activeKey}
-            loading={loading}
-            offlineData={offlineData}
-            offlineChartData={offlineChartData}
-            handleTabChange={handleTabChange}
-          />
-        </ErrorBoundary>
-      </React.Fragment>
-    </GridContent>
+    <PageContainer>
+
+      <GridContent>
+        <React.Fragment>
+          <IntroduceRow loading={loading} visitData={visitData} />
+          <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => {
+          }}>
+            <SalesCard
+              rangePickerValue={rangePickerValue}
+              salesData={salesData}
+              isActive={isActive}
+              handleRangePickerChange={handleRangePickerChange}
+              loading={loading}
+              selectDate={selectDate}
+            />
+          </ErrorBoundary>
+          <Row
+            gutter={24}
+            style={{
+              marginTop: 24,
+            }}
+          >
+            <Col xl={12} lg={24} md={24} sm={24} xs={24}>
+              <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => {
+              }}>
+                <TopSearch
+                  loading={loading}
+                  visitData2={visitData2}
+                  searchData={searchData}
+                  dropdownGroup={dropdownGroup}
+                />
+              </ErrorBoundary>
+            </Col>
+            <Col xl={12} lg={24} md={24} sm={24} xs={24}>
+              <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => {
+              }}>
+                <ProportionSales
+                  dropdownGroup={dropdownGroup}
+                  // @ts-ignore
+                  salesType={salesType}
+                  loading={loading}
+                  salesPieData={salesPieData}
+                  handleChangeSalesType={handleChangeSalesType}
+                />
+              </ErrorBoundary>
+            </Col>
+          </Row>
+          <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => {
+          }}>
+            <OfflineData
+              activeKey={activeKey}
+              loading={loading}
+              offlineData={offlineData}
+              offlineChartData={offlineChartData}
+              handleTabChange={handleTabChange}
+            />
+          </ErrorBoundary>
+        </React.Fragment>
+      </GridContent>
+    </PageContainer>
   )
 }

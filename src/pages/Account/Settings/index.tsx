@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { GridContent } from "@ant-design/pro-layout"
+import { GridContent, PageContainer } from "@ant-design/pro-layout"
 import { Menu } from "antd"
 import BaseView from "./components/base"
 import BindingView from "./components/binding"
@@ -96,27 +96,29 @@ const Page = () => {
   }
 
   return (
-    <GridContent>
-      <div className={styles.main}>
-        <div className={styles.leftMenu}>
-          <Menu
-            // @ts-ignore
-            mode={mode}
-            selectedKeys={[selectKey]}
-            onClick={({ key }) => {
+    <PageContainer>
+      <GridContent>
+        <div className={styles.main}>
+          <div className={styles.leftMenu}>
+            <Menu
               // @ts-ignore
-              selectKey1(key as AccountSettingsStateKeys)
-            }}
-          >
-            {getMenu()}
-          </Menu>
+              mode={mode}
+              selectedKeys={[selectKey]}
+              onClick={({ key }) => {
+                // @ts-ignore
+                selectKey1(key as AccountSettingsStateKeys)
+              }}
+            >
+              {getMenu()}
+            </Menu>
+          </div>
+          <div className={styles.right}>
+            <div className={styles.title}>{getRightTitle()}</div>
+            {renderChildren()}
+          </div>
         </div>
-        <div className={styles.right}>
-          <div className={styles.title}>{getRightTitle()}</div>
-          {renderChildren()}
-        </div>
-      </div>
-    </GridContent>
+      </GridContent>
+    </PageContainer>
   )
 }
 

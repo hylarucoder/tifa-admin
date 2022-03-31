@@ -1,13 +1,14 @@
 import { useLocation } from "react-router"
 import React from "react"
+import { PageContainer } from "@ant-design/pro-layout"
 
 const Tasks = () => {
   const location = useLocation()
   return (
-    <div>
+    <PageContainer>
       <div>Tasks</div>
       <div>{location.pathname}</div>
-    </div>
+    </PageContainer>
   )
 }
 
