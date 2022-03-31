@@ -42,14 +42,17 @@ export const createZStore = () =>
   create<TState>((set) => ({
     ...INITIAL_STORE,
     bears: 0,
-    increase: (by) => set(state => ({ bears: state.bears + by })),
-    login: () => set({
-      loggedIn: true,
-    }),
-    logout: () => set({
-      loggedIn: false,
-    }),
-    initialize: (data?: any) => set({
-      loggedIn: true,
-    }),
+    increase: (by) => set((state) => ({ bears: state.bears + by })),
+    login: () =>
+      set({
+        loggedIn: true,
+      }),
+    logout: () =>
+      set({
+        loggedIn: false,
+      }),
+    initialize: (data?: any) =>
+      set({
+        loggedIn: true,
+      }),
   }))

@@ -5,7 +5,5 @@ import "./index.less"
 
 ReactDOM.createRoot(
   // @ts-ignore
-  document.getElementById("root"),
-).render(
-  <App />,
-)
+  document.getElementById("root")
+).render(<App />)
