@@ -8,12 +8,14 @@
     "lint": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "start": "vite",
     "build": "vite build",
-    "dev": "vite"
+    "dev": "vite",
+    "prepare": "husky install"
   },
   "lint-staged": {
     "**/*.{js,jsx,tsx,ts,less,md,json}": [
       "prettier --write"
-    ]
+    ],
+    "*.js": "eslint --cache --fix"
   },
   "browserslist": [
     "> 1%",
