@@ -1,61 +1,25 @@
-import React, { Suspense, useState } from "react"
+import React, { lazy, Suspense, useState } from "react"
 import { Layout, Menu, Tabs } from "antd"
 import { MenuFoldOutlined, MenuUnfoldOutlined, PieChartOutlined, UserOutlined } from "@ant-design/icons"
-import { BrowserRouter, Navigate, useNavigate, useRoutes } from "react-router-dom"
-import { flattenLayoutRoutes, layoutRoutes, RouteNode } from "@/routes"
+import { BrowserRouter, Navigate, Outlet, Route, useNavigate, useRoutes } from "react-router-dom"
+import { flattenLayoutRoutes, menuRoutes, RouteNode } from "@/routes"
 import GlobalHeaderRight from "@/components/GlobalHeaderRight"
 import { PageLoading } from "@ant-design/pro-layout"
 import Login from "@/pages/Common/Login"
 import { Header } from "antd/es/layout/layout"
 import { useZStore } from "@/hooks/useZStore"
+import Welcome from "@/pages/Welcome"
+import { forOwn } from "lodash"
 
 const { SubMenu } = Menu
 
-const TabPage = ({ pane }: { pane: any }) => {
-  const route = flattenLayoutRoutes.get(pane.url)
-  // @ts-ignore
-  const Component = route.component as any
+const PageComponent = ({ component }: { component: any }) => {
+  console.log("--->", component)
+  if (!component) {
+    return null
+  }
+  const Component = component as any
   return <Component />
-}
-
-const MultiTabLayout = () => {
-  const store = useZStore()
-  const navigate = useNavigate()
-  // if (!store.loggedIn) {
-  //   navigate("/login")
-  // }
-  return (
-    <Suspense fallback={<PageLoading />}>
-      <Tabs
-        size="small"
-        type="editable-card"
-        onChange={(key) => {
-          navigate(key)
-          store.activeTabRoute(key)
-        }}
-        onEdit={(key, action) => {
-          if (action == "remove") {
-            console.log(key, action)
-            store.removeTabRoute(key)
-          }
-        }}
-        activeKey={store.tabRouteActiveKey}
-        hideAdd
-      >
-        {store.tabRoutes.map((pane) => (
-          <Tabs.TabPane
-            tab={pane.title}
-            key={pane.key}
-            style={{
-              height: "100vh",
-            }}
-          >
-            <TabPage pane={pane} />
-          </Tabs.TabPane>
-        ))}
-      </Tabs>
-    </Suspense>
-  )
 }
 
 const Sidebar = ({ collapsed }: { collapsed: boolean }) => {
@@ -63,16 +27,12 @@ const Sidebar = ({ collapsed }: { collapsed: boolean }) => {
   const navigate = useNavigate()
   const onGoTo = (node: RouteNode) => {
     navigate(node.path)
-    store.addOrActiveTabRoute({
-      title: node.name,
-      key: node.path,
-      url: node.path,
-    })
   }
   return (
     <Layout.Sider
       collapsed={collapsed}
-      onCollapse={() => {}}
+      onCollapse={() => {
+      }}
       style={{
         width: 208,
         background: "#FFF",
@@ -80,7 +40,7 @@ const Sidebar = ({ collapsed }: { collapsed: boolean }) => {
     >
       <div className="logo">Tifa</div>
       <Menu theme="light" defaultSelectedKeys={["1"]} mode="inline">
-        {layoutRoutes.map((node) => {
+        {menuRoutes.map((node) => {
           if (!node.routes) {
             return (
               <Menu.Item key={node.path} icon={<PieChartOutlined />}>
@@ -117,7 +77,7 @@ const Sidebar = ({ collapsed }: { collapsed: boolean }) => {
   )
 }
 
-const LayoutRoutes = () => {
+const LayoutMain: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false)
   return (
     <Layout style={{ minHeight: "100vh" }}>
@@ -132,33 +92,55 @@ const LayoutRoutes = () => {
           })}
           <GlobalHeaderRight />
         </Header>
-        <MultiTabLayout />
+        <Suspense fallback={<PageLoading />}>
+          <Outlet />
+        </Suspense>
       </Layout>
     </Layout>
   )
 }
 
+const newRoutes = []
+for (const menuRoute of menuRoutes) {
+  if ((menuRoute.routes || []).length === 0) {
+    newRoutes.push({
+      path: menuRoute.path,
+      element: <LayoutMain />,
+      children: [
+        {
+          path: "",
+          element: <PageComponent component={menuRoute.component} />,
+        },
+      ],
+
+    })
+  } else {
+    const newRoute = {
+      path: menuRoute.path,
+      element: <LayoutMain />,
+      children: (menuRoute.routes || []).map((route) => {
+        return {
+          path: route.path,
+          element: <PageComponent component={route.component} />,
+        }
+      }),
+    }
+    newRoutes.push(newRoute)
+  }
+}
+console.log("new", newRoutes)
+const staticRoutes = [
+  // These are the same as the props you provide to <Route>
+  { path: "/", element: <Navigate to={"/welcome"} /> },
+  { path: "/login", element: <Login /> },
+  ...newRoutes,
+  {
+    path: "*",
+    element: <div>404</div>,
+  },
+]
 const RouterWrap: React.FC = () => {
-  return useRoutes([
-    // These are the same as the props you provide to <Route>
-    { path: "/", element: <Navigate to={"/welcome"} /> },
-    { path: "/login", element: <Login /> },
-    // {
-    //     path: "invoices",
-    //     element: <Invoices/>,
-    //     // Nested routes use a children property, which is also
-    //     // the same as <Route>
-    //     children: [
-    //         {path: ":id", element: <Invoice/>},
-    //         {path: "sent", element: <SentInvoices/>},
-    //     ],
-    // },
-    // Not found routes work as you'd expect
-    {
-      path: "*",
-      element: <LayoutRoutes />,
-    },
-  ])
+  return useRoutes(staticRoutes)
 }
 
 const Router: React.FC = () => {

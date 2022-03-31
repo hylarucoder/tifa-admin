@@ -6,14 +6,12 @@ export type RouteNode = {
   icon?: string
   component?: React.ComponentType | React.FC | LazyExoticComponent<any> | JSX.Element
   permission?: string
-  isMultiPanel?: boolean
-  keepAlive?: boolean
   routes?: RouteNode[]
 }
 
 import Welcome from "@/pages/Welcome"
 
-export const layoutRoutes: RouteNode[] = [
+export const menuRoutes: RouteNode[] = [
   {
     path: "/welcome",
     name: "欢迎页面",
@@ -146,13 +144,13 @@ export const layoutRoutes: RouteNode[] = [
       {
         name: "系统编码生成规则",
         icon: "smile",
-        path: "/online/rule_code_gen",
+        path: "/online_dev/rule_code_gen",
         component: lazy(() => import("@/pages/OnlineDev/RuleCodeGen")),
       },
       {
         name: "系统编码校验规则",
         icon: "smile",
-        path: "/online/rule_code_validator",
+        path: "/online_dev/rule_code_validator",
         component: lazy(() => import("@/pages/OnlineDev/RuleCodeValidator")),
       },
     ],
@@ -309,7 +307,7 @@ export const layoutRoutes: RouteNode[] = [
 
 export const flattenLayoutRoutes = new Map<string, RouteNode>()
 
-for (const layoutRoute of layoutRoutes) {
+for (const layoutRoute of menuRoutes) {
   if (layoutRoute.component) {
     flattenLayoutRoutes.set(layoutRoute.path, layoutRoute)
   }
