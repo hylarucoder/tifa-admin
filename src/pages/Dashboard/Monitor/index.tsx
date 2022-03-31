@@ -1,6 +1,6 @@
 import { Card, Col, Row, Statistic } from "antd"
 import React from "react"
-import { GridContent } from "@ant-design/pro-layout"
+import { GridContent, PageContainer } from "@ant-design/pro-layout"
 import { Pie, WaterWave, Gauge, TagCloud, Map } from "@/components/Charts"
 import ActiveChart from "@/components/Charts/ActiveChart"
 import styles from "./style.module.less"
@@ -14,150 +14,152 @@ export default () => {
   const tags = [{ name: "@city", "value|1-100": 150, "type|0-2": 1 }]
   // @ts-ignore
   return (
-    <GridContent>
-      <React.Fragment>
-        <Row gutter={24}>
-          <Col
-            xl={18}
-            lg={24}
-            md={24}
-            sm={24}
-            xs={24}
-            style={{
-              marginBottom: 24,
-            }}
-          >
-            <Card title="活动实时交易情况" bordered={false}>
-              <Row>
-                <Col md={6} sm={12} xs={24}>
-                  <Statistic title="今日交易总额" suffix="元" value={formatNumber(124543233, "0,0")} />
-                </Col>
-                <Col md={6} sm={12} xs={24}>
-                  <Statistic title="销售目标完成率" value="92%" />
-                </Col>
-                <Col md={6} sm={12} xs={24}>
-                  <Countdown title="活动剩余时间" value={deadline} format="HH:mm:ss:SSS" />
-                </Col>
-                <Col md={6} sm={12} xs={24}>
-                  <Statistic title="每秒交易总额" suffix="元" value={formatNumber(234, "0,0")} />
-                </Col>
-              </Row>
-              <div className={styles.mapChart}>
-                <Map />
-              </div>
-            </Card>
-          </Col>
-          <Col xl={6} lg={24} md={24} sm={24} xs={24}>
-            <Card
-              title="活动情况预测"
+    <PageContainer>
+      <GridContent>
+        <React.Fragment>
+          <Row gutter={24}>
+            <Col
+              xl={18}
+              lg={24}
+              md={24}
+              sm={24}
+              xs={24}
               style={{
                 marginBottom: 24,
               }}
-              bordered={false}
             >
-              <ActiveChart />
-            </Card>
-            <Card
-              title="券核效率"
-              style={{
-                marginBottom: 24,
-              }}
-              bodyStyle={{
-                textAlign: "center",
-              }}
-              bordered={false}
-            >
-              <Gauge title="跳出率" height={180} percent={87} />
-            </Card>
-          </Col>
-        </Row>
-        <Row gutter={24}>
-          <Col
-            xl={12}
-            lg={24}
-            sm={24}
-            xs={24}
-            style={{
-              marginBottom: 24,
-            }}
-          >
-            <Card title="各品类占比" bordered={false} className={styles.pieCard}>
-              <Row
+              <Card title="活动实时交易情况" bordered={false}>
+                <Row>
+                  <Col md={6} sm={12} xs={24}>
+                    <Statistic title="今日交易总额" suffix="元" value={formatNumber(124543233, "0,0")} />
+                  </Col>
+                  <Col md={6} sm={12} xs={24}>
+                    <Statistic title="销售目标完成率" value="92%" />
+                  </Col>
+                  <Col md={6} sm={12} xs={24}>
+                    <Countdown title="活动剩余时间" value={deadline} format="HH:mm:ss:SSS" />
+                  </Col>
+                  <Col md={6} sm={12} xs={24}>
+                    <Statistic title="每秒交易总额" suffix="元" value={formatNumber(234, "0,0")} />
+                  </Col>
+                </Row>
+                <div className={styles.mapChart}>
+                  <Map />
+                </div>
+              </Card>
+            </Col>
+            <Col xl={6} lg={24} md={24} sm={24} xs={24}>
+              <Card
+                title="活动情况预测"
                 style={{
-                  padding: "16px 0",
+                  marginBottom: 24,
+                }}
+                bordered={false}
+              >
+                <ActiveChart />
+              </Card>
+              <Card
+                title="券核效率"
+                style={{
+                  marginBottom: 24,
+                }}
+                bodyStyle={{
+                  textAlign: "center",
+                }}
+                bordered={false}
+              >
+                <Gauge title="跳出率" height={180} percent={87} />
+              </Card>
+            </Col>
+          </Row>
+          <Row gutter={24}>
+            <Col
+              xl={12}
+              lg={24}
+              sm={24}
+              xs={24}
+              style={{
+                marginBottom: 24,
+              }}
+            >
+              <Card title="各品类占比" bordered={false} className={styles.pieCard}>
+                <Row
+                  style={{
+                    padding: "16px 0",
+                  }}
+                >
+                  <Col span={8}>
+                    <Pie animate={false} percent={28} title="中式快餐" total="28%" height={128} lineWidth={2} />
+                  </Col>
+                  <Col span={8}>
+                    <Pie
+                      animate={false}
+                      color="#5DDECF"
+                      percent={22}
+                      title="西餐"
+                      total="22%"
+                      height={128}
+                      lineWidth={2}
+                    />
+                  </Col>
+                  <Col span={8}>
+                    <Pie
+                      animate={false}
+                      color="#2FC25B"
+                      percent={32}
+                      title="火锅"
+                      total="32%"
+                      height={128}
+                      lineWidth={2}
+                    />
+                  </Col>
+                </Row>
+              </Card>
+            </Col>
+            <Col
+              xl={6}
+              lg={12}
+              sm={24}
+              xs={24}
+              style={{
+                marginBottom: 24,
+              }}
+            >
+              <Card
+                title="热门搜索"
+                loading={loading}
+                bordered={false}
+                bodyStyle={{
+                  overflow: "hidden",
                 }}
               >
-                <Col span={8}>
-                  <Pie animate={false} percent={28} title="中式快餐" total="28%" height={128} lineWidth={2} />
-                </Col>
-                <Col span={8}>
-                  <Pie
-                    animate={false}
-                    color="#5DDECF"
-                    percent={22}
-                    title="西餐"
-                    total="22%"
-                    height={128}
-                    lineWidth={2}
-                  />
-                </Col>
-                <Col span={8}>
-                  <Pie
-                    animate={false}
-                    color="#2FC25B"
-                    percent={32}
-                    title="火锅"
-                    total="32%"
-                    height={128}
-                    lineWidth={2}
-                  />
-                </Col>
-              </Row>
-            </Card>
-          </Col>
-          <Col
-            xl={6}
-            lg={12}
-            sm={24}
-            xs={24}
-            style={{
-              marginBottom: 24,
-            }}
-          >
-            <Card
-              title="热门搜索"
-              loading={loading}
-              bordered={false}
-              bodyStyle={{
-                overflow: "hidden",
+                {/*// @ts-ignore*/}
+                <TagCloud data={tags || []} height={161} />
+              </Card>
+            </Col>
+            <Col
+              xl={6}
+              lg={12}
+              sm={24}
+              xs={24}
+              style={{
+                marginBottom: 24,
               }}
             >
-              {/*// @ts-ignore*/}
-              <TagCloud data={tags || []} height={161} />
-            </Card>
-          </Col>
-          <Col
-            xl={6}
-            lg={12}
-            sm={24}
-            xs={24}
-            style={{
-              marginBottom: 24,
-            }}
-          >
-            <Card
-              title="资源剩余"
-              bodyStyle={{
-                textAlign: "center",
-                fontSize: 0,
-              }}
-              bordered={false}
-            >
-              <WaterWave height={161} title="补贴资金剩余" percent={34} />
-            </Card>
-          </Col>
-        </Row>
-      </React.Fragment>
-    </GridContent>
+              <Card
+                title="资源剩余"
+                bodyStyle={{
+                  textAlign: "center",
+                  fontSize: 0,
+                }}
+                bordered={false}
+              >
+                <WaterWave height={161} title="补贴资金剩余" percent={34} />
+              </Card>
+            </Col>
+          </Row>
+        </React.Fragment>
+      </GridContent>
+    </PageContainer>
   )
 }

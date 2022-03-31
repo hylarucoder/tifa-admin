@@ -2,7 +2,12 @@
 
 An Admin for tifa https://github.com/twocucao/tifa
 
-TODO: react dev inspector
+## Feature
+
+- Ant Design
+- Ant Design Pro Component
+- Vite
+- Zustand
 
 ## Credits
 

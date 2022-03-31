@@ -3,6 +3,7 @@ import { Button, Tooltip } from "antd"
 import { DownOutlined, QuestionCircleOutlined } from "@ant-design/icons"
 import type { ProColumns } from "@ant-design/pro-table"
 import ProTable, { TableDropdown } from "@ant-design/pro-table"
+import { PageContainer } from "@ant-design/pro-layout"
 
 const valueEnum = {
   0: "close",
@@ -119,33 +120,35 @@ const columns: ProColumns<TableListItem>[] = [
 
 export default () => {
   return (
-    <ProTable<TableListItem>
-      columns={columns}
-      request={(params, sorter, filter) => {
-        // 表单搜索项会从 params 传入，传递给后端接口。
-        console.log(params, sorter, filter)
-        return Promise.resolve({
-          data: tableListDataSource,
-          success: true,
-        })
-      }}
-      rowKey="key"
-      pagination={{
-        showQuickJumper: true,
-      }}
-      search={false}
-      dateFormatter="string"
-      headerTitle="表格标题"
-      toolBarRender={() => [
-        <Button key="show">查看日志</Button>,
-        <Button key="out">
-          导出数据
-          <DownOutlined />
-        </Button>,
-        <Button type="primary" key="primary">
-          创建应用
-        </Button>,
-      ]}
-    />
+    <PageContainer>
+      <ProTable<TableListItem>
+        columns={columns}
+        request={(params, sorter, filter) => {
+          // 表单搜索项会从 params 传入，传递给后端接口。
+          console.log(params, sorter, filter)
+          return Promise.resolve({
+            data: tableListDataSource,
+            success: true,
+          })
+        }}
+        rowKey="key"
+        pagination={{
+          showQuickJumper: true,
+        }}
+        search={false}
+        dateFormatter="string"
+        headerTitle="表格标题"
+        toolBarRender={() => [
+          <Button key="show">查看日志</Button>,
+          <Button key="out">
+            导出数据
+            <DownOutlined />
+          </Button>,
+          <Button type="primary" key="primary">
+            创建应用
+          </Button>,
+        ]}
+      />
+    </PageContainer>
   )
 }
