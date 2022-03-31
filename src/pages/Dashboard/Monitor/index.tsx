@@ -15,7 +15,6 @@ export default () => {
   // @ts-ignore
   return (
     <PageContainer>
-
       <GridContent>
         <React.Fragment>
           <Row gutter={24}>
