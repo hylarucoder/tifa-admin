@@ -6,8 +6,8 @@ import { flattenLayoutRoutes, layoutRoutes, RouteNode } from "@/routes"
 import GlobalHeaderRight from "@/components/GlobalHeaderRight"
 import { PageLoading } from "@ant-design/pro-layout"
 import Login from "@/pages/Common/Login"
-import { useGlobalStore } from "@/hooks/useStore"
 import { Header } from "antd/es/layout/layout"
+import { useZStore } from "@/hooks/useZStore"
 
 const { SubMenu } = Menu
 
@@ -19,7 +19,7 @@ const TabPage = ({ pane }: { pane: any }) => {
 }
 
 const MultiTabLayout = () => {
-  const store = useGlobalStore()
+  const store = useZStore()
   const navigate = useNavigate()
   // if (!store.loggedIn) {
   //   navigate("/login")
@@ -59,7 +59,7 @@ const MultiTabLayout = () => {
 }
 
 const Sidebar = ({ collapsed }: { collapsed: boolean }) => {
-  const store = useGlobalStore()
+  const store = useZStore()
   const navigate = useNavigate()
   const onGoTo = (node: RouteNode) => {
     navigate(node.path)

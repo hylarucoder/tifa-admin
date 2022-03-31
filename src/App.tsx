@@ -1,20 +1,18 @@
-import React, { useEffect } from "react"
+import React from "react"
 import "./App.css"
-import { ProvideStore, useGlobalStore } from "@/hooks/useStore"
 import Router from "@/Router"
-import { PageLoading } from "@ant-design/pro-layout"
+
+import { createZStore, ZProvider } from "./hooks/useZStore"
 
 function Main() {
-  const store = useGlobalStore()
-  // return <PageLoading />
   return <Router />
 }
 
 export const App: React.FC = (props: { children?: React.ReactNode }) => {
   return (
-    <ProvideStore>
+    <ZProvider createStore={createZStore}>
       <Main />
-    </ProvideStore>
+    </ZProvider>
   )
 }
 

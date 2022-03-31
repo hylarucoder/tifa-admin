@@ -15,7 +15,14 @@ function pathAlias(source, target) {
 export default defineConfig({
   plugins: [
     reactRefresh(),
-    VitePWA(),
+    VitePWA({
+      /* other options */
+      /* enable sw on development */
+      devOptions: {
+        enabled: true,
+        /* other options */
+      },
+    }),
   ],
   resolve: {
     alias: [
