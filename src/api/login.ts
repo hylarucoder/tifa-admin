@@ -1,10 +1,3 @@
-import { mockProfile } from "@/mock/user"
-
-export async function fetchInitialData() {
-  // const resp = await httpGet(`/admin/initial`)
-  return mockProfile
-}
-
 export type LoginParamsType = {
   username: string
   password: string
@@ -13,13 +6,14 @@ export type LoginParamsType = {
   type: string
 }
 
-export async function accountLogin(params: LoginParamsType) {
+export async function accountLogin(params: Partial<LoginParamsType>) {
   // const resp = await httpPost("/admin/login", params)
-  // return resp.data as any
+  return {} as any
 }
 
 export async function accountGetCaptcha(mobile: string) {
   return {}
 }
 
-export async function accountLogout() {}
+export async function accountLogout() {
+}

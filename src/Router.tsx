@@ -8,8 +8,6 @@ import { PageLoading } from "@ant-design/pro-layout"
 import Login from "@/pages/Common/Login"
 import { Header } from "antd/es/layout/layout"
 import { useZStore } from "@/hooks/useZStore"
-import Welcome from "@/pages/Welcome"
-import { forOwn } from "lodash"
 
 const { SubMenu } = Menu
 
@@ -31,7 +29,8 @@ const Sidebar = ({ collapsed }: { collapsed: boolean }) => {
   return (
     <Layout.Sider
       collapsed={collapsed}
-      onCollapse={() => {}}
+      onCollapse={() => {
+      }}
       style={{
         width: 208,
         background: "#FFF",
@@ -83,12 +82,6 @@ const LayoutMain: React.FC = () => {
       <Sidebar collapsed={collapsed} />
       <Layout className="site-layout">
         <Header className="site-layout-background" style={{ padding: 0 }}>
-          {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-            className: "trigger",
-            onClick: () => {
-              setCollapsed(!collapsed)
-            },
-          })}
           <GlobalHeaderRight />
         </Header>
         <Suspense fallback={<PageLoading />}>

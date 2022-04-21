@@ -20,14 +20,6 @@ export const GlobalHeaderRight: React.FC = () => {
             value: "umi ui",
           },
           {
-            label: <a href="next.ant.design">Ant Design</a>,
-            value: "Ant Design",
-          },
-          {
-            label: <a href="https://protable.ant.design/">Pro Table</a>,
-            value: "Pro Table",
-          },
-          {
             label: <a href="https://prolayout.ant.design/">Pro Layout</a>,
             value: "Pro Layout",
           },

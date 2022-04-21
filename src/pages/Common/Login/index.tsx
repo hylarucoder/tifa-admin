@@ -6,9 +6,10 @@ import Footer from "@/components/Footer"
 import styles from "./index.module.less"
 import { Link, useParams } from "react-router-dom"
 import { useBoolean } from "@/hooks/useBoolean"
-import { accountGetCaptcha } from "@/api/login"
+import { accountGetCaptcha, accountLogin } from "@/api/login"
 import { useEnum } from "@/hooks/useEnum"
 import { useZStore } from "@/hooks/useZStore"
+import logo from "@/assets/logo.svg"
 
 const LoginMessage: React.FC<{
   content: string
@@ -45,8 +46,8 @@ const Login: React.FC = () => {
       <div className={styles.content}>
         <div className={styles.top}>
           <div className={styles.header}>
-            <Link to="/">
-              <img alt="logo" className={styles.logo} src="/logo.svg" />
+            <Link to="/" className={styles.banner}>
+              <img alt="logo" className={styles.logo} src={logo} />
               <span className={styles.title}>Tifa</span>
             </Link>
           </div>
@@ -72,14 +73,10 @@ const Login: React.FC = () => {
               },
             }}
             onFinish={async (values) => {
-              doLogin({
-                variables: {
-                  data: {
-                    login: values.username,
-                    type: "PASSWORD",
-                    password: values.password,
-                  },
-                },
+              accountLogin({
+                username: values.username,
+                type: "PASSWORD",
+                password: values.password,
               })
             }}
           >
