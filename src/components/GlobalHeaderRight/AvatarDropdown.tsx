@@ -1,7 +1,8 @@
 import React, { useCallback, useState } from "react"
 import { LogoutOutlined, SettingOutlined, UserOutlined } from "@ant-design/icons"
+
 import { Avatar, Menu, Spin } from "antd"
-// import { stringify } from 'querystring';
+import { stringify } from "query-string"
 import HeaderDropdown from "../HeaderDropdown"
 import styles from "./index.module.less"
 import { accountLogout } from "@/api/login"
@@ -15,16 +16,17 @@ export type GlobalHeaderRightProps = {
  */
 const loginOut = async () => {
   await accountLogout()
-  // const { query, pathname } = history.location;
-  // const { redirect } = query;
+  const pathname = window.location.pathname
+  window.location.replace("/login")
+  // const { redirect } = query
   // // Note: There may be security issues, please note
-  // if (window.location.pathname !== '/login' && !redirect) {
-  //   history.replace({
-  //     pathname: '/login',
+  // if (window.location.pathname !== "/login" && !redirect) {
+  //   window.location.replace({
+  //     pathname: "/login",
   //     search: stringify({
   //       redirect: pathname,
   //     }),
-  //   });
+  //   })
   // }
 }
 
@@ -98,6 +100,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
     </Menu>
   )
   return (
+    // @ts-ignore
     <HeaderDropdown overlay={menuHeaderDropdown}>
       <span className={`${styles.action} ${styles.account}`}>
         <Avatar size="small" className={styles.avatar} src={currentUser.avatar} alt="avatar" />
