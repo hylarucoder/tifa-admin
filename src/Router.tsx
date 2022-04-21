@@ -29,8 +29,7 @@ const Sidebar = ({ collapsed }: { collapsed: boolean }) => {
   return (
     <Layout.Sider
       collapsed={collapsed}
-      onCollapse={() => {
-      }}
+      onCollapse={() => {}}
       style={{
         width: 208,
         background: "#FFF",

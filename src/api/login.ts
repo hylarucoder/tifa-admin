@@ -15,5 +15,4 @@ export async function accountGetCaptcha(mobile: string) {
   return {}
 }
 
-export async function accountLogout() {
-}
+export async function accountLogout() {}

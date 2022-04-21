@@ -49,7 +49,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
       }
       // history.push(`/account/${key}`);
     },
-    [initialState],
+    [initialState]
   )
 
   const loading = (
