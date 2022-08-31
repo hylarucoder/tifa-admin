@@ -1,8 +1,6 @@
 import path from "path"
 import { defineConfig } from "vite"
 import reactRefresh from "@vitejs/plugin-react-refresh"
-import { VitePWA } from "vite-plugin-pwa"
-
 
 function pathAlias(source, target) {
   return {
@@ -15,14 +13,6 @@ function pathAlias(source, target) {
 export default defineConfig({
   plugins: [
     reactRefresh(),
-    VitePWA({
-      /* other options */
-      /* enable sw on development */
-      devOptions: {
-        enabled: true,
-        /* other options */
-      },
-    }),
   ],
   resolve: {
     alias: [
