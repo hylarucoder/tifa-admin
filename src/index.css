@@ -1,6 +1,3 @@
-@import '~antd/es/style/themes/default.less';
-@import '~antd/dist/antd.less';
-
 html,
 body,
 #root {
@@ -30,32 +27,6 @@ ol {
   list-style: none;
 }
 
-@media (max-width: @screen-xs) {
-  .ant-table {
-    width: 100%;
-    overflow-x: auto;
-
-    &-thead > tr,
-    &-tbody > tr {
-      > th,
-      > td {
-        white-space: pre;
-
-        > span {
-          display: block;
-        }
-      }
-    }
-  }
-}
-
-// 兼容IE11
-@media screen and(-ms-high-contrast: active), (-ms-high-contrast: none) {
-  body .ant-design-pro > .ant-layout {
-    min-height: 100vh;
-  }
-}
-
 .trigger {
   font-size: 20px;
   line-height: 60px;
@@ -80,17 +51,4 @@ ol {
   Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif,
   Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   font-weight: 600;
-}
-
-.site-layout {
-  //background-color: #FFF;
-
-  .site-layout-background {
-    height: 44px;
-    background-color: #36a2fb;
-    //span {
-    //  height: 42px;
-    //}
-
-  }
 }
